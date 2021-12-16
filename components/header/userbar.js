@@ -35,7 +35,16 @@ export default function Userbar() {
 
                     <Container>
                         <div className="d-flex align-items-center justify-content-between">
-                            <div>v2 Wallet Tracker</div>
+                            <div>
+                                <div className="d-flex align-items-center">
+                                    <div className="pe-2">
+                                        <img src="https://safemoon.net/img/logo.svg" width={24}/> 
+                                    </div>
+                                    <div>
+                                        v2 Wallet Tracker
+                                    </div>
+                                </div>
+                            </div>
                             <div>
                                 <OverlayTrigger
                                     placement="left"

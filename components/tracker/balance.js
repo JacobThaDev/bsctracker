@@ -147,7 +147,7 @@ export default function BalanceCard() {
                 <Card className="shadow-sm mb-3">
                     <Card.Body>
                         <p className="small text-muted mb-0">
-                            Volume (USD):
+                            Volume 24h (USD):
                         </p>
                         <p className="mb-0">
                             ${ wallet.tokenData ? wallet.tokenData.volume.toLocaleString() : loadIcon }
