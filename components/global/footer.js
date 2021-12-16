@@ -15,7 +15,7 @@ export default class Footer extends Component {
                         target="_blank" rel="nofollow noopener">
                         <i className="fab fa-discord fa-lg fa-fw"></i>
                     </a>
-                    <a href="" className="d-inline-block"
+                    <a href="https://github.com/OGKingFox/sfmv2-tracker" className="d-inline-block"
                         target="_blank" rel="nofollow noopener">
                         <i className="fab fa-github fa-lg fa-fw"></i>
                     </a>
