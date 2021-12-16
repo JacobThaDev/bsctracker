@@ -97,36 +97,4 @@ export default class Transactions extends Component {
         </>);
     }
 
-    /*const [txns, setTxns] = useState(null);
-
-    useEffect(() => {
-        let address = Cookies.get("wallet");
-        update(address); // get the initial list
-        const interval = setInterval(async() => update(address), 60000);
-        return() => clearInterval(interval);
-    }, []);
-
-    const update = async(address) => {
-        let txnList = await Functions.getTxns(address);
-
-        setTxns(txnList.original);
-        console.log(txnList);
-        console.log(txns);
-    };
-
-    return(<>
-        <Card>
-            <Table className="mb-0 table-striped table-borderless">
-                <tr>
-                    <td>yeet</td>
-                </tr>
-                <tr>
-                    <td>yeet</td>
-                </tr>
-                <tr>
-                    <td>yeet</td>
-                </tr>
-            </Table>
-        </Card>
-    </>);*/
 }
