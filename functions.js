@@ -15,19 +15,7 @@ export const timestampToDate = (timestamp) => {
  */
 export const getTokenData = async() => {
     try {
-        let baseToken = config['address'];
-
-        let res = await axios('https://api.dex.guru/v1/tokens/'+baseToken+'-bsc', {
-             method: 'GET',
-             headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Cache-Control': 'no-cache',
-                'Pragma': 'no-cache',
-                'Expires': '0',
-             }
-        });
-
+        let res = await axios.get('https://api.bsctracker.net/price');
         return res.data;
     } catch (err) {
         console.log(err);
@@ -53,27 +41,22 @@ export const getBalance = async(wallet_address, formatNumber = false) => {
 }
 
 export const getTxns = async(address) => {
-    let contract = config['address']; // contract address
-    let api_key  = config['bscscan_key'];
-    let api_url  = "https://api.bscscan.com/api?module=account&action=tokentx&contractaddress="+contract+"&address="+address+"&offset=10000&sort=asc&apikey="+api_key;
-
+    let api_url  = "https://api.bsctracker.net/wallet/"+address+"/txns";
     let buys     = [];
     let sells    = [];
 
     try {
-        let txns   = await axios.get(api_url);
-        let result = txns.data.result;
+        let txns = await axios.get(api_url);
+        let data = txns.data;
 
-        for (let i = 0; i < result.length; i++) {
-            let txn = result[i];
+        for (let i = 0; i < data.length; i++) {
+            let txn = data[i];
 
             if (typeof txn.from == "undefined") {
                 continue;
             }
-
-            let to_addr   = txn.to;
             
-            if (to_addr.toLowerCase() == address.toLowerCase()) {
+            if (txn.type == "buy") {
                 buys.push(txn);
             } else {
                 sells.push(txn);
@@ -83,7 +66,7 @@ export const getTxns = async(address) => {
         return {
             buys: buys, 
             sells: sells,
-            original: result
+            original: data
         };
     } catch (err) {
         console.log(err);

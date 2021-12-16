@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie';
 import React, { useEffect, useState } from 'react';
-import { Card, Row, Col } from 'react-bootstrap';
+import { Card, Row, Col, CardGroup } from 'react-bootstrap';
 
 import * as Functions from '../../functions';
 
@@ -18,7 +18,8 @@ export default function BalanceCard() {
         earned: 0,
         lastTick: 0,
         lastUpdate: null,
-        price: 0
+        price: 0,
+        tokenData: null
     });
 
     const update = async(address) => {
@@ -51,7 +52,7 @@ export default function BalanceCard() {
             earned: reflections - reflectStart,
             lastTick: earned,
             lastUpdate: today.toLocaleTimeString(),
-            price: tokenData['priceUSD']
+            tokenData: tokenData
         });
     }
 
@@ -75,77 +76,89 @@ export default function BalanceCard() {
     let loadIcon = <i className="fal fa-spinner fa-pulse"></i>;
 
     return (<>
-        <Row className="mb-2">
-            <Col xs={12} lg={3}>
-                <Card className="shadow-sm mb-3 mb-lg-0">
+        <Row className="text-center align-items-center" xs={1} md={2} lg={3}>
+            <Col>
+                <Card className="shadow-sm mb-3">
                     <Card.Body>
                         <p className="small text-muted mb-0">
                             Balance:
                         </p>
                         <p className="mb-0">
                             { wallet.balance ? wallet.balance.toLocaleString(undefined, { 
-                                minimumFractionDigits: 9 
+                                minimumFractionDigits: 6
                             }) : loadIcon }
                         </p>
                     </Card.Body>
-                    <Card.Footer className="small border-0 bg-transparent text-success pb-3">
-                        +{wallet.earned.toFixed(9)} earned this session
-                    </Card.Footer>
                 </Card>
             </Col>
-            <Col xs={12} lg={3}>
-                <Card className="shadow-sm mb-3 mb-lg-0">
+            <Col>
+                <Card className="shadow-sm mb-3">
                     <Card.Body>
                         <p className="small text-muted mb-0">
-                            Reflections:
+                            Earnings:
                         </p>
                         <p className="mb-0">
                             { wallet.reflections ? wallet.reflections.toLocaleString(undefined, { 
-                                minimumFractionDigits: 9 
+                                minimumFractionDigits: 6
                             }) : loadIcon }
                         </p>
                     </Card.Body>
-                    <Card.Footer className="small border-0 bg-transparent text-success pb-3">
-                        +{wallet.lastTick.toFixed(9)} earned on tick*
-                    </Card.Footer>
                 </Card>
             </Col>
-            <Col xs={12} lg={3}>
-                <Card className="shadow-sm mb-3 mb-lg-0">
+            <Col>
+                <Card className="shadow-sm mb-3">
                     <Card.Body>
                         <p className="small text-muted mb-0">
-                            Price (SFM/BNB):
+                            Price (SFM/USD):
                         </p>
                         <p className="mb-0">
-                            { wallet.price ? wallet.price.toLocaleString(undefined, { 
-                                minimumFractionDigits: 9 
+                            ${ wallet.tokenData ? wallet.tokenData.price.toLocaleString(undefined, { 
+                                minimumFractionDigits: 6
                             }) : loadIcon }
                         </p>
                     </Card.Body>
-                    <Card.Footer className="small border-0 bg-transparent text-muted pb-3">
-                       Price is approx.
-                    </Card.Footer>
                 </Card>
             </Col>
-            <Col xs={12} lg={3}>
-                <Card className="shadow-sm mb-3 mb-lg-0">
+            <Col>
+                <Card className="shadow-sm mb-3">
                     <Card.Body>
                         <p className="small text-muted mb-0">
                             Value (USD):
                         </p>
                         <p className="mb-0">
-                            ${ wallet.price && wallet.balance ? (wallet.balance * wallet.price).toFixed(2) : loadIcon }
+                            ${ wallet.tokenData && wallet.balance ? (wallet.balance * wallet.tokenData.price).toFixed(2) : loadIcon }
                         </p>
                     </Card.Body>
-                    <Card.Footer className="small border-0 bg-transparent text-muted pb-3">
-                       Value is approx.
-                    </Card.Footer>
+                </Card>
+            </Col>
+            <Col>
+                <Card className="shadow-sm mb-3">
+                    <Card.Body>
+                        <p className="small text-muted mb-0">
+                            Earnings Value (USD):
+                        </p>
+                        <p className="mb-0">
+                            ${ wallet.tokenData && wallet.reflections ? (wallet.reflections * wallet.tokenData.price).toFixed(2) : loadIcon }
+                        </p>
+                    </Card.Body>
+                </Card>
+            </Col>
+            <Col>
+                <Card className="shadow-sm mb-3">
+                    <Card.Body>
+                        <p className="small text-muted mb-0">
+                            Volume (USD):
+                        </p>
+                        <p className="mb-0">
+                            ${ wallet.tokenData ? wallet.tokenData.volume.toLocaleString() : loadIcon }
+                        </p>
+                    </Card.Body>
                 </Card>
             </Col>
         </Row>
 
         <p className="small text-muted">
-            *Each "tick" occurs every {tickRate/1000} seconds. Last Update: {wallet.lastUpdate}
+            All prices are approximate. Stats update every 10 seconds. Last Update: {wallet.lastUpdate}
         </p>
         </>
     );

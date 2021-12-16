@@ -14,9 +14,7 @@ export default class Homepage extends Component {
         let connect     = document.getElementById("connect");
         let manual      = document.getElementById("manual");
         let component   = this;
-
-
-
+        
         manual.addEventListener("click", function(e) {
             e.preventDefault();
             component.setState({ enter_manual: true });

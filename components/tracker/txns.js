@@ -50,7 +50,7 @@ export default class Transactions extends Component {
                     <tr key={i}>
                         <td className={"py-2 ps-3 "+(isBuy ? "text-success" : "text-danger")}>
                             <span className={"badge rounded-pill bg-" + (isBuy? "success" : "danger")}>
-                                {isBuy ? "Buy": "sell"}
+                                {txn.type}
                             </span>
                         </td>
                         <td className="py-2">{formatted}</td>

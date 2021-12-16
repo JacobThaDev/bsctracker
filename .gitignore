@@ -21,3 +21,5 @@
 .vercel
 
 config.js
+
+pages/egg.js
