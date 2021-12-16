@@ -1,0 +1,32 @@
+.custom-list {
+    list-style: none;
+    margin: 0;
+    line-height: 1em;
+}
+
+.custom-list li {
+    margin-bottom: 30px !important;
+    line-height: 1em;
+    position: relative;
+}
+
+.custom-list li:before, .custom-list li:after {
+    content: '\e001';
+    font-family: 'Font Awesome 5 Duotone';
+    position: absolute;
+    left: 15px;
+    color: #21bbb3;
+    line-height: 30px;
+    text-align: center;
+    top: 0;
+    left: -40px;
+    width: 30px;
+    height: 30px;
+    font-size: 30px;
+    border-radius: 5px;
+}
+
+.custom-list li:after {
+    content: "\10e001";
+    opacity: var(--fa-secondary-opacity, 0.4);
+}

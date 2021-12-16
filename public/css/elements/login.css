@@ -1,0 +1,10 @@
+.login-box {
+    width: 100%;
+    height: 100vh;
+}
+
+.login-box-inner {
+    margin: auto;
+    width: 100%;
+    max-width: 400px;
+}

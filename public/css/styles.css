@@ -1,0 +1,18 @@
+@import 'elements/navbar.css';
+@import 'elements/container.css';
+@import 'elements/buttons.css';
+@import 'elements/header.css';
+@import 'elements/card.css';
+@import 'elements/badge.css';
+@import 'elements/list.css';
+@import 'elements/tables.css';
+@import 'elements/forms.css';
+@import 'elements/login.css';
+@import 'elements/utilities.css';
+@import 'elements/links.css';
+
+.header-title {
+    font-size: 16px;
+    color: white;
+    letter-spacing: 0.06em;
+}

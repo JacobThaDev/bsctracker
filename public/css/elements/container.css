@@ -1,0 +1,15 @@
+.main-content {
+    position: absolute;
+    top: 0;
+    left: 250px;
+    right: 0;
+    height: 100vh;
+    z-index: 999;
+}
+
+@media(max-width: 991.98px) {
+    .main-content {
+        left: 0;
+        top: 100px;
+    }
+}
