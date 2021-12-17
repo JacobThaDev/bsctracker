@@ -1,7 +1,7 @@
-import React from 'react';
+import React  from 'react';
 import { Card } from 'react-bootstrap';
 
-export default function BalanceCard({...props}) {
+export default function EarnedValueCard({...props}) {
 
     let loadIcon = <i className="fal fa-spinner fa-pulse"></i>;
 
@@ -9,12 +9,10 @@ export default function BalanceCard({...props}) {
         <Card className="shadow-sm mb-3">
             <Card.Body>
                 <p className="small text-muted mb-0">
-                    Balance:
+                    Earnings Value (USD):
                 </p>
                 <p className="mb-0">
-                    { props.balance ? props.balance.toLocaleString(undefined, { 
-                        minimumFractionDigits: 6
-                    }) : loadIcon }
+                    ${ (props.earned * props.price).toFixed(2) }
                 </p>
             </Card.Body>
         </Card>
