@@ -22,11 +22,6 @@ export default function Updates({...props}) {
 
     if (updates) {
         for (let i = 0; i < updates.length; i++) {
-            
-            // limit to last 10 updates (9 because index starts at 0...derp)
-            if (i > 9) {
-                break;
-            }
 
             let update    = updates[i];
             let timestamp = update.commit.author.date;
@@ -85,7 +80,8 @@ export default function Updates({...props}) {
                             </a>
                         </div>
                     </div>
-                    <Card className="text-start">
+
+                    <Card className="text-start" style={{maxHeight: 400, overflowY: 'scroll'}}>
                         <Table borderless striped className="mb-0">
                             <tbody>{table}</tbody>
                         </Table>
