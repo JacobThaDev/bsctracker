@@ -38,18 +38,11 @@ export default function PriceChart({...props}) {
                 {
                     label: 'Price',
                     data: priceArr,
-                    borderColor: 'rgb(255, 99, 132)',
-                    backgroundColor: 'rgba(255, 99, 132, 0.01)',
-                    fill:true
-                },
-                /*{
-                    label: 'Volume',
-                    data: volumeArr,
                     borderColor: 'rgb(132, 99, 255)',
-                    backgroundColor: 'rgba(132, 99, 255, 0.2)',
-                    fill:false
-                }*/
-            ],
+                    backgroundColor: 'rgba(132, 99, 255, 0.1)',
+                    fill:true
+                }
+            ]
         });
     }, []);
 

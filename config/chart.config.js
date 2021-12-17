@@ -1,17 +1,8 @@
 module.exports = {
-    tension: 0.25,
+    tension: 0.2,
     responsive: true,
     maintainAspectRatio: false,
     animation: false,
-    tooltips: {
-        mode: 'index',
-        intersect: false,
-        callbacks: {
-            label: function(tooltipItem, data) {
-                return tooltipItem.yLabel.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
-            }
-        }
-    },
     hover: {
         mode: 'index',
         intersect: false
@@ -51,6 +42,15 @@ module.exports = {
         title: {
             display: false,
             text: 'Chart.js Line Chart',
+        },
+        tooltip: {
+            mode: 'index',
+            intersect: false,
+            callbacks: {
+                label: function(tooltipItem, data) {
+                    return tooltipItem.raw;
+                }
+            }
         },
     },
 };
