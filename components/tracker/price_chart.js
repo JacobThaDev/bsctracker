@@ -1,7 +1,7 @@
 import React, { useEffect, useState }  from 'react';
 import { Card } from 'react-bootstrap';
 
-import { Line } from 'react-chartjs-2';
+import { Line, Bar } from 'react-chartjs-2';
 import { Chart as ChartJS } from 'chart.js/auto'
 import { Chart }            from 'react-chartjs-2'
 import axios from 'axios';
@@ -16,22 +16,26 @@ export default function PriceChart({...props}) {
             volumeArr = [];
 
         let res    = await axios.get("https://api.bsctracker.net/price/history");
-        let data   = res.data.reverse();
+        let data   = res.data;
         let labels = [];
 
-        for (let i = 0; i < data.length; i++) {
-            let entry     = data[i];
-            let timestamp = entry.dateline;
-            let date      = new Date(timestamp);
+        if (data && Array.isArray(data)) {
+            data = data.reverse();
 
-            //only push price to chart if it's on the hour.
-            if (date.getMinutes() == 0) {
-                priceArr.push(entry.price);
-                volumeArr.push(entry.volume);
-                labels.push(date.toLocaleString());
+            for (let i = 0; i < data.length; i++) {
+                let entry     = data[i];
+                let timestamp = entry.dateline;
+                let date      = new Date(timestamp);
+                let minutes   = date.getMinutes();
+
+                //only push price to chart if it's on the hour.
+                //if (minutes % 60 == 0) {
+                    priceArr.push(entry.price);
+                    volumeArr.push(entry.volume);
+                    labels.push(date.toLocaleString());
+                //}
             }
         }
-
         setChartData({
             labels ,
             datasets: [
@@ -53,9 +57,9 @@ export default function PriceChart({...props}) {
     return (<>
         <Card className="shadow-sm mb-3">
             <Card.Header className="border-0 bg-transparent">
-                Price over the last 3 days
+                Price over the last 7 days
             </Card.Header>
-            <Card.Body style={{maxHeight: 300}}>
+            <Card.Body style={{maxHeight: 300}} className="p-0">
                 <Line options={chart_config} data={chartData} height={250}/>
             </Card.Body>
         </Card>

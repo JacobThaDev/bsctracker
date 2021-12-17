@@ -16,7 +16,7 @@ module.exports = {
             borderWidth: 1
         },
         point: {
-            radius: 1
+            radius: 0
         }
     },
     scales: {
@@ -28,7 +28,7 @@ module.exports = {
             }
         },
         y: {
-            display: true,
+            display: false,
             beginAtZero: false,
             grid: {
                 display: false
@@ -37,6 +37,7 @@ module.exports = {
     },
     plugins: {
         legend: {
+            display: false,
             position: 'bottom',
         },
         title: {
