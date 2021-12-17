@@ -14,6 +14,7 @@ import PriceCard from '../components/tracker/price';
 import ValueCard from '../components/tracker/value';
 import EarnedValueCard from '../components/tracker/earned_value';
 import VolumeCard from '../components/tracker/volume';
+import PriceChart from '../components/tracker/price_chart';
 
 export default function WalletTracker({...props}) {
 
@@ -141,6 +142,12 @@ export default function WalletTracker({...props}) {
                     <Col>
                         <VolumeCard 
                             volume={wallet.volume} />
+                    </Col>
+                </Row>
+
+                <Row>
+                    <Col>
+                        <PriceChart/>
                     </Col>
                 </Row>
 
