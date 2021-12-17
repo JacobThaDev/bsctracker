@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie';
 import React, { Component, useEffect, useState } from 'react';
-import { Card, Row, Col, Table } from 'react-bootstrap';
+import { Card, Row, Col, Table, Alert } from 'react-bootstrap';
 
 import * as Functions from '../../functions';
 
@@ -12,8 +12,16 @@ export default class Transactions extends Component {
         let table   = [];
         let txns    = this.props.txns;
 
-        if (txns == null || typeof txns === "undefined" || txns.length == 0) {
-            return null;
+        if (txns == null    
+            || typeof txns === "undefined" 
+            || !Array.isArray(txns) 
+            || txns.length == 0 ) {
+            return (
+                <Alert variant="danger">
+                    <i className="fal fa-exclamation-triangle me-2"></i>
+                    Unable to load transactions.
+                </Alert>
+            );
         }
 
         let reversed = txns.reverse();

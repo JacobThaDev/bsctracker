@@ -1,0 +1,6 @@
+.alert-danger {
+    background-color: rgb(185, 70, 70);
+    border-color: rgb(185, 70, 70);
+    padding: 0.8em;
+    color: white;
+}

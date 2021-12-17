@@ -10,6 +10,7 @@
 @import 'elements/login.css';
 @import 'elements/utilities.css';
 @import 'elements/links.css';
+@import 'elements/alert.css';
 
 .header-title {
     font-size: 16px;
