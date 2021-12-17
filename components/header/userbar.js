@@ -50,7 +50,7 @@ export default function Userbar() {
                                     target="_blank"
                                     rel="nofollow noopener"
                                     className="btn btn-link text-white px-4">
-                                    Update Log
+                                    Updates
                                 </a>
                                 <OverlayTrigger
                                     placement="left"
