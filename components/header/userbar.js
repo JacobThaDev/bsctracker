@@ -46,6 +46,12 @@ export default function Userbar() {
                                 </div>
                             </div>
                             <div>
+                                <a href="/updates" 
+                                    target="_blank"
+                                    rel="nofollow noopener"
+                                    className="btn btn-link text-white px-4">
+                                    Update Log
+                                </a>
                                 <OverlayTrigger
                                     placement="left"
                                     delay={{ show: 250, hide: 400 }}

@@ -75,6 +75,12 @@ export default function WalletTracker({...props}) {
 
     useEffect(() => {
         let address  = Cookies.get("wallet");
+
+        if (!address) {
+            window.location = "/";
+            return;
+        }
+        
         let interval;
         
         if (!interval) {
