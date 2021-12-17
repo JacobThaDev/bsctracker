@@ -69,7 +69,7 @@ export default function WalletTracker({...props}) {
                 transactions: txnList.original
             });
         } catch (err) {
-            
+            console.log(err);
         }
     }
 

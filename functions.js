@@ -24,7 +24,9 @@ export const getTokenData = async() => {
 }
 
 export const getBalance = async(wallet_address, formatNumber = false) => {
-    var contract = new web3.eth.Contract(config['abi'], config['address']);
+    let contract_abi = require("./contract.js");
+
+    var contract = new web3.eth.Contract(contract_abi, process.env.NEXT_PUBLIC_ADDRESS);
     var balance  = await contract.methods.balanceOf(wallet_address).call();
     var decimals = await contract.methods.decimals().call();
     

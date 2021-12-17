@@ -76,7 +76,7 @@ export default class Tracker extends Component {
 
     async getTxns(address) {
         let contract = "0x42981d0bfbaf196529376ee702f2a9eb9092fcb5"; // contract address
-        let api_key  = "CKKPW7KJVD2T9I81H2A5K1SZ5YGVH4ZMI1";
+        let api_key  = process.env.NEXT_PUBLIC_BSCSCAN;
         let api_url  = "https://api.bscscan.com/api?module=account&action=tokentx&contractaddress="+contract+"&address="+address+"&offset=10000&sort=asc&apikey="+api_key;
     
         let buys     = [];
