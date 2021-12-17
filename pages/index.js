@@ -76,6 +76,9 @@ export default class Homepage extends Component {
                 <div className="login-box-inner">
                         <Card className="text-center">
                             <Card.Body>
+                                <h1>
+                                    <i className="fal fa-user-chart"></i>
+                                </h1>
                                 <h4>Wallet Tracker</h4>
                                 <p className="small text-muted">
                                     Connect your wallet to track your balance and 

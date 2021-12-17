@@ -26,14 +26,10 @@ export default function PriceChart({...props}) {
                 let entry     = data[i];
                 let timestamp = entry.dateline;
                 let date      = new Date(timestamp);
-                let minutes   = date.getMinutes();
 
-                //only push price to chart if it's on the hour.
-                //if (minutes % 60 == 0) {
-                    priceArr.push(entry.price);
-                    volumeArr.push(entry.volume);
-                    labels.push(date.toLocaleString());
-                //}
+                priceArr.push(entry.price);
+                volumeArr.push(entry.volume);
+                labels.push(date.toLocaleString());
             }
         }
         setChartData({

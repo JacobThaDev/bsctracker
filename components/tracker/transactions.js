@@ -49,7 +49,7 @@ export default class Transactions extends Component {
                     </td>
                     <td className="text-end">
                         <a href={"https://bscscan.com/tx/"+txn.hash}
-                            className="btn btn-success btn-sm w-100 rounded-pill" target="_blank">
+                            className="btn btn-primary btn-sm w-100 rounded-pill" target="_blank">
                             BscScan
                         </a>
                     </td>

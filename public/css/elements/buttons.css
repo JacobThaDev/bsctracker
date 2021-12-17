@@ -5,6 +5,43 @@
 }
 
 /**
+ * primary button
+ */
+.btn-primary {
+    background-color: rgb(132, 99, 255);
+    border-color: rgb(132, 99, 255);
+    transition: all .3s ease-in-out;
+    color:white;
+}
+
+.btn-primary.disabled {
+    background-color: rgb(132, 99, 255);
+    border-color: rgb(132, 99, 255);
+    color:white;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+    background-color: rgb(159, 132, 255);
+    border-color: rgb(159, 132, 255);
+    color:#FFF;
+}
+
+.btn-primary:not(:disabled):not(.disabled).active,
+.btn-primary:not(:disabled):not(.disabled):active,
+.show>.btn-primary.dropdown-toggle {
+    color: #fff;
+    background-color: rgb(132, 99, 255);
+    border-color: rgb(132, 99, 255);
+}
+
+.btn-primary.focus, .btn-primary:focus {
+    color: #fff;
+    background-color: rgb(132, 99, 255);
+    border-color: rgb(132, 99, 255);
+}
+
+
+/**
  * Info Button
  */
 .btn-info {
