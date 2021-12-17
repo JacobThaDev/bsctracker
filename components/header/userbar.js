@@ -41,7 +41,7 @@ export default function Userbar() {
                                         <img src="https://safemoon.net/img/logo.svg" width={24}/> 
                                     </div>
                                     <div>
-                                        v2 Wallet Tracker
+                                        SafeMoon v2 Wallet Tracker
                                     </div>
                                 </div>
                             </div>
