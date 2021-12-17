@@ -2,8 +2,6 @@ const Web3  = require("web3");
 const web3  = new Web3(new Web3.providers.HttpProvider("https://bsc-dataseed1.binance.org:443"));
 import axios from 'axios';
 
-const config = require("/config.js");
-
 export const timestampToDate = (timestamp) => {
     let date  = new Date(timestamp * 1000);
     return date.toLocaleDateString()+ ' '+date.toLocaleTimeString();
