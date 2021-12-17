@@ -71,7 +71,7 @@ export default function Updates({...props}) {
                     <div className="d-flex align-items-center justify-content-between mb-3">
                         <div>
                             <h4 className="mb-0">
-                                Update History
+                                Updates
                             </h4>
                         </div>
                         <div>
