@@ -51,7 +51,7 @@ export default function PriceChart({...props}) {
     }
 
     return (<>
-        <Card className="shadow-sm mb-3">
+        <Card className="shadow-sm mb-3 overflow-hidden">
             <Card.Header className="border-0 bg-transparent">
                 Price over the last 7 days
             </Card.Header>
