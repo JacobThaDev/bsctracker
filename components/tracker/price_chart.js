@@ -1,7 +1,7 @@
 import React, { useEffect, useState }  from 'react';
 import { Card } from 'react-bootstrap';
 
-import { Line, Bar } from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS } from 'chart.js/auto'
 import { Chart }            from 'react-chartjs-2'
 import axios from 'axios';
@@ -32,6 +32,7 @@ export default function PriceChart({...props}) {
                 labels.push(date.toLocaleString());
             }
         }
+
         setChartData({
             labels ,
             datasets: [
@@ -44,6 +45,7 @@ export default function PriceChart({...props}) {
                 }
             ]
         });
+
     }, []);
 
     if (!chartData) {
@@ -56,7 +58,10 @@ export default function PriceChart({...props}) {
                 Price over the last 7 days
             </Card.Header>
             <Card.Body style={{maxHeight: 300}} className="p-0">
-                <Line options={chart_config} data={chartData} height={250}/>
+                <Line 
+                    options={chart_config} 
+                    data={chartData} 
+                    height={250} />
             </Card.Body>
         </Card>
     </>);
