@@ -36,8 +36,10 @@ export default class Transactions extends Component {
                     minimumFractionDigits: 9 
                 })
 
+                let date  = new Date(txn.timeStamp * 1000);
+
                 table.push(
-                <tr key={i}>
+                <tr key={i} style={{lineHeight: "1em"}}>
                     <td className={"py-2 ps-3 "+(isBuy ? "text-success" : "text-danger")}>
                         <span className={"badge rounded-pill bg-" + (isBuy? "success" : "danger")}>
                             {txn.type}
@@ -45,7 +47,8 @@ export default class Transactions extends Component {
                     </td>
                     <td className="py-2">{formatted}</td>
                     <td className="small text-muted text-end">
-                        { Functions.timestampToDate(txn.timeStamp) }
+                        {date.toLocaleDateString()}<br/>
+                        {date.toLocaleTimeString()}
                     </td>
                     <td className="text-end">
                         <a href={"https://bscscan.com/tx/"+txn.hash}
