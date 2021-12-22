@@ -3,7 +3,7 @@
     height: 100vh;
     top: 0;
     width: 250px;
-    z-index: 999 !important;
+    z-index: 1000 !important;
     backdrop-filter: blur(6px);
     transition: background-color .3s ease-in-out;
     background-color: var(--nav-bg);

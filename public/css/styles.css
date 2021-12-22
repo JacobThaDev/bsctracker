@@ -20,7 +20,6 @@
 
 .userbar {
     position: relative;
-    z-index: 1001 !important;
     background-color: var(--card-bg);
     padding: 1em;
 }
