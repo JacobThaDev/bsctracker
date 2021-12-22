@@ -1,25 +1,15 @@
 import Cookies from 'js-cookie';
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment } from 'react';
 import { Button, Card, Container, OverlayTrigger, Tooltip } from 'react-bootstrap';
 
-export default function Userbar() {
+
+export default function Userbar({...props}) {
  
-    const [wallet, setWallet] = useState({ 
-        address: '', 
-        formatted: ''
-    });
-
-    useEffect(() => {
-        let address   = Cookies.get("wallet");
-        let formatted = address.substring(0, 2)+"..." + 
-                        address.substring(address.length - 4, address.length);
-
-        setWallet({address: address, formatted: formatted });
-    }, []);
+    let address = Cookies.get("wallet");
 
     const renderTooltip = (props) => (
         <Tooltip id="button-tooltip" {...props}>
-            {wallet ? wallet.address : '' }
+            { address }
         </Tooltip>
     );
 
@@ -30,44 +20,23 @@ export default function Userbar() {
 
     return (
         <Fragment>
-            <Card className="rounded-0 mb-5 shadow-sm">
-                <Card.Body>
-
-                    <Container>
-                        <div className="d-flex align-items-center justify-content-between">
-                            <div>
-                                <div className="d-flex align-items-center">
-                                    <div className="pe-2">
-                                        <img src="https://safemoon.net/img/logo.svg" width={24}/> 
-                                    </div>
-                                    <div>
-                                        SafeMoon v2 Wallet Tracker
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <a href="/updates" 
-                                    target="_blank"
-                                    rel="nofollow noopener"
-                                    className="btn btn-link text-white px-4">
-                                    Updates
-                                </a>
-                                <OverlayTrigger
-                                    placement="left"
-                                    delay={{ show: 250, hide: 400 }}
-                                    overlay={renderTooltip}>
-                                    <Button className="bg-gradient-primary rounded-pill px-4" 
-                                        id="address"
-                                        onClick={() => logout()}>
-                                        {wallet ? wallet.formatted : ""}
-                                    </Button>
-                                </OverlayTrigger>
-                            </div>
-                        </div>
-                    </Container>
-                    
-                </Card.Body>
-            </Card>
+            <div className="userbar shadow-sm mb-4">
+                <div className="d-flex align-items-center justify-content-between w-100">
+                    <div>{props.title}</div>
+                    <div>
+                        <OverlayTrigger
+                            placement="left"
+                            delay={{ show: 250, hide: 400 }}
+                            overlay={renderTooltip}>
+                            <Button className="bg-gradient-primary rounded-pill px-4" 
+                                id="address"
+                                onClick={() => logout()}>
+                                Sign Out
+                            </Button>
+                        </OverlayTrigger>
+                    </div>
+                </div>
+            </div>
         </Fragment>
     );
     

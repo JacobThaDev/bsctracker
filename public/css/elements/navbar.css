@@ -3,7 +3,7 @@
     height: 100vh;
     top: 0;
     width: 250px;
-    z-index: 1000 !important;
+    z-index: 999 !important;
     backdrop-filter: blur(6px);
     transition: background-color .3s ease-in-out;
     background-color: var(--nav-bg);
@@ -19,9 +19,6 @@
     height: 100px;
 }
 
-.custom-nav .custom-navbar {
-    height: 100px;
-}
 
 .custom-nav .custom-navbar a.custom-link:not(.navbrand) {
     position: relative;

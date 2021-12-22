@@ -9,7 +9,7 @@ export default class Footer extends Component {
 
     render() {
         return (
-            <div className="text-center mt-3">
+            <div className="text-center">
                 <p className="mb-0">
                     <a href="https://discord.gg/5BejZeDxWx" className="d-inline-block" 
                         target="_blank" rel="nofollow noopener">
@@ -25,7 +25,7 @@ export default class Footer extends Component {
                     </a>
                 </p>
 
-                <p className="text-muted small">Created by OGKingFox</p>
+                <p className="text-muted small mb-0">Created by OGKingFox</p>
             </div>
         );
     }

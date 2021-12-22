@@ -49,7 +49,7 @@ module.exports = {
             intersect: false,
             callbacks: {
                 label: function(tooltipItem, data) {
-                    return tooltipItem.raw.toFixed(6);
+                    return "$"+tooltipItem.raw.toLocaleString();
                 }
             }
         },

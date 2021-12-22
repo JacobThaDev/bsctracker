@@ -1,12 +1,8 @@
-import React, { useEffect, Fragment, useState } from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import { Row, Col } from 'react-bootstrap';
 
-import Cookies from 'js-cookie';
-import Userbar from '../components/header/userbar';
 import BalanceCard from '../components/tracker/balance';
-import PageHead from '../components/head';
 import Transactions from '../components/tracker/transactions';
-import Footer from '../components/global/footer';
 
 import * as Functions from '../functions';
 import ReflectionCard from '../components/tracker/earned';
@@ -15,14 +11,17 @@ import ValueCard from '../components/tracker/value';
 import EarnedValueCard from '../components/tracker/earned_value';
 import VolumeCard from '../components/tracker/volume';
 import PriceChart from '../components/tracker/price_chart';
+import Layout from '../components/global/layout';
+import Cookies from 'js-cookie';
+import ValueChart from '../components/tracker/value_chart';
 
-export default function WalletTracker({...props}) {
+export default function WalletTracker() {
 
-    let reflections    = 0;
-    let lastBalance    = 0;
-    let sessionEarned  = 0;
-    let reflectStart   = 0;
-    let tickRate       = 10000;
+    let reflections    = 0,
+        lastBalance    = 0,
+        sessionEarned  = 0,
+        reflectStart   = 0,
+        tickRate       = 10000;
 
     const [wallet, setWallet] = useState({
         balance: 0,
@@ -75,15 +74,9 @@ export default function WalletTracker({...props}) {
     }
 
     useEffect(() => {
-        let address  = Cookies.get("wallet");
-
-        if (!address) {
-            window.location = "/";
-            return;
-        }
-        
+        let address = Cookies.get("wallet");
         let interval;
-        
+
         if (!interval) {
             update(address);
             interval = setInterval(async() => update(address), tickRate);
@@ -97,70 +90,55 @@ export default function WalletTracker({...props}) {
         };
     }, []);
 
-    return(
-        <Fragment>
-            <PageHead title="Wallet Info" />
-            <Userbar />
+    return (
+    <Layout title="Dashboard">
+        <Row>
+            <Col>
+                <p>
+                    <i className="fal fa-exclamation-circle me-2"></i>
+                    You have earned <span className="text-success">
+                    { wallet.sessionEarned.toLocaleString(undefined, { 
+                        minimumFractionDigits: 9
+                    }) }
+                    </span> SFM this session.
+                </p>
+            </Col>
+        </Row>
+        
+        <Row>
+            <Col>
+                <ValueChart
+                    balance={wallet.balance}/>
+            </Col>
+        </Row>
 
-            <Container>
-                <Row>
-                    <Col>
-                        <p>
-                            <i className="fal fa-exclamation-circle me-2"></i>
-                            You have earned <span className="text-success">
-                            { wallet.sessionEarned.toLocaleString(undefined, { 
-                                minimumFractionDigits: 9
-                            }) } 
-                            </span> SFM this session.
-                        </p>
-                    </Col>
-                </Row>
-
-                <Row className="text-center align-items-center" xs={1} md={2} lg={3}>
-                    <Col>
-                        <BalanceCard 
-                            balance={wallet.balance} />
-                    </Col>
-                    <Col>
-                        <ReflectionCard 
-                            reflections={wallet.reflections} />
-                    </Col>
-                    <Col>
-                        <PriceCard 
-                            price={wallet.price} />
-                    </Col>
-                    <Col>
-                        <ValueCard 
-                            price={wallet.price} 
-                            balance={wallet.balance} />
-                    </Col>
-                    <Col>
-                        <EarnedValueCard 
-                            price={wallet.price} 
-                            earned={wallet.reflections} />
-                    </Col>
-                    <Col>
-                        <VolumeCard 
-                            volume={wallet.volume} />
-                    </Col>
-                </Row>
-
-                <Row>
-                    <Col>
-                        <PriceChart/>
-                    </Col>
-                </Row>
-
-                <Row>
-                    <Col>
-                        <Transactions 
-                            txns={wallet.transactions} />
-                    </Col>
-                </Row>
-
-                <Footer/>
-            </Container>
-        </Fragment>);
-    
-
+        <Row className="text-center align-items-center" xs={1} md={2} lg={3}>
+            <Col>
+                <BalanceCard 
+                    balance={wallet.balance} />
+            </Col>
+            <Col>
+                <ReflectionCard 
+                    reflections={wallet.reflections} />
+            </Col>
+            <Col>
+                <PriceCard 
+                    price={wallet.price} />
+            </Col>
+            <Col>
+                <ValueCard 
+                    price={wallet.price} 
+                    balance={wallet.balance} />
+            </Col>
+            <Col>
+                <EarnedValueCard 
+                    price={wallet.price} 
+                    earned={wallet.reflections} />
+            </Col>
+            <Col>
+                <VolumeCard 
+                    volume={wallet.volume} />
+            </Col>
+        </Row>
+    </Layout>);
 }

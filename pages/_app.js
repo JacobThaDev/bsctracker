@@ -12,10 +12,9 @@ import '../public/css/themes/light.css';
 function MyApp({ Component, pageProps }) {
 
   return (
-    <SSRProvider>
-        <Component {...pageProps} />
-    </SSRProvider>
-    )
+      <SSRProvider>
+          <Component {...pageProps} />
+      </SSRProvider>);
   
 }
 
