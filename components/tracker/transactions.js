@@ -41,11 +41,13 @@ export default class Transactions extends Component {
                 table.push(
                 <tr key={i} style={{lineHeight: "1em"}}>
                     <td className={"py-2 ps-3 "+(isBuy ? "text-success" : "text-danger")}>
-                        <span className={"badge rounded-pill bg-" + (isBuy? "success" : "danger")}>
-                            {txn.type}
-                        </span>
+                        <i className={"fal fa-arrow-"+(isBuy ? "up" : "down")}></i>
                     </td>
                     <td className="py-2">{formatted}</td>
+                    <td>
+                        ${(value * txn.price).toFixed(2)}<br/>
+                        <p className="text-muted small mb-0">{txn.price}</p>
+                    </td>
                     <td className="small text-muted text-end">
                         {date.toLocaleDateString()}<br/>
                         {date.toLocaleTimeString()}
@@ -72,8 +74,9 @@ export default class Transactions extends Component {
                 <Table className="mb-0 table-striped table-borderless">
                     <thead>
                         <tr>
-                            <th style={{width: 100}}></th>
+                            <th style={{width: 40}}></th>
                             <th>Amount</th>
+                            <th>Price</th>
                             <th className="text-end">Date</th>
                             <th style={{width: 100}}>Txn</th>
                         </tr>
@@ -83,6 +86,7 @@ export default class Transactions extends Component {
                     </tbody>
                 </Table>
             </Card>
+            
             <p className="small text-muted mb-5">
                 Refreshing too quickly might trigger a rate limit from BscScan, 
                 and cause this to not load.
