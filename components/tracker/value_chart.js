@@ -34,12 +34,16 @@ export default function ValueChart({...props}) {
         let labels = [];
 
         if (data && Array.isArray(data)) {
-            data = data.reverse();
-
             for (let i = 0; i < data.length; i++) {
                 let entry     = data[i];
                 let timestamp = entry.dateline;
                 let date      = new Date(timestamp);
+
+                let minutes = date.getMinutes();
+
+                if (minutes % 60 != 0) {
+                    continue;
+                }
 
                 priceArr.push(props.balance ? entry.price * props.balance : entry.price);
                 volumeArr.push(entry.volume);
