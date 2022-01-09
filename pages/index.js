@@ -1,123 +1,116 @@
-import React, { useEffect, useState } from 'react';
-import { Card, Button, Col, Row, Form, FormGroup, FormControl } from 'react-bootstrap';
+import { useEffect, useState } from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
+import Copyright from '../components/global/copyright';
+import Layout from '../components/global/layout';
+import SearchBar from '../components/home/search';
+import StatCard from '../components/home/stats';
+import BurnedCard from '../components/home/stats/burned';
+import ChartCard from '../components/home/stats/chart';
+import CirculatingCard from '../components/home/stats/circulating';
+import HoldersCard from '../components/home/stats/holders';
+import MarketcapCard from '../components/home/stats/marketcap';
+import PriceCard from '../components/home/stats/price';
+import VolumeCard from '../components/home/stats/volume';
 
-import PageHead from '../components/head';
-import Footer from '../components/global/footer';
+import * as Functions from '../functions';
 
-import Web3 from "web3";
-import Web3Modal from "web3modal";
-import Cookies from 'js-cookie';
+export default function Home() {
 
-export default function Homepage() {
+    const [tokenData, setTokenData] = useState(null);
 
-    const [showForm, setShowForm] = useState(false);
+    useEffect(async() => {
+        let interval;
 
-    useEffect(() => {
-        const web3Modal = new Web3Modal({});
-        let connect = document.getElementById("connect");
-        let manual  = document.getElementById("manual");
-        
-        manual.addEventListener("click", async function(e) {
-            e.preventDefault();
-            setShowForm(true);
-        });
+        if (!interval) {
+            getData();
 
-        connect.addEventListener("click", async function(e) {
-            e.preventDefault();
-            connect.classList.add("disabled");
-            connect.innerHTML = "<i class=\"fal fa-spinner fa-pulse\"></i>";
-
-            // ask for permission from MetaMask
-            const provider = await web3Modal.connect();
-
-            // if denied, remove disabled from button
-            if (!provider) {
-                console.log("Connect failed. Reason: denied access");
-                return;
-            }
-
-            const web3     = new Web3(provider);
-            const accounts = await web3.eth.getAccounts();
-            const wallet   = accounts[0]; // grab first wallet address
-
-            Cookies.set("wallet", wallet, { expires: 30 });
-            window.location = "/track";
-        });
-    }, []);
-
-    const submitForm = (event) => {
-        event.preventDefault();
-        let formData = new FormData(event.target);
-        let address  = formData.get("address");
-        let parts    = address.split("x");
-        let field    = document.getElementById("address");
-
-        field.classList.remove("border-danger");
-
-        if (parts.length != 2 
-                || parts[0] !== '0' 
-                || parts[1].length < 40 
-                || !/^([A-Za-z0-9]+)+$/.test(parts[1])) {
-            field.classList.add("border-danger");
+            interval = setInterval(async() => {
+                getData();
+            }, 10000);
         }
 
-        Cookies.set("wallet", address, { expires: 7 });
-        window.location = "/track";
-    };
+        return() => {
+            if (interval) {
+                clearInterval(interval);
+                interval = null;
+            }
+        };
+    }, []);
 
-    return (<>
-        <PageHead title="Home" />
+    const getData = async() => {
+        try {
+            let supply      = 1_000_000_000_000;
+            let priceData   = await Functions.getPrice();
+            let burned      = await Functions.getBurned();
+            let circulating = supply - burned;
 
-        <div className="d-flex align-items-center login-box flex-column">
-            <div className="login-box-inner">
-                <Card className="text-center mb-3">
-                    <Card.Body>
-                        <h1><i className="fal fa-user-chart"></i></h1>
-                        <h4>Wallet Tracker</h4>
+            setTokenData({
+                burned: burned / 1_000_000_000,
+                circulating: circulating / 1_000_000_000,
+                mcap: (circulating * priceData.price),
+                price: priceData.price,
+                volume: priceData.volume
+            });
 
-                        <p className="small text-muted">
-                            Connect your wallet to track your balance and 
-                            reflections for SafeMoon v2
-                        </p>
-                        {showForm ? 
-                            <Form autoComplete='off' id="address_form" onSubmit={submitForm}>
-                                <FormGroup className="mb-3 text-start">
-                                    <small className="text-muted">
-                                        Address
-                                    </small>
-                                    <FormControl name="address" id="address"/>
-                                </FormGroup>
-                                <FormGroup>
-                                    <Button type="submit" className="btn btn-success w-100">
-                                        Continue
-                                    </Button>
-                                </FormGroup>
-                            </Form>
-                        : 
-                        <div className="d-flex align-items-center">
-                            <div className="w-100">
-                                <Button id="connect" variant="primary w-100">
-                                    Connect Wallet
-                                </Button>
-                            </div>
-                            <div style={{ minWidth: 75}} className="text-muted">
-                                - or -
-                            </div>
-                            <div className="w-100">
-                                <Button id="manual" variant="dark w-100">
-                                    Enter Address
-                                </Button>
-                            </div>
-                        </div>
-                        }
-                    </Card.Body>
-                </Card>
+        } catch (err) {
+            
+        }
+    }
 
-                <Footer/>
-            </div>
-        </div>
-        
-    </>);
-    
+    let icon = <i className="fal fa-spinner fa-pulse"></i>;
 
+    let circulating = icon;
+    let burned      = icon;
+    let marketcap   = icon;
+    let price       = icon;
+    let volume      = icon;
+
+    if (tokenData) {
+        circulating = Functions.formatNumber(tokenData.circulating, 3)+" B";
+        burned      = Functions.formatNumber(tokenData.burned, 3)+" B";
+        marketcap   = "$"+Functions.formatNumber(tokenData.mcap/1000000000, 3)+" B";
+        price       = "$"+tokenData.price;
+        volume      = "$"+Functions.formatNumber(tokenData.volume, 0);
+    }
+
+    return (
+        <Layout title="Home" desc="The homepage for mah awesum app">
+
+            <Container>
+                <SearchBar/>
+
+                <Row>
+                    <Col xs={12} lg={4}>
+                        <PriceCard value={price} />
+                    </Col>
+                    <Col xs={12} lg={4}>
+                        <CirculatingCard value={circulating} />
+                    </Col>
+                    <Col xs={12} lg={4}>
+                        <BurnedCard value={burned} />
+                    </Col>
+                    <Col xs={12} lg={4}>
+                        <MarketcapCard value={marketcap} />
+                    </Col>
+                    <Col xs={12} lg={4}>
+                        <VolumeCard value={volume} />
+                    </Col>
+                    <Col xs={12} lg={4}>
+                        <HoldersCard value={0} />
+                    </Col>
+                </Row>
+
+                <Row>
+                    <Col xs={12} lg={4}>
+                        <StatCard/>
+                    </Col>
+                    <Col xs={12} lg={8}>
+                        <ChartCard value={price}/>
+                    </Col>
+                </Row>
+
+                <Copyright/>
+            </Container>
+        </Layout>
+    )
 }

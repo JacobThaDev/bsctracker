@@ -1,66 +1,32 @@
 @media (prefers-color-scheme: light) {
     :root {
-        --primary-bg: #F5F5F5;
-        --primary-bg-light: #EFEFEF;
+        /**
+         * Primary Body colors
+         */
+        --body-bg: #F9F9F9;
+        --body-font-color: #000;
+
         --nav-bg: #FFF;
-        --nav-dark-bg: #FFFFFFAA;
 
-        --primary-font: #555;
-        --font-white: #FFF;
-
-        --primary-alt: #FFF;
-        
-        --accent: rgb(34, 26, 26);
-        --accent-hover: #FFF;
-
-        --link-color: #000;
-        --link-hover: #000;
-        --link-active-color: #000;
-        --link-active-bg: rgba(0,0,0,0.06);
-        
-        --info: #21bbb3;
-        --info-hover: #2aeee4;
-        --success: #09CE9B;
-        --success-hover: #09CE9B;
-
-        --highlight: #f56d4e;
-        --highlight-hover: brightness(120%);
-
-        --badge-bg: #f56d4e33;
-        --badge-font: #f56d4e;
-
+        /**
+         * Cards
+         */
         --card-bg: #FFF;
-        --card-border: #FFF;
 
-        --table-color: #555;
-        --table-hover-color: #555;
-
-        --team-icon: #f56d4e;
-        --team-icon-bg: #ddd;
-        --team-border: #ddd;
-
-        --parallax-bg: #EEE;
-
-        --about-icon-color: #555;
-        --about-icon-bg: #FFF;
-
-        --input-color: #000;
+        /**
+         * Inputs
+         */
         --input-bg: #FFF;
-        --input-border: #CCC;
-        --input-autofill-color: #09CE9B;
-        --input-autofill-bg: #09CE9B;
+        --input-focus-bg: #FFF;
+        --input-color: #AAA;
+        --input-focus-color: #777;
+        --input-border:  #00000055;
+        --input-focus-border: #00000055;
+        --input-placeholder: #AAA;
 
-        --input-active-color: #000;
-        --input-active-bg: #FFF;
-        --input-active-border: #90acdd;
+        --text-primary: #8463ff;
+        --text-primary-hover: #9f84ff;
 
-        --circle-shadow-bg: rgba(0,0,0,0.1);
-        
-        --pagination-color: #000;
-        --pagination-bg: #FFF;
-        --pagination-border: #FFF;
-
-        --pagination-hover-bg: #EEE;
-        --pagination-hover-border: #FFF;
+        --primary-card: #6777ef;
     }
 }

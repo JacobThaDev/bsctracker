@@ -1,20 +1,10 @@
-@font-face { font-family: "OpenSans-Light";  src: url('../fonts/OpenSans-Light.ttf');  }
-@font-face { font-family: "OpenSans-Regular";  src: url('../fonts/OpenSans-Regular.ttf');  }
-@font-face { font-family: "Montserrat-Bold";  src: url('../fonts/Montserrat-Bold.otf');  }
-@font-face { font-family: "Montserrat-Thin";  src: url('../fonts/Montserrat-Light.otf');  }
-@font-face { font-family: "Oribtron";  src: url('../fonts/Orbitron.ttf');  }
-@font-face { font-family: "atmospheric";  src: url('../fonts/atmospheric.ttf');  }
+@font-face { font-family: "nunito";  src: url('../fonts/Nunito.ttf');  }
 
 html,
 body {
-  font-family: 'OpenSans-Regular';
   padding: 0;
   margin: 0;
-  background-color: var(--primary-bg) !important;
-  max-width: 100%;
-  overflow-x:hidden;
-  color:var(--primary-font);
-  -webkit-font-smoothing: antialiased;
+  
 }
 
 a {
@@ -26,12 +16,14 @@ a {
   box-sizing: border-box;
 }
 
+/**
+ * For better ultrawide support
+ */
 @media (min-width: 1400px) {
   .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
       max-width: 1320px;
   }
 }
-
 
 /**
  * scrollbars
@@ -54,4 +46,3 @@ a {
   border: 3px solid transparent;
   border-radius: 15px;
 }
-

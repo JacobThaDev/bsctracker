@@ -1,25 +1,14 @@
 @import 'elements/navbar.css';
 @import 'elements/container.css';
-@import 'elements/buttons.css';
-@import 'elements/header.css';
 @import 'elements/card.css';
-@import 'elements/badge.css';
-@import 'elements/list.css';
-@import 'elements/tables.css';
-@import 'elements/forms.css';
-@import 'elements/login.css';
-@import 'elements/utilities.css';
-@import 'elements/links.css';
-@import 'elements/alert.css';
+@import 'elements/button.css';
+@import 'elements/table.css';
+@import 'elements/form.css';
+@import 'elements/utility.css';
 
-.header-title {
-    font-size: 16px;
-    color: white;
-    letter-spacing: 0.06em;
-}
-
-.userbar {
-    position: relative;
-    background-color: var(--card-bg);
-    padding: 1em;
+body {
+    background-color: var(--body-bg);
+    color: var(--body-font-color);
+    font-family: "nunito";
+    font-weight: 100;
 }

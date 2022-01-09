@@ -1,0 +1,14 @@
+.text-primary, a.text-primary {
+    color: var(--text-primary) !important;
+}
+
+a.text-primary:active, a.text-primary:hover, a.text-primary:focus {
+    color: var(--text-primary-hover) !important;
+}
+
+.bg-default {
+    background-color: var(--primary-card) !important;
+}
+.small {
+    font-size: .8rem;
+}

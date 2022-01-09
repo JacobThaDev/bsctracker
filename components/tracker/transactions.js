@@ -1,97 +1,82 @@
-import Cookies from 'js-cookie';
-import React, { Component, useEffect, useState } from 'react';
-import { Card, Row, Col, Table, Alert } from 'react-bootstrap';
+import { Card, Row, Col, Table, Alert  } from "react-bootstrap";
+import FontIcon from "../global/fonticon";
 
-import * as Functions from '../../functions';
+export default function TxnList({...props}) {
 
-export default class Transactions extends Component {
+    const txns  = props.txns;
+    const table = [];
 
-
-    render() {
-        let address = Cookies.get("wallet");
-        let table   = [];
-        let txns    = this.props.txns;
-
-        if (txns == null    
-            || typeof txns === "undefined" 
-            || !Array.isArray(txns) 
-            || txns.length == 0 ) {
-            return (
-                <Alert variant="danger">
-                    <i className="fal fa-exclamation-triangle me-2"></i>
-                    Unable to load transactions.
-                </Alert>
-            );
-        }
-
-        let reversed = txns.reverse();
-
-        try {
-            for (let i = 0; i < reversed.length; i++) {
-                let txn   = reversed[i];
-                let isBuy = txn.to.toLowerCase() == address.toLowerCase();
-                let value = parseFloat(txn.value/1000000000);
-
-                let formatted = value.toLocaleString(undefined, { 
-                    minimumFractionDigits: 9 
-                })
-
-                let date  = new Date(txn.timeStamp * 1000);
-
-                table.push(
-                <tr key={i} style={{lineHeight: "1em"}}>
-                    <td className={"py-2 ps-3 "+(isBuy ? "text-success" : "text-danger")}>
-                        <i className={"fal fa-arrow-"+(isBuy ? "up" : "down")}></i>
-                    </td>
-                    <td className="py-2">{formatted}</td>
-                    <td>
-                        ${(value * txn.price).toFixed(2)}<br/>
-                        <p className="text-muted small mb-0">{txn.price}</p>
-                    </td>
-                    <td className="small text-muted text-end">
-                        {date.toLocaleDateString()}<br/>
-                        {date.toLocaleTimeString()}
-                    </td>
-                    <td className="text-end">
-                        <a href={"https://bscscan.com/tx/"+txn.hash}
-                            className="btn btn-primary btn-sm w-100 rounded-pill" target="_blank">
-                            BscScan
-                        </a>
-                    </td>
-                </tr>);
-            }
-
-        } catch(err) {
-            console.log(err);
-        }
-
-        return(
-        <>
-            <Card className="mb-2 shadow-sm">
-                <Card.Header className="bg-transparent">
-                    Transaction History
-                </Card.Header>
-                <Table className="mb-0 table-striped table-borderless">
-                    <thead>
-                        <tr>
-                            <th style={{width: 40}}></th>
-                            <th>Amount</th>
-                            <th>Price</th>
-                            <th className="text-end">Date</th>
-                            <th style={{width: 100}}>Txn</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {table}
-                    </tbody>
-                </Table>
-            </Card>
-            
-            <p className="small text-muted mb-5">
-                Refreshing too quickly might trigger a rate limit from BscScan, 
-                and cause this to not load.
-            </p>
-        </>);
+    if (txns == null    
+        || typeof txns === "undefined" 
+        || !Array.isArray(txns) 
+        || txns.length == 0 ) {
+        return (
+            <div className="text-center mt-5">
+                <FontIcon icon="spinner fa-pulse" size="3x" />
+            </div>
+        );
     }
 
+    let reversed = txns.reverse();
+
+    try {
+        for (let i = 0; i < reversed.length; i++) {
+            let txn   = reversed[i];
+            let isBuy = txn.to.toLowerCase() == props.address.toLowerCase();
+            let value = parseFloat(txn.value/1000000000);
+
+            let formatted = value.toLocaleString(undefined, { 
+                minimumFractionDigits: 9 
+            })
+
+            let date  = new Date(txn.timeStamp * 1000);
+
+            table.push(
+            <tr key={i} style={{lineHeight: "1em"}}>
+                <td className="py-2 ps-3">
+                    <i className={"fal fa-arrow-"+(isBuy ? "up" : "down")+(isBuy ? " text-success" : " text-danger")}></i>
+                </td>
+                <td className="py-2">{formatted}</td>
+                <td>
+                    ${(value * txn.price).toFixed(2)}<br/>
+                    <p className="text-muted small mb-0">{txn.price}</p>
+                </td>
+                <td className="small text-muted text-end">
+                    {date.toLocaleDateString()}<br/>
+                    {date.toLocaleTimeString()}
+                </td>
+                <td className="text-end">
+                    <a href={"https://bscscan.com/tx/"+txn.hash}
+                        className="btn btn-primary btn-sm w-100 rounded-pill" target="_blank">
+                        BscScan
+                    </a>
+                </td>
+            </tr>);
+        }
+
+    } catch(err) {
+        console.log(err);
+    }
+
+    return (
+        <Card className="mb-2 shadow-sm">
+            <Card.Header className="bg-transparent">
+                Transaction History
+            </Card.Header>
+            <Table className="mb-0 table-striped table-borderless">
+                <thead>
+                    <tr>
+                        <th style={{width: 40}}></th>
+                        <th>Amount</th>
+                        <th>Price</th>
+                        <th className="text-end">Date</th>
+                        <th style={{width: 100}}>Txn</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {table}
+                </tbody>
+            </Table>
+        </Card>
+    )
 }

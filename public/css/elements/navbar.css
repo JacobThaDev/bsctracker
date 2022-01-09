@@ -2,7 +2,7 @@
     position: fixed;
     height: 100vh;
     top: 0;
-    width: 250px;
+    width: 80px;
     z-index: 1000 !important;
     backdrop-filter: blur(6px);
     transition: background-color .3s ease-in-out;
@@ -20,9 +20,9 @@
 }
 
 
-.custom-nav .custom-navbar a.custom-link:not(.navbrand) {
+.custom-nav a.custom-link:not(.navbrand) {
     position: relative;
-    color: var(--link-color);
+    color: #AAA;
     font-weight: 300;
     display: inline-block;
     width: 100%;
@@ -48,7 +48,7 @@ a.navbrand {
     width: 100%;
     font-size:20px;
 }
-
+/*
 @media(max-width: 991.98px) {
     .custom-nav {
         width: 100%;
@@ -74,7 +74,7 @@ a.navbrand {
         box-shadow: 0 0  10px #00000022 !important;
         -webkit-box-shadow: 0 0  10px #00000022 !important;
     }
-}
+}*/
 
 .sidebar-header {
     margin-bottom: 5px;

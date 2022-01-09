@@ -1,105 +1,74 @@
 import React, { Component, Fragment } from 'react';
-import { Container } from 'react-bootstrap';
-import Footer from './footer';
-import { NavbarLink } from './navbar_link';
 
-export default class Navbar extends Component {
+import FontIcon from './fonticon';
+import { 
+    Container, Nav, Navbar, NavbarBrand, NavbarLink, 
+    NavDropdown, Form, FormControl, Button, InputGroup
+} from 'react-bootstrap';
 
-    componentDidMount() {
-        try {
-            let toggle   = document.getElementById("toggleMenu");
-            let menu     = document.getElementById("navmenu");
-            let closeBtn = document.getElementById("closebtn");
-            let navbar   = document.getElementById("customnav");
-            
-            toggle.addEventListener("click", function(event) {
-                event.preventDefault();
-                menu.classList.toggle("open");
-            });
-
-            closeBtn.addEventListener("click", function(event) {
-                event.preventDefault();
-                menu.classList.remove("open");
-            });
-
-            document.addEventListener('scroll', function(e) {
-                let pos = window.scrollY;
-
-                if (pos > 45) {
-                    navbar.classList.add("nav-dark");
-                } else {
-                    navbar.classList.remove("nav-dark");
-                }
-            });
-        } catch (err) {
-            console.log(err);
-        }
-    }
-
+export default class MainNavbar extends Component {
 
     render() {
         return (
             <Fragment>
-                <div className="custom-nav" id="customnav">
-                    <div className="container-fluid px-4 px-lg-3">
-                        <div className="d-flex custom-navbar flex-column text-start" id="navmenu">
-                            
-                            <a href="/" className="navbrand d-none d-lg-inline-block my-5 text-center" rel="nofollow">
-                                <img src="/img/logo.svg" className="mb-3" width={50}/>
-                                <h5 className="mb-0">BscTracker</h5>
-                                <p className="small text-muted">SafeMoon v2</p>
-                            </a>
-
-                            <a href="/" className="navbrand d-lg-none my-5 text-center" 
-                                rel="nofollow noopener" 
-                                id="closebtn" 
-                                style={{height:33}}>
-                                <i className="fal fa-times"></i> Close
-                            </a>
-
-                            <div className="mb-5">
-                                <p className="small text-uppercase w-100 ps-3 sidebar-header text-muted">
-                                    Dashboard
-                                </p>
-
-                                <NavbarLink 
-                                    name="Dashboard"
-                                    to="/track" 
-                                    icon="fa-window" />
-
-                                <NavbarLink 
-                                    name="Charts"
-                                    to="/charts" 
-                                    icon="fa-chart-line" />
-
-                                <NavbarLink 
-                                    name="Transactions"
-                                    to="/txns" 
-                                    icon="fa-shopping-cart" />
-
-                                <NavbarLink 
-                                    name="Updates"
-                                    to="/updates" 
-                                    icon="fa-sync" />
+                <Navbar bg="default" variant="dark" expand="lg" className="mb-5">
+                    <Container>
+                        <Navbar.Brand href="#">
+                            <div className="d-flex align-items-center">
+                                <div>
+                                    <FontIcon 
+                                        icon="chart-bar" 
+                                        size={"3x"} 
+                                        type="duo" />
+                                </div>
+                                <div className="ps-3">
+                                    <h5 className="mb-0">
+                                        BscTracker <sup>v2</sup>
+                                    </h5>
+                                    <p className="mb-0 small">
+                                        SafeMoon v2 Portfolio Tracker
+                                    </p>
+                                </div>
                             </div>
+                        </Navbar.Brand>
+                        <Navbar.Toggle aria-controls="navbarScroll" />
+                        <Navbar.Collapse id="navbarScroll">
+                            <Nav className="ms-auto my-2 my-lg-0 me-lg-3">
+                                <Nav.Link href="/">Home</Nav.Link>
 
+                                <Nav.Link 
+                                    href="https://safemoon.net" 
+                                    target="_blank" 
+                                    rel="nofollow noopener">
+                                        SafeMoon
+                                </Nav.Link>
 
-                            <Footer/>
-                        </div>
+                                <Nav.Link 
+                                    href="https://safemoon.education" 
+                                    target="_blank" 
+                                    rel="nofollow noopener">
+                                    Education
+                                </Nav.Link>
 
-                        <div className="d-flex d-lg-none justify-content-between align-items-center mobile-menu">
-                            <a href="/" className="navbrand text-white">
-                                <h5 className="mb-0">BscTracker</h5>
-                                <p className="small text-muted mb-0">SafeMoon v2</p>
-                            </a>
-                            <div>
-                                <a href="" className="btn btn-link btn-lg px-3 menu-btn" id="toggleMenu">
-                                    <i className="fal fa-bars fa-fw"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                                <Nav.Link 
+                                    href="https://bscscan.com/token/0x42981d0bfbaf196529376ee702f2a9eb9092fcb5" 
+                                    target="_blank" 
+                                    rel="nofollow noopener">
+                                    BscScan
+                                </Nav.Link>
+
+                                {/*<NavDropdown title="Link" id="navbarScrollingDropdown">
+                                    <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
+                                    <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>
+                                    <NavDropdown.Divider />
+                                    <NavDropdown.Item href="#action5">
+                                        Something else here
+                                    </NavDropdown.Item>
+                                </NavDropdown>*/}
+                            </Nav>
+                        </Navbar.Collapse>
+                    </Container>
+                </Navbar>
             </Fragment>
         );
     }
