@@ -74,7 +74,7 @@ export default function Home() {
     }
 
     return (
-        <Layout title="Home" desc="The homepage for mah awesum app">
+        <Layout title="Home" desc="Real-time SFM portfolio tracker and statistics.">
 
             <Container>
                 <SearchBar/>

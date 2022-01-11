@@ -66,7 +66,6 @@ export default function Tracker({...props}) {
                     transactions: []
                 });
                 setLoading(false);
-                console.log("no balance")
                 return;
             }
 
