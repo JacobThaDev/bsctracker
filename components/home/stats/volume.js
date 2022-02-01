@@ -15,7 +15,8 @@ export default function Marketcap({...props}) {
     useEffect(async() => {
         try {
             setLoading(true);
-            let res = await axios.get("http://localhost:3001/price/"+props.token.address);
+            let api_url = process.env.NEXT_PUBLIC_API_URL;
+            let res = await axios.get(api_url+"/price/"+props.token.address);
             setVolume(res.data.volume_24h_usd);
 
             let initial = props.token.supply;

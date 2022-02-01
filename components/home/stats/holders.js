@@ -17,7 +17,8 @@ export default function HolderCount({...props}) {
     useEffect(async() => {
         setLoading(true);
         try {
-            let res = await axios.get("http://localhost:3001/price/"+props.token.address);
+            let api_url = process.env.NEXT_PUBLIC_API_URL;
+            let res = await axios.get(api_url+"/price/"+props.token.address);
             let bitquery = res.data.bqdata;
 
             setTokenData({
