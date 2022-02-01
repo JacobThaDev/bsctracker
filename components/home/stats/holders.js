@@ -1,69 +1,62 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
-import * as Functions from '../../../functions';
-import FontIcon from "../../global/fonticon";
 
-export default function HoldersCard({ ... props}) {
+import * as Functions from "../../../functions";
 
-    const [holders, setHolders] = useState(null);
+export default function HolderCount({...props}) {
+
+    const [loading, setLoading] = useState(false);
+    
+    const [tokenData, setTokenData] = useState({
+        receivers: 0,
+        senders: 0,
+        transfers: 0
+    });
 
     useEffect(async() => {
+        setLoading(true);
         try {
-            let res = await axios('https://graphql.bitquery.io', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                    'X-API-KEY': process.env.NEXT_PUBLIC_BITQUERY
-                },
-                data: {
-                    query: "query ($network: EthereumNetwork!, $token: String!, $from: ISO8601DateTime, $till: ISO8601DateTime) {ethereum(network: $network) {transfers(currency: {is: $token}, amount: {gt: 0}, date: {since: $from, till: $till}) {receiver_count: count(uniq: receivers)}}}",
-                    variables: {
-                        "limit": 10,
-                        "offset": 0,
-                        "network": "bsc",
-                        "token": process.env.NEXT_PUBLIC_ADDRESS
-                    }
-                }
-            });
+            let res = await axios.get("http://localhost:3001/price/"+props.token.address);
+            let bitquery = res.data.bqdata;
 
-            let receivers = res.data['data']['ethereum']['transfers'][0]['receiver_count'];
-        
-            setHolders(receivers);
+            setTokenData({
+                receivers: bitquery.receiver_count,
+                senders: bitquery.sender_count,
+                transfers: bitquery.count
+            })
+
+            setLoading(false);
         } catch (err) {
-            console.log("ERROR")
+            setLoading(false);
         }
-    }, []);
+    }, [props.token]);
 
     let icon = <i className="fal fa-spinner fa-pulse"></i>;
-    let holderCount = icon;
 
-    if (holders)
-        holderCount = holders;
-
-    return(<>
-    <Card className="shadow mb-3">
-        <Card.Body>
-            <div className="d-flex align-items-center">
-                <div className="px-3">
-                    <FontIcon 
-                        icon="hand-holding-usd" 
-                        color="primary" 
-                        size="lg"
-                        className="hover-icon"/>
+    return(
+        <Card className="border-0 shadow-sm mb-3">
+            <Card.Body>
+                <div className="d-flex">
+                    <div className="w-100">
+                        <p className="text-uppercase text-muted mb-0 small-text">
+                            Hodlers
+                        </p>
+                        <span className="h4 font-weight-bold mb-0 text-info">
+                            {loading ? icon : Functions.formatNumber(tokenData.receivers, 0)}
+                        </span>
+                    </div>
+                    <div className="pe-3">
+                        <div className="icon icon-shape bg-info text-white rounded-circle shadow">
+                            <i className="fad fa-wallet fa-lg fa-fw"></i>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <p className="small mb-0 text-muted">
-                        Holders
-                    </p>
-                    <p className="mb-0">
-                        {Functions.formatNumber(holderCount, 0)}
-                    </p>
-                </div>
-            </div>
-        </Card.Body>
-    </Card>
-    </>)
+            </Card.Body>
 
+            <Card.Footer className="border-0 bg-transparent pt-0 text-muted small">
+                {loading ? icon : Functions.formatNumber(tokenData.transfers)} Transfers
+            </Card.Footer>
+        </Card>
+    )
 }

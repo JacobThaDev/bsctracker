@@ -1,52 +1,71 @@
-import { useRouter } from "next/router";
-import { useEffect } from "react";
-import { Card, Row, Col, Container, Form, FormGroup, FormControl, Button, InputGroup } from "react-bootstrap";
-import FontIcon from "../global/fonticon";
-import ConnectBtn from "./connect";
+import { useEffect, useState } from "react";
+import { Button, Col, Container, Form, FormControl, FormGroup, InputGroup, Row } from "react-bootstrap";
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css'; // optional
 
-export default function SearchBar() {
+export default function Search() {
 
-    const router = useRouter();
+    const tokenList = require("../../tokens");
 
     useEffect(() => {
-        let form = document.getElementById("walletForm");
+        let form     = document.getElementById("searchForm");
+        let field    = document.getElementById("walletAddr");
+        let alert    = document.getElementById("walletAlert");
+        let keys     = Object.keys(tokenList); 
 
-        if (form) {
-            form.addEventListener("submit", (e) => {
-                e.preventDefault();
-                let formData = new FormData(form);
-                let address  = formData.get("address");
+        form.addEventListener("submit", (event) => {
+            event.preventDefault();
 
-                router.push("/"+address);
-                console.log(address);
-            })
-        }
+            let data = new FormData(form);
 
-    }, [null]);
+            let tokenid = data.get("tokenId");
+            let wallet  = data.get("wallet");
+            let parts   = wallet.split("x");
 
+            if (parts.length != 2 
+                || parts[0] != "0" 
+                || parts[1].length != "40") {
+                    alert.classList.remove("d-none");
+                return;
+            }
+
+            alert.classList.add("d-none");
+            field.disabled = true;
+
+            if (!keys.includes(tokenid)) {
+                console.log("Invalid token id", tokenid);
+                return;
+            }
+            
+            window.location = "/"+tokenid+"/"+wallet;
+        });
+    }, []);
+    
     return(
-    <Card className="border-0 shadow mb-3">
-        <Card.Body>
-            <Form className="form-inline" type="post" autoComplete="off" id="walletForm">
-                <div className="d-flex justify-content-between">
-                    <div>
-                        <InputGroup>
-                            <FormControl 
-                                name="address" 
-                                placeholder="Wallet Address" 
-                                id="address" />
-                            <Button type="submit" variant="light bg-white border-0">
-                                <FontIcon icon="search" />
-                            </Button>
-                        </InputGroup>
-                    </div>
-                    <div>
-                        <ConnectBtn />
-                    </div>
+        <Form id="searchForm">
+            <div className="custom-group">
+                <div className="walletAlert d-none" id="walletAlert">
+                    <Tippy content="Invalid address format" placement="bottom">
+                        <i className="far fa-exclamation-triangle text-danger"/>
+                    </Tippy>
                 </div>
-                
-                
-            </Form>
-        </Card.Body>
-    </Card>);
+                <FormControl 
+                    name="wallet" 
+                    id="walletAddr" 
+                    placeholder="Type a wallet address and press enter"
+                    className="ps-4"/>
+                <div className="gametype">
+                    <Form.Select 
+                            id="tokenSelect"
+                            name="tokenId"
+                            aria-label="Default select example" 
+                            size="sm" 
+                            className="border-0 token-select shadow-none">
+                        <option value="sfm">SFM</option>
+                        <option value="enh">ENH</option>
+                    </Form.Select>
+                </div>
+            </div>
+        </Form>
+    );
 }

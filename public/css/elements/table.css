@@ -1,9 +1,0 @@
-.table {
-    vertical-align: middle;
-    color: var(--body-font-color);
-}
-
-.table-striped > tbody > tr:nth-of-type(odd) > * {
-    --bs-table-accent-bg: var(--bs-table-striped-bg);
-    color: var(--body-font-color);
-}

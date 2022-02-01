@@ -2,111 +2,45 @@ const Web3  = require("web3");
 const web3  = new Web3(new Web3.providers.HttpProvider("https://bsc-dataseed1.binance.org:443"));
 import axios from 'axios';
 
-const contract_abi   = require("./contract.js");
-const token_address  = process.env.NEXT_PUBLIC_ADDRESS;
-const v1_address     = process.env.NEXT_PUBLIC_V1ADDRESS;
-/**
- * Grab price directly from the blockchain using BitQuery API
- * @returns array
- */
- export const getTokenData = async() => {
-    try {
-        let res = await axios.get('https://api.bsctracker.net/price');
-        return res.data;
-    } catch (err) {
-        console.log(err);
-        return 0;
-    }
+const safemoon_abi  = require("./abi/safemoon");
+const dividends_abi = require("./abi/enh_dividends");
+
+export const getBurned = async(token) => {
+    let burn_wallet  = token.burn_wallet; // burn address
+    return getBalance(token.address, burn_wallet);
 }
 
-export const getBurned = async() => {
-    let burn_wallet  = "0x0000000000000000000000000000000000000001"; // burn address
-    return getBalance(burn_wallet);
-}
-
-export const getv1Balance = async(wallet_address) => {
-    let contract = new web3.eth.Contract(contract_abi, v1_address);
+export const getBalance = async(token_addr, wallet_address) => {
+    let contract = new web3.eth.Contract(safemoon_abi, token_addr);
     let balance  = await contract.methods.balanceOf(wallet_address).call();
     let decimals = await contract.methods.decimals().call();
     return (balance / 10 ** decimals);
 }
 
-
-export const getBalance = async(wallet_address) => {
-    let contract = new web3.eth.Contract(contract_abi, token_address);
-    let balance  = await contract.methods.balanceOf(wallet_address).call();
-    let decimals = await contract.methods.decimals().call();
+export const getDividends = async(wallet_address) => {
+    let token_addr = "0xd4a210030b71bb03fa85f8c72918078f1c185773";
+    let contract   = new web3.eth.Contract(dividends_abi, token_addr);
+    let balance    = await contract.methods.accumulativeDividendOf(wallet_address).call();
+    let decimals   = 9;
     return (balance / 10 ** decimals);
 }
 
-export const getPrice = async() => {
-    let res = await axios.get('https://api.bsctracker.net/price');
+export const formatNumber = (number, digits) => {
+    return number.toLocaleString(undefined, { 
+        minimumFractionDigits: digits
+    });
+}
+
+export const getTxnList = async(tokenAddr, wallet) => {
+    let api_url = process.env.NEXT_PUBLIC_API_URL;
+    let res = await axios.get(api_url+"/txns/"+tokenAddr+"/"+wallet)
     return res.data;
 }
 
-export const getStats = async() => {
-    try {
-        let res = await axios('https://graphql.bitquery.io', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'X-API-KEY': process.env.NEXT_PUBLIC_BITQUERY
-            },
-            data: {
-                query: "query ($network: EthereumNetwork!, $token: String!, $from: ISO8601DateTime, $till: ISO8601DateTime) { ethereum(network: $network) { transfers(currency: {is: $token} amount: {gt: 0} date: {since: $from, till: $till} ) { currency { symbol } median: amount(calculate: median) average: amount(calculate: average) amount count days: count(uniq: dates) sender_count: count(uniq: senders) receiver_count: count(uniq: receivers) min_date: minimum(of: date) max_date: maximum(of: date)}}}",
-                variables: {
-                    "limit": 10,
-                    "offset": 0,
-                    "network": "bsc",
-                    "token": process.env.NEXT_PUBLIC_ADDRESS
-                }
-            }
-        });
-
-        return res.data.data.ethereum.transfers[0];
-    } catch (err) {
-        console.log(err)
-    }
-}
-
-
-export const getTxns = async(address) => {
-    let api_url  = "https://api.bsctracker.net/wallet/"+address+"/txns";
-    let buys     = [];
-    let sells    = [];
-
-    try {
-        let txns = await axios.get(api_url);
-        let data = txns.data;
-
-        for (let i = 0; i < data.length; i++) {
-            let txn = data[i];
-
-            if (typeof txn.from == "undefined") {
-                continue;
-            }
-            
-            if (txn.type == "buy") {
-                buys.push(txn);
-            } else {
-                sells.push(txn);
-            }
-        }
-
-        return {
-            buys: buys, 
-            sells: sells,
-            original: data
-        };
-    } catch (err) {
-        console.log(err);
-        return {
-            buys: [], 
-            sells: [],
-            original: []
-        };
-    }
+export const getTokenStats = async(tokenAddr) => {
+    let api_url = process.env.NEXT_PUBLIC_API_URL;
+    let res = await axios.get(api_url+"/price/"+tokenAddr);
+    return res.data;
 }
 
 export const getTotal = (array) => {
@@ -125,8 +59,31 @@ export const getTotal = (array) => {
     return total;
 }
 
-export const formatNumber = (number, digits) => {
-    return number.toLocaleString(undefined, { 
-        minimumFractionDigits: digits
-    });
+
+export const getDivideBy = (number) => {
+    if (number <= 100_000) {
+        return 1;
+    } else if (number <= 1_000_000) {
+        return 100_000;
+    } else if (number <= 1_000_000_000) {
+        return 1_000_000;
+    } else if (number <= 1_000_000_000_000) {
+        return 1_000_000_000;
+    } else if (number <= 1_000_000_000_000_000) {
+        return 1_000_000_000_000;
+    }
+}
+
+export const getSuffix = (number) => {
+    if (number <= 1_000_000) {
+        return "";
+    } else if (number <= 1_000_000_000) {
+        return "M";
+    } else if (number <= 1_000_000_000_000) {
+        return "B";
+    } else if (number <= 1_000_000_000_000_000) {
+        return "TR";
+    } else if (number <= 1_000_000_000_000_000_000) {
+        return "QD";
+    }
 }
