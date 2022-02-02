@@ -54,7 +54,6 @@ export default function Tracker() {
         return () => {
             if (interval) {
                 clearInterval(interval);
-                console.log("cleared");
             }
         }
     }, [wallet]);
