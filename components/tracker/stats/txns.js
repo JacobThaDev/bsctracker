@@ -1,63 +1,74 @@
+import { useEffect, useState } from "react";
 import { Accordion, Card } from "react-bootstrap";
 import * as Functions from "../../../functions";
 
 export default function TxnList({...props}) {
     
-    let table = [];
-    let txns  = props.data.txnList;
+    const [txns, setTxns] = useState([]);
 
-    txns.forEach((txn, index) => {
-        let date = new Date(txn.timestamp*1000);
+    useEffect(() => {
+        let txnList = props.data.txnList;
 
-        table.push(
-            <Accordion.Item eventKey={index} key={index}>
-                <Accordion.Header className="shadow-none">
-                    <div className="d-flex align-items-center">
-                        <div>
-                            {txn.direction == "in" 
-                                ? <i className="fas fa-arrow-down text-success fa-fw me-2"></i> 
-                                : <i className="fas fa-arrow-up text-danger fa-fw me-2"></i>}
-                            
-                            <span className="fw-bold me-2">
-                                {Functions.formatNumber(txn.value, 3)}
-                            </span>
-                        </div>
-                        <div className="small text-muted">
-                            {date.toDateString()}
-                        </div>
-                    </div>
-                </Accordion.Header>
-                
-                <Accordion.Body>
-                    <p className="mb-0 fw-bold">Hash</p>
-                    <p>{txn.hash}</p>
+        if (txnList.length == 0) {
+            return;
+        }
 
-                    <p className="mb-0 fw-bold">From</p>
-                    <p>
-                    <a href={"https://bscscan.com/address/"+txn.from}
-                        target="_blank"
-                        rel="nofollow noopener noreferrer">
-                        {txn.from}
-                    </a>
-                    </p>
+        let table = [];
 
-                    <p className="mb-0 fw-bold">Confirmations</p>
-                    <p>{Functions.formatNumber(parseInt(txn.confirmations), 0)}</p>
-
-                    <a href={"https://bscscan.com/tx/"+txn.hash} 
-                        className="btn btn-primary"
-                        target="_blank"
-                        rel="nofollow noopener noreferrer">
-                        View on Bscscan
-                    </a>
-                </Accordion.Body>
-            </Accordion.Item>
-        )
-    });
-
+        txnList.forEach((txn, index) => {
+            let date = new Date(txn.timestamp*1000);
     
+            table.push(
+                <Accordion.Item eventKey={index} key={index}>
+                    <Accordion.Header className="shadow-none">
+                        <div className="d-flex align-items-center">
+                            <div>
+                                {txn.direction == "in" 
+                                    ? <i className="fas fa-arrow-down text-success fa-fw me-2"></i> 
+                                    : <i className="fas fa-arrow-up text-danger fa-fw me-2"></i>}
+                                
+                                <span className="fw-bold me-2">
+                                    {Functions.formatNumber(txn.value, 3)}
+                                </span>
+                            </div>
+                            <div className="small text-muted">
+                                {date.toDateString()}
+                            </div>
+                        </div>
+                    </Accordion.Header>
+                    
+                    <Accordion.Body>
+                        <p className="mb-0 fw-bold">Hash</p>
+                        <p>{txn.hash}</p>
+    
+                        <p className="mb-0 fw-bold">From</p>
+                        <p>
+                        <a href={"https://bscscan.com/address/"+txn.from}
+                            target="_blank"
+                            rel="nofollow noopener noreferrer">
+                            {txn.from}
+                        </a>
+                        </p>
+    
+                        <p className="mb-0 fw-bold">Confirmations</p>
+                        <p>{Functions.formatNumber(parseInt(txn.confirmations), 0)}</p>
+    
+                        <a href={"https://bscscan.com/tx/"+txn.hash} 
+                            className="btn btn-primary"
+                            target="_blank"
+                            rel="nofollow noopener noreferrer">
+                            View on Bscscan
+                        </a>
+                    </Accordion.Body>
+                </Accordion.Item>
+            )
 
-    if (table.length == 0) {
+            setTxns(table);
+        });
+
+    }, [props.data.txnList]);
+
+    if (txns.length == 0) {
         return (
         <Card className="border-0 shadow-sm mb-3">
             <Card.Header className="bg-transparent">
@@ -68,14 +79,14 @@ export default function TxnList({...props}) {
             </Card.Body>
         </Card>)
     }
-    
+
     return(
         <Card className="border-0 shadow-sm mb-3">
             <Card.Header className="bg-transparent">
                 Transaction History
             </Card.Header>
             <Accordion defaultActiveKey="0" className="accordion-flush" >
-                {table}
+                {txns}
             </Accordion>
         </Card>)
 }

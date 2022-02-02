@@ -40,7 +40,7 @@ export default function ReflectionCard({...props}) {
             <Card.Body>
                 <p className="small-text text-muted mb-1">Earnings</p>
                 <p className="mb-0 fw-bold">
-                    {Functions.formatNumber(earned, 3)} {props.data.token.rewards.toUpperCase()}
+                    {Functions.formatNumber(earned, 9)} {props.data.token.rewards.toUpperCase()}
                 </p>
             </Card.Body>
         </Card>

@@ -44,6 +44,22 @@ export default function Tracker() {
             return;
         }
 
+        let interval;
+
+        if (!interval) {
+            update(wallet);
+            interval = setInterval(() => update(wallet), tickRate);
+        }
+
+        return () => {
+            if (interval) {
+                clearInterval(interval);
+                console.log("cleared");
+            }
+        }
+    }, [wallet]);
+
+    const update = async(wallet) => {
         try {
             let tokenAddr  = tokens[tokenId].address;
             let balance    = await Functions.getBalance(tokenAddr, wallet);
@@ -60,14 +76,14 @@ export default function Tracker() {
                 lastUpdate: today.toLocaleTimeString()
             };
 
-            console.log(dataArr);
-
             setData(dataArr);
             setLoading(false);
+
+            console.log("Data Updated!");
         } catch(err) {
             console.log(err);
         }
-    }, [wallet]);
+    }
 
     if (!wallet) 
         return null;
