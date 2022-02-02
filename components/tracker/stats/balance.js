@@ -15,7 +15,7 @@ export default function BalanceCard({...props}) {
             <Card.Body>
                 <p className="small-text text-muted mb-1">Balance</p>
                 <p className="mb-0 fw-bold">
-                    {Functions.formatNumber(balance, 9)}
+                    {Functions.formatNumber(balance, 5)}
                 </p>
             </Card.Body>
         </Card>

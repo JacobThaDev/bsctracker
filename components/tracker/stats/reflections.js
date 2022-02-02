@@ -38,9 +38,11 @@ export default function ReflectionCard({...props}) {
     return (
         <Card className="border-0 shadow-sm mb-3">
             <Card.Body>
-                <p className="small-text text-muted mb-1">Earnings</p>
+                <p className="small-text text-muted mb-1">
+                    Earnings ({props.data.token.rewards.toUpperCase()})
+                </p>
                 <p className="mb-0 fw-bold">
-                    {Functions.formatNumber(earned, 9)} {props.data.token.rewards.toUpperCase()}
+                    {Functions.formatNumber(earned, 5)} 
                 </p>
             </Card.Body>
         </Card>
