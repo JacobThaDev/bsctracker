@@ -75,30 +75,40 @@ export default function PageHeader({...props}) {
 
                         <div className="mt-5" style={{ maxWidth: 450 }}>
                             <Form id="searchForm">
-                                <div className="custom-group">
-                                    <div className="walletAlert d-none" id="walletAlert">
-                                        <Tippy content="Invalid address format" placement="bottom">
-                                            <i className="far fa-exclamation-triangle text-danger"/>
-                                        </Tippy>
+                                <div className="d-flex">
+                                    <div className="w-100">
+                                        <div className="custom-group">
+                                            <div className="walletAlert d-none" id="walletAlert">
+                                                <Tippy content="Invalid address format" placement="bottom">
+                                                    <i className="far fa-exclamation-triangle text-danger"/>
+                                                </Tippy>
+                                            </div>
+                                            <FormControl 
+                                                name="wallet" 
+                                                id="walletAddr" 
+                                                placeholder="Type a wallet address"
+                                                className="ps-4"/>
+                                            <div className="gametype">
+                                                <Form.Select 
+                                                        id="tokenSelect"
+                                                        name="tokenId"
+                                                        aria-label="Default select example" 
+                                                        size="sm" 
+                                                        className="border-0 token-select shadow-none">
+                                                    <option value="sfm">SFM</option>
+                                                    <option value="enh">ENH</option>
+                                                    <option value="glow">GLOW</option>
+                                                </Form.Select>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <FormControl 
-                                        name="wallet" 
-                                        id="walletAddr" 
-                                        placeholder="Type a wallet address and press enter"
-                                        className="ps-4"/>
-                                    <div className="gametype">
-                                        <Form.Select 
-                                                id="tokenSelect"
-                                                name="tokenId"
-                                                aria-label="Default select example" 
-                                                size="sm" 
-                                                className="border-0 token-select shadow-none">
-                                            <option value="sfm">SFM</option>
-                                            <option value="enh">ENH</option>
-                                            <option value="glow">GLOW</option>
-                                        </Form.Select>
+                                    <div className="text-nowrap ps-2">
+                                        <button type="submit" className="btn btn-primary shadow-0">
+                                            Go <i className="fat fa-arrow-right fa-fw"></i>
+                                        </button>
                                     </div>
                                 </div>
+                                
                             </Form>
                         </div>
 

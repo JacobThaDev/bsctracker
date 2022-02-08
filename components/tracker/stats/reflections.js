@@ -1,13 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
-
 import * as Functions from "../../../functions";
-import LoadingCard from "./loading";
 
 const Web3  = require("web3");
 const web3  = new Web3(new Web3.providers.HttpProvider("https://bsc-dataseed1.binance.org:443"));
-
 
 export default function ReflectionCard({...props}) {
 
