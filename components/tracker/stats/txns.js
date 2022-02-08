@@ -9,7 +9,7 @@ export default function TxnList({...props}) {
     useEffect(() => {
         let txnList = props.data.txnList;
 
-        if (txnList.length == 0) {
+        if (txnList.length == 0 || txnList.error) {
             return;
         }
 

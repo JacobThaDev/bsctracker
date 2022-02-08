@@ -2,8 +2,6 @@ import { Card, Container } from "react-bootstrap";
 
 export default function TrackerTokens({...props}) {
 
-    console.log(props);
-    
     const tokens = require("../../../tokens");
 
     let list     = [];

@@ -15,21 +15,21 @@ export default function ReflectionCard({...props}) {
     useEffect(async() => {
         let data = props.data;
 
+        let token_abi;
+
         if (data.token.symbol == "ENH") {
-            let glow_abi = require("../../../abi/enh_dividends");
-            let contract = new web3.eth.Contract(dividends_abi, data.token.contract);
-            let balance  = await contract.methods.accumulativeDividendOf(data.address).call();
-            let decimals = 9;
-            setEarned(balance / 10 ** decimals);
+            let token_abi = require("../../../abi/enh_dividends");
+            let contract  = new web3.eth.Contract(token_abi, "0xd4a210030b71bb03fa85f8c72918078f1c185773");
+            let dividends = await contract.methods.accumulativeDividendOf(data.address).call();
+            setEarned(dividends / 10 ** 9);
             return;
         }
 
         if (data.token.symbol == "GLOW") {
-            let glow_abi = require("../../../abi/glow");
-            let contract = new web3.eth.Contract(glow_abi, data.token.contract);
-            let balance  = await contract.methods.showMyDividendRewards(data.address).call();
-            let decimals = 18;
-            setEarned(balance / 10 ** decimals);
+            let token_abi = require("../../../abi/glow");
+            let contract  = new web3.eth.Contract(token_abi, data.token.contract);
+            let dividends = await contract.methods.showMyDividendRewards(data.address).call();
+            setEarned(dividends / 10 ** 18);
             return;
         }
 
