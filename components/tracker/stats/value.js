@@ -9,7 +9,7 @@ export default function ValueCard({...props}) {
 
     useEffect(() => {
         let balance = props.data.balance;
-        let price   = props.data.tokenStats.price_usd;
+        let price   = props.data.token.price;
         let value   =  parseFloat((balance * price).toFixed(2))
 
         setValue(value);

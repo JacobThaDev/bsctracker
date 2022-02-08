@@ -11,6 +11,10 @@ export default function Burned({...props}) {
     const [suffix, setSuffix]           = useState("B");
 
     useEffect(async() => {
+        if (!props.token) {
+            return;
+        }
+        
         setLoading(true);
 
         let initial  = props.token.supply;

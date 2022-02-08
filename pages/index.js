@@ -11,50 +11,47 @@ import Hero from "../components/home/hero";
 import { useEffect, useState } from "react";
 
 import PageHead from "../components/global/head";
+import axios from "axios";
 
 export default function Home() {
 
-    const tokens = require("../tokens");
+    const [loaded, setLoaded] = useState(false);
+    const [tokens, setTokens] = useState(null);
+    const [token, setToken]   = useState(null);
 
-    const [token, setToken] = useState({
-        title: 'SafeMoon', 
-        abbr: 'sfm', 
-        address: '0x42981d0bfbaf196529376ee702f2a9eb9092fcb5', 
-        supply: 1000000000000, 
-        burn_wallet: '0x0000000000000000000000000000000000000001'
-    });
-
-    useEffect(() => {
-        let selectBtn = document.getElementById("tokenSelect");
-
-        selectBtn.addEventListener("change", () => {
-            changeToken(selectBtn);
-        });
-    }, []);
-
-    const changeToken = (select) => {
-        let keys = Object.keys(tokens);
-
-        if (!keys.includes(select.value)) {
+    useEffect(async() => {
+        if (loaded) {
             return;
         }
 
-        let token = tokens[select.value];
+        let api_url   = process.env.NEXT_PUBLIC_API_URL;
+        let tokens    = await axios.get(api_url+"/tokens");
 
-        setToken({
-            title: token.title,
-            abbr: token.abbr,
-            address: token.address,
-            supply: token.supply,
-            burn_wallet: token.burn_wallet
+        setTokens(tokens.data);
+        setToken(tokens.data[0]);
+
+        let selectBtn = document.getElementById("tokenSelect");
+
+        selectBtn.addEventListener("change", () => {
+            changeToken(selectBtn, tokens.data);
         });
+        setLoaded(true);
+    }, []);
+
+    const changeToken = (select, tokens) => {
+        for (let token of tokens) {
+            if (token.symbol.toLowerCase() == select.value.toLowerCase()) {
+                console.log("Selected "+select.value);
+                setToken(token);
+            }
+        }
     }
 
     return (
         <>
             <PageHead/>
             <PageNav/>
-            <PageHeader/>
+            <PageHeader tokens={tokens}/>
 
             <section id="stats" style={{ marginTop: -40 }}>
                 <Container>

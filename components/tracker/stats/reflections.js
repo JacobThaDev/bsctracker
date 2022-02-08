@@ -4,6 +4,10 @@ import { Card } from "react-bootstrap";
 import * as Functions from "../../../functions";
 import LoadingCard from "./loading";
 
+const Web3  = require("web3");
+const web3  = new Web3(new Web3.providers.HttpProvider("https://bsc-dataseed1.binance.org:443"));
+
+
 export default function ReflectionCard({...props}) {
 
     const [earned, setEarned] = useState(0);
@@ -11,14 +15,32 @@ export default function ReflectionCard({...props}) {
     useEffect(async() => {
         let data = props.data;
 
-        if (data.token.abbr == "enh") {
-            let earned = await Functions.getDividends(data.address);
-            setEarned(earned);
+        if (data.token.symbol == "ENH") {
+            let glow_abi = require("../../../abi/enh_dividends");
+            let contract = new web3.eth.Contract(dividends_abi, data.token.contract);
+            let balance  = await contract.methods.accumulativeDividendOf(data.address).call();
+            let decimals = 9;
+            setEarned(balance / 10 ** decimals);
             return;
         }
 
-        let txnList   = props.data.txnList;
-        let balance   = await Functions.getBalance(data.token.address, data.address);
+        if (data.token.symbol == "GLOW") {
+            let glow_abi = require("../../../abi/glow");
+            let contract = new web3.eth.Contract(glow_abi, data.token.contract);
+            let balance  = await contract.methods.showMyDividendRewards(data.address).call();
+            let decimals = 18;
+            setEarned(balance / 10 ** decimals);
+            return;
+        }
+
+        let txnList = props.data.txnList;
+        
+        if (txnList.error || txnList.length < 1) {
+            console.log("no transactions.");
+            return;
+        }
+
+        let balance   = await Functions.getBalance(data.token.contract, data.address);
        
         let bought    = 0;
         let sold      = 0;

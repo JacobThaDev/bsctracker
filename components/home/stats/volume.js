@@ -14,22 +14,24 @@ export default function Marketcap({...props}) {
 
     useEffect(async() => {
         try {
-            setLoading(true);
-            let api_url = process.env.NEXT_PUBLIC_API_URL;
-            let res = await axios.get(api_url+"/price/"+props.token.address);
-            setVolume(res.data.volume_24h_usd);
-
-            let initial = props.token.supply;
-            let burned  = await Functions.getBurned(props.token);
+            if (!props.token) {
+                return;
+            }
             
-            let circulating = initial - burned;
+            let price       = props.token.price;
+            let supply      = props.token.supply;
+            let burned      = await Functions.getBurned(props.token);
+            let circulating = supply - burned;
 
-            setMcap(res.data.price_usd * circulating);
+            setMcap(circulating * price);
+            setVolume(props.token.volume_24h);
+
+            setDivideBy(Functions.getDivideBy(price * circulating));
+            setSuffix(Functions.getSuffix(price * circulating));
+
             setLoading(false);
-            setDivideBy(Functions.getDivideBy(res.data.price_usd * circulating));
-            setSuffix(Functions.getSuffix(res.data.price_usd * circulating))
         } catch(err) {
-            console.log(err);
+            console.log("Volume error", err);
         }
     }, [props.token]);
 
@@ -44,7 +46,7 @@ export default function Marketcap({...props}) {
                             24h Volume
                         </p>
                         <span className="h4 font-weight-bold mb-0 text-success">
-                            ${loading ? icon : Functions.formatNumber(volume, 1)}
+                            ${loading ? icon : Functions.formatNumber(volume, 2) }
                         </span>
                     </div>
                     <div className="pe-3">

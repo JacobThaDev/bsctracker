@@ -3,15 +3,21 @@ import { Button, Col, Container, Form, FormControl, FormGroup, InputGroup, Row }
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css'; // optional
 
-export default function Search() {
+export default function Search({...props}) {
 
     const tokenList = require("../../tokens");
 
     useEffect(() => {
+        if (!props.tokens) {
+            return;
+        }
+
+        console.log("tokens", props.tokens);
+
         let form     = document.getElementById("searchForm");
         let field    = document.getElementById("walletAddr");
         let alert    = document.getElementById("walletAlert");
-        let keys     = Object.keys(tokenList); 
+        let keys     = Object.keys(tokenList);
 
         form.addEventListener("submit", (event) => {
             event.preventDefault();
@@ -39,7 +45,7 @@ export default function Search() {
             
             window.location = "/"+tokenid+"/"+wallet;
         });
-    }, []);
+    }, [props.tokens]);
     
     return(
         <Form id="searchForm">
@@ -63,6 +69,7 @@ export default function Search() {
                             className="border-0 token-select shadow-none">
                         <option value="sfm">SFM</option>
                         <option value="enh">ENH</option>
+                        <option value="glow">GLOW</option>
                     </Form.Select>
                 </div>
             </div>

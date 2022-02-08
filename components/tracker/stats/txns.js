@@ -16,7 +16,7 @@ export default function TxnList({...props}) {
         let table = [];
 
         txnList.forEach((txn, index) => {
-            let date = new Date(txn.timestamp*1000);
+            let date = new Date(txn.timeStamp*1000);
     
             table.push(
                 <Accordion.Item eventKey={index} key={index}>

@@ -9,15 +9,10 @@ import PageNav from "../../components/global/navigation";
 import Footer from "../../components/global/footer";
 
 import * as Functions from "../../functions";
-import Earned from "../../components/tracker/stats/earned";
 import TxnList from "../../components/tracker/stats/txns";
 import BalanceCard from "../../components/tracker/stats/balance";
 import ReflectionCard from "../../components/tracker/stats/reflections";
-import PriceCard from "../../components/tracker/stats/price";
 import ValueCard from "../../components/tracker/stats/value";
-import EarnedValueCard from "../../components/tracker/stats/earned_value";
-import Volume24hCard from "../../components/tracker/stats/volume";
-import TokenList from "../../components/chart/tokenlist";
 import TrackerTokens from "../../components/tracker/stats/tokenList";
 
 export default function Tracker() {
@@ -28,7 +23,7 @@ export default function Tracker() {
     const tickRate              = 15000;
     const {tokenId, wallet}     = router.query;
     const [loading, setLoading] = useState(true);
-    const [error, setError]     = useState(null);
+    const [loaded, setLoaded]   = useState(false);
 
     const [data, setData] = useState({ 
         address: null,
@@ -40,16 +35,18 @@ export default function Tracker() {
     });
 
     useEffect(async() => {
-        if (!wallet) {
+        if (!wallet || loaded) {
             return;
         }
 
         let interval;
 
         if (!interval) {
-            update(wallet);
+            update(wallet, tokenId);
             interval = setInterval(() => update(wallet), tickRate);
         }
+
+        setLoaded(true);
 
         return () => {
             if (interval) {
@@ -58,20 +55,18 @@ export default function Tracker() {
         }
     }, [wallet]);
 
-    const update = async(wallet) => {
+    const update = async() => {
         try {
-            let tokenAddr  = tokens[tokenId].address;
-            let balance    = await Functions.getBalance(tokenAddr, wallet);
-            let tokenStats = await Functions.getTokenStats(tokenAddr);
+            let token      = await Functions.getTokenStats(tokenId);
+            let balance    = await Functions.getBalance(token.contract, wallet);
             let txnList    = await Functions.getTxnList(tokens[tokenId].abbr, wallet);
             let today      = new Date();
 
             let dataArr = { 
                 address: wallet,
-                token: tokens[tokenId],
-                tokenStats: tokenStats,
+                token: token,
                 balance: balance,
-                txnList: txnList,
+                txnList: txnList.error ? [] : txnList.txns,
                 lastUpdate: today.toLocaleTimeString()
             };
 
@@ -80,7 +75,7 @@ export default function Tracker() {
 
             console.log("Data Updated!");
         } catch(err) {
-            console.log(err);
+            console.log("Update error", err);
         }
     }
 

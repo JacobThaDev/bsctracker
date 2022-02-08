@@ -1,7 +1,56 @@
-import { Col, Container, Row } from "react-bootstrap";
-import Search from "./search";
+import { useEffect, useState } from "react";
+import { Col, Container, Form, FormControl, Row } from "react-bootstrap";
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css'; // optional
 
-export default function PageHeader() {
+export default function PageHeader({...props}) {
+
+    useEffect(() => {
+        if (!props.tokens) {
+            return;
+        }
+
+        let form     = document.getElementById("searchForm");
+        let field    = document.getElementById("walletAddr");
+        let alert    = document.getElementById("walletAlert");
+
+        form.addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            let data = new FormData(form);
+
+            let tokenid = data.get("tokenId");
+            let wallet  = data.get("wallet");
+            let parts   = wallet.split("x");
+
+            if (parts.length != 2 
+                || parts[0] != "0" 
+                || parts[1].length != "40") {
+                    alert.classList.remove("d-none");
+                return;
+            }
+
+            alert.classList.add("d-none");
+            field.disabled = true;
+
+            let found = false;
+
+            for (let token of props.tokens) {
+                if (token.symbol.toLowerCase() == tokenid.toLowerCase()) {
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found) {
+                field.disabled = false;
+                return;
+            }
+            
+            window.location = "/"+tokenid+"/"+wallet;
+            field.disabled = false;
+        });
+    }, [props.tokens]);
 
     return(
         <section className="bg-dark pt-5" id="test">
@@ -25,7 +74,32 @@ export default function PageHeader() {
                         </p>
 
                         <div className="mt-5" style={{ maxWidth: 450 }}>
-                            <Search className="text-white-50"/>
+                            <Form id="searchForm">
+                                <div className="custom-group">
+                                    <div className="walletAlert d-none" id="walletAlert">
+                                        <Tippy content="Invalid address format" placement="bottom">
+                                            <i className="far fa-exclamation-triangle text-danger"/>
+                                        </Tippy>
+                                    </div>
+                                    <FormControl 
+                                        name="wallet" 
+                                        id="walletAddr" 
+                                        placeholder="Type a wallet address and press enter"
+                                        className="ps-4"/>
+                                    <div className="gametype">
+                                        <Form.Select 
+                                                id="tokenSelect"
+                                                name="tokenId"
+                                                aria-label="Default select example" 
+                                                size="sm" 
+                                                className="border-0 token-select shadow-none">
+                                            <option value="sfm">SFM</option>
+                                            <option value="enh">ENH</option>
+                                            <option value="glow">GLOW</option>
+                                        </Form.Select>
+                                    </div>
+                                </div>
+                            </Form>
                         </div>
 
                         <div className="mt-5 mt-lg-5 mt-xl-7">
@@ -48,6 +122,14 @@ export default function PageHeader() {
                                         data-toggle="tooltip" 
                                         data-placement="bottom" 
                                         title="SafeMoon v2"/>
+                                </div>
+                                <div className="me-2">
+                                    <img alt="Glow v2" 
+                                        src="/img/glowv2.png" 
+                                        style={{ height: 40 }} 
+                                        data-toggle="tooltip" 
+                                        data-placement="bottom" 
+                                        title="Glow v2"/>
                                 </div>
                             </div>
                         </div>

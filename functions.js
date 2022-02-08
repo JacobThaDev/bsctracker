@@ -7,7 +7,7 @@ const dividends_abi = require("./abi/enh_dividends");
 
 export const getBurned = async(token) => {
     let burn_wallet  = token.burn_wallet; // burn address
-    return getBalance(token.address, burn_wallet);
+    return getBalance(token.contract, burn_wallet);
 }
 
 export const getBalance = async(token_addr, wallet_address) => {
@@ -31,15 +31,15 @@ export const formatNumber = (number, digits) => {
     });
 }
 
-export const getTxnList = async(tokenAddr, wallet) => {
+export const getTxnList = async(symbol, wallet) => {
     let api_url = process.env.NEXT_PUBLIC_API_URL;
-    let res = await axios.get(api_url+"/txns/"+tokenAddr+"/"+wallet)
+    let res = await axios.get(api_url+"/txns/"+symbol+"/"+wallet)
     return res.data;
 }
 
-export const getTokenStats = async(tokenAddr) => {
+export const getTokenStats = async(symbol) => {
     let api_url = process.env.NEXT_PUBLIC_API_URL;
-    let res = await axios.get(api_url+"/price/"+tokenAddr);
+    let res = await axios.get(api_url+"/token/"+symbol);
     return res.data;
 }
 
