@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
 
@@ -14,7 +15,6 @@ export default function ReflectionCard({...props}) {
 
     useEffect(async() => {
         let data = props.data;
-
         let token_abi;
 
         if (data.token.symbol == "ENH") {
@@ -24,12 +24,29 @@ export default function ReflectionCard({...props}) {
             setEarned(dividends / 10 ** 9);
             return;
         }
+        
+        if (data.token.symbol.toLowerCase() == "glow") {
+            try {
+                let api_url     = process.env.NEXT_PUBLIC_API_URL;
+                let res         = await axios.get(api_url+"/txns/"+data.address);
+                let txnList     = res.data.txns;
+                let total       = 0;
+                let distributor = "0x212f16eba125d60e40c45c28c831d9f8aa1917c0";
 
-        if (data.token.symbol == "GLOW") {
-            let token_abi = require("../../../abi/glow");
-            let contract  = new web3.eth.Contract(token_abi, data.token.contract);
-            let dividends = await contract.methods.showMyDividendRewards(data.address).call();
-            setEarned(dividends / 10 ** 18);
+                if (txnList.length < 0 || txnList.error) {
+                    return;
+                }
+
+                for (let txn of txnList) {
+                    if (txn.from == distributor) {
+                        total += txn.value;
+                    }
+                }
+
+                setEarned(total);
+            } catch(err) {
+                console.log(err.message);
+            }
             return;
         }
 
