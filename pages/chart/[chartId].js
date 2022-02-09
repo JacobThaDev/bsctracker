@@ -1,39 +1,55 @@
 import { useRouter } from "next/router";
-import ChartHeader from "../../components/chart/header";
-import TokenList from "../../components/chart/tokenlist";
-import PageHead from "../../components/global/head";
-import PageNav from "../../components/global/navigation";
-import Footer from "../../components/global/footer";
 import { Container } from "react-bootstrap";
+import axios from "axios";
 
-export default function Chart() {
+import Layout from "../../components/layout";
+import TokenList from "../../components/chart/tokenlist";
+
+export default function Chart({ ...props }) {
 
     const router     = useRouter();
     const {chartId}  = router.query;
-    const tokens     = require("../../tokens");
-    let keysList     = Object.keys(tokens);
+    
+    let selected;
 
-    if (!chartId || !keysList.includes(chartId)) {
+    for (let token of props.tokens) {
+        if (token.symbol.toLowerCase() == chartId.toLowerCase()) {
+            selected = token;
+        }
+    }
+    
+    if (!chartId || !selected) {
         return null;
     }
 
-    let token = tokens[chartId].address;
-
     return(
-        <>
-            <PageHead title={tokens[chartId].title}/>
-            <PageNav/>
-            <ChartHeader token={tokens[chartId]} />
-            <TokenList />
+        <Layout title={selected.title}>
+
+            <div className="bg-dark pt-5">
+                <Container className="py-5">
+                    <h2 className="text-white fw-bold mb-0">
+                        {selected.title} Chart
+                    </h2>
+                </Container>
+            </div>
+
+            <TokenList tokens={props.tokens}/>
 
             <Container className="my-4">
                 <iframe 
                     height={800} 
                     width="100%" 
-                    src={"https://dexscreener.com/bsc/"+token+"?embed=1&theme=dark&info=1"}/>
+                    src={"https://dexscreener.com/bsc/"+selected.contract+"?embed=1&theme=dark&info=1"}/>
             </Container>
-
-            <Footer/>
-        </>
+        </Layout>
     )
+}
+
+Chart.getInitialProps = async({ req }) => {
+    let api_url = process.env.NEXT_PUBLIC_API_URL;
+    let tokens = await axios.get(api_url+"/tokens");
+
+    return {
+        tokens: tokens.data
+    }
 }

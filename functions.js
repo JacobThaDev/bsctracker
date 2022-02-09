@@ -5,58 +5,71 @@ import axios from 'axios';
 const safemoon_abi  = require("./abi/safemoon");
 const dividends_abi = require("./abi/enh_dividends");
 
+export const shortenAddress = (address) => {
+    let start = address.substring(0, 2);
+    let end   = address.substring(address.length, address.length - 4);
+    return start+"..."+end;
+}
+
+export const getTotalSupply = async(token) => {
+    let mini_abi = require("./abi/mini_abi");
+    let contract = new web3.eth.Contract(mini_abi, token.contract);
+    let supply   = await contract.methods.totalSupply().call();
+    let decimals = await contract.methods.decimals().call();
+    return parseInt(supply) / 10 ** decimals;
+}
+
 export const getBurned = async(token) => {
     let burn_wallet  = token.burn_wallet; // burn address
     return getBalance(token.contract, burn_wallet);
 }
 
-export const getBalance = async(token_addr, wallet_address) => {
-    let contract = new web3.eth.Contract(safemoon_abi, token_addr);
-    let balance  = await contract.methods.balanceOf(wallet_address).call();
-    let decimals = await contract.methods.decimals().call();
-    return (balance / 10 ** decimals);
+export const getTokenPrice = async(token) => {
+    let wbnb = "0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c";
+
+    let wbnb_balance  = await getBalance(wbnb, token.liquidity);
+    let token_balance = await getBalance(token.contract, token.liquidity);
+    let bnb_price     = await getBnbPrice();
+
+    return (wbnb_balance / token_balance * bnb_price);
 }
 
-export const getDividends = async(wallet_address) => {
-    let token_addr = "0xd4a210030b71bb03fa85f8c72918078f1c185773";
-    let contract   = new web3.eth.Contract(dividends_abi, token_addr);
-    let balance    = await contract.methods.accumulativeDividendOf(wallet_address).call();
-    let decimals   = 9;
-    return (balance / 10 ** decimals);
+export const getBalance = async(token, wallet) => {
+    let call = await new web3.eth.call({
+        to: token, // contract address
+        data: "0x70a08231000000000000000000000000"+wallet.replace("0x", "")
+    });
+    let decimals = await getDecimals(token);
+    return parseInt(call) / 10 ** decimals;
+}
+
+export const getDecimals = async(address) => {
+    let mini_abi = require("./abi/mini_abi");
+    let contract = new web3.eth.Contract(mini_abi, address);
+    let decimals = await contract.methods.decimals().call();
+    return decimals;
+}
+
+
+export const getBnbPrice = async() => {
+    try {
+        let aggr = require("./abi/aggregator");
+        let addr = "0x0567F2323251f0Aab15c8dFb1967E4e8A7D42aeE";
+        let feed = new web3.eth.Contract(aggr, addr);
+
+        let round    = await feed.methods.latestRoundData().call();
+        let decimals = await feed.methods.decimals().call();
+        let rounded  = (round[1] / 10 ** decimals).toFixed(2)
+        return parseFloat(rounded);
+    } catch(err) {
+        return 0;
+    }
 }
 
 export const formatNumber = (number, digits) => {
     return number.toLocaleString(undefined, { 
         minimumFractionDigits: digits
     });
-}
-
-export const getTxnList = async(symbol, wallet) => {
-    let api_url = process.env.NEXT_PUBLIC_API_URL;
-    let res = await axios.get(api_url+"/txns/"+symbol+"/"+wallet)
-    return res.data;
-}
-
-export const getTokenStats = async(symbol) => {
-    let api_url = process.env.NEXT_PUBLIC_API_URL;
-    let res = await axios.get(api_url+"/token/"+symbol);
-    return res.data;
-}
-
-export const getTotal = (array) => {
-    if (typeof array == "undefined" || array.length == 0) {
-        return 0;
-    }
-
-    let total = 0;
-
-    for (let i = 0; i < array.length; i++) {
-        let txn = array[i];
-        let amt = parseFloat(txn.value/1000000000);
-        total += amt;
-    }
-
-    return total;
 }
 
 

@@ -1,23 +1,17 @@
 import { Card, Container } from "react-bootstrap";
 
-export default function TokenList() {
+export default function TokenList({...props}) {
 
-    const tokens = require("../../tokens");
+    let list = [];
 
-    let list     = [];
-    let keysList = Object.keys(tokens);
-    
-    for (let i = 0; i < keysList.length; i++) {
-        let token = tokens[keysList[i]];
-
+    for (let token of props.tokens) {
         list.push(
-        <a href={"/chart/"+token.abbr} 
-            className="btn btn-white text-uppercase mx-1"
-            id="tokenBtn"
-            data-token={token.abbr}
-            key={i}>
-            {token.abbr}
-        </a>)
+            <a href={"/chart/"+token.symbol.toLowerCase()} 
+                key={token.symbol}
+                className="btn btn-white text-uppercase mx-1">
+                {token.symbol}
+            </a>
+        )
     }
     
     return (

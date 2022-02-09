@@ -1,19 +1,22 @@
 import { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
+import { updateLocal } from "web3modal";
 
-import * as Functions from "../../../functions";
+import * as Functions from "../../functions";
 
 export default function ValueCard({...props}) {
 
-    const [value, setValue] = useState(0);
+    const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        let balance = props.data.balance;
-        let price   = props.data.token.price;
-        let value   =  parseFloat((balance * price).toFixed(2))
+    useEffect(async() => {
+        if (!props.data) {
+            return;
+        }
+        
+        setLoading(false);
+    }, [props.data])
 
-        setValue(value);
-    }, [props.data.balance])
+    let icon = <i className="fad fa-spinner fa-pulse"></i>;
 
     return (
         <Card className="border-0 shadow-sm mb-3">
@@ -22,7 +25,7 @@ export default function ValueCard({...props}) {
                     Value USD
                 </p>
                 <p className="mb-0 fw-bold">
-                    ${Functions.formatNumber(value, 2)}
+                    {loading ? icon : "$"+Functions.formatNumber(props.data.value, 2)}
                 </p>
             </Card.Body>
         </Card>

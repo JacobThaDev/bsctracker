@@ -5,17 +5,33 @@ import * as Functions from "../../../functions";
 
 export default function Burned({...props}) {
 
-    const [loading, setLoading]         = useState(false);
-    const [circulating, setCirculating] = useState(0);
-    const [burned, setBurned]           = useState(0);
-    const [suffix, setSuffix]           = useState("B");
+    const [loaded, setLoaded] = useState(false);
+    const [data, setData] = useState(null);
 
     useEffect(async() => {
-        if (!props.token) {
+        if (!props.data) {
+            setLoaded(false);
             return;
         }
         
-        setLoading(true);
+        let supply      = props.data.supply;
+        let circulating = props.data.circulating;
+        let burned      = props.data.burned;
+
+        let divideBy = Functions.getDivideBy(burned);
+        let suffix   = Functions.getSuffix(burned);
+
+        setData({
+            burned: burned / divideBy,
+            circulating: circulating / divideBy,
+            supply: supply,
+            divideby: divideBy,
+            suffix: suffix
+        });
+
+        setLoaded(true);
+
+        /*setLoading(true);
 
         let initial  = props.token.supply;
         let divideBy = Functions.getDivideBy(initial);
@@ -24,10 +40,10 @@ export default function Burned({...props}) {
         setCirculating((initial - burned) / divideBy);
         setBurned(burned / divideBy);
         setSuffix(Functions.getSuffix(burned));
-        setLoading(false);
-    }, [props.token]);
+        setLoading(false);*/
+    }, [props.data]);
 
-    let icon = <i className="fal fa-spinner fa-pulse"></i>;
+    let icon = <i className="fad fa-spinner fa-pulse"></i>;
 
     return(
         <Card className="border-0 shadow-sm  mb-3">
@@ -38,8 +54,10 @@ export default function Burned({...props}) {
                             Burned
                         </p>
                         <span className="h4 font-weight-bold mb-0 text-danger">
-                            {loading ? icon : Functions.formatNumber(burned, 3)}
-                            <small>{suffix}</small>
+                            {!loaded
+                                ? icon 
+                                : Functions.formatNumber(data.burned, 3) + data.suffix
+                            }
                         </span>
                     </div>
                     <div className="pe-3">
@@ -50,7 +68,7 @@ export default function Burned({...props}) {
                 </div>
             </Card.Body>
             <Card.Footer className="border-0 bg-transparent pt-0 text-muted small">
-                {loading ? icon : Functions.formatNumber(circulating, 3) + suffix} Circulating
+                {!loaded ? icon : Functions.formatNumber(data.circulating, 3) + data.suffix} Circulating
             </Card.Footer>
         </Card>
     )

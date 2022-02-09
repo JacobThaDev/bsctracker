@@ -6,27 +6,41 @@ import PageNav from "../../components/global/navigation";
 import ChartHeader from "../../components/chart/header";
 import TokenList from "../../components/chart/tokenlist";
 import Footer from "../../components/global/footer";
+import Layout from "../../components/layout";
+import axios from "axios";
 
-export default function Chart() {
+export default function Chart({...props}) {
 
-    const charts = require("../../tokens.js");
-    let token    = charts.sfm.address;
+    let address   = "0x42981d0bfbaf196529376ee702f2a9eb9092fcb5";
+    let chart_url = "https://dexscreener.com/bsc/"+address+"?embed=1&theme=dark&info=1";
 
     return(
-        <>
-            <PageHead title="SafeMoon"/>
-            <PageNav/>
-            <ChartHeader token={charts.sfm} />
-            <TokenList/>
+        <Layout title="SafeMoon">
+            <div className="bg-dark pt-5">
+                <Container className="py-5">
+                    <h2 className="text-white fw-bold mb-0">
+                        SafeMoon Chart
+                    </h2>
+                </Container>
+            </div>
+
+            <TokenList tokens={props.tokens}/>
 
             <Container className="my-4">
                 <iframe 
-                height={800} 
-                width="100%" 
-                src={"https://dexscreener.com/bsc/"+token+"?embed=1&theme=dark&info=1"}/>
+                    height={800} 
+                    width="100%" 
+                    src={chart_url} />
             </Container>
-
-            <Footer/>
-        </>
+        </Layout>
     )
+}
+
+Chart.getInitialProps = async({ req }) => {
+    let api_url = process.env.NEXT_PUBLIC_API_URL;
+    let tokens = await axios.get(api_url+"/tokens");
+
+    return {
+        tokens: tokens.data
+    }
 }

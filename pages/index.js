@@ -13,36 +13,51 @@ import { useEffect, useState } from "react";
 import PageHead from "../components/global/head";
 import axios from "axios";
 
-export default function Home() {
+import * as Functions from '../functions';
 
-    const [loaded, setLoaded] = useState(false);
-    const [tokens, setTokens] = useState(null);
-    const [token, setToken]   = useState(null);
+export default function Home({...props}) {
+
+    const [data, setData]     = useState(null);
 
     useEffect(async() => {
-        if (loaded) {
+        if (!props.token) {
             return;
         }
 
-        let api_url   = process.env.NEXT_PUBLIC_API_URL;
-        let tokens    = await axios.get(api_url+"/tokens");
-
-        setTokens(tokens.data);
-        setToken(tokens.data[0]);
-
+        updateStats(props.token);
         let selectBtn = document.getElementById("tokenSelect");
 
         selectBtn.addEventListener("change", () => {
-            changeToken(selectBtn, tokens.data);
+            changeToken(selectBtn, props.token_list);
         });
-        setLoaded(true);
     }, []);
 
+    const updateStats = async(token) => {
+        let price  = await Functions.getTokenPrice(token);
+        let burned = await Functions.getBurned(token);
+        let supply = await Functions.getTotalSupply(token);
+
+        let circulating = supply - burned;
+        let market_cap  = circulating * price;
+
+        setData({
+            price: price,
+            burned: burned,
+            supply: supply,
+            circulating: circulating,
+            market_cap: market_cap,
+            holders: token.holders,
+            transfers: token.transfers
+        });
+    }
+
     const changeToken = (select, tokens) => {
+        setData(null);
+
         for (let token of tokens) {
             if (token.symbol.toLowerCase() == select.value.toLowerCase()) {
                 console.log("Selected "+select.value);
-                setToken(token);
+                updateStats(token);
             }
         }
     }
@@ -51,19 +66,19 @@ export default function Home() {
         <>
             <PageHead/>
             <PageNav/>
-            <PageHeader tokens={tokens}/>
+            <PageHeader tokens={props.tokens}/>
 
             <section id="stats" style={{ marginTop: -40 }}>
                 <Container>
                     <Row>
                         <Col xs={12} lg={4}>
-                            <Volume token={token}/>
+                            <Volume data={data}/>
                         </Col>
                         <Col xs={12} lg={4}>
-                            <Burned token={token}/>
+                            <Burned data={data}/>
                         </Col>
                         <Col xs={12} lg={4}>
-                            <HolderCount token={token}/>
+                            <HolderCount data={data}/>
                         </Col>
                     </Row>
                 </Container>
@@ -74,4 +89,18 @@ export default function Home() {
             <Footer/>
         </>
     );
+}
+
+
+
+Home.getInitialProps = async({ query }) => {
+    let api_url = process.env.NEXT_PUBLIC_API_URL;
+    let tokens = await axios.get(api_url+"/tokens");
+
+    let active_token = tokens.data[0]; // safemoon 
+
+    return {
+        token_list: tokens.data,
+        token: active_token
+    }
 }

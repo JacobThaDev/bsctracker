@@ -1,21 +1,27 @@
 import { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
-import * as Functions from "../../../functions";
+import * as Functions from "../../functions";
 
 export default function BalanceCard({...props}) {
-    
-    const [balance, setBalance] = useState(0);
+
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        setBalance(props.data.balance);
-    }, [props.data.balance]);
+        if (!props.data) {
+            return;
+        }
+        
+        setLoading(false);
+    }, [props.data]);
+
+    let icon = <i className="fad fa-spinner fa-pulse"></i>;
 
     return (
         <Card className="border-0 shadow-sm mb-3">
             <Card.Body>
                 <p className="small-text text-muted mb-1">Balance</p>
                 <p className="mb-0 fw-bold">
-                    {Functions.formatNumber(balance, 5)}
+                    {loading ? icon : Functions.formatNumber(props.data.balance, 5)}
                 </p>
             </Card.Body>
         </Card>

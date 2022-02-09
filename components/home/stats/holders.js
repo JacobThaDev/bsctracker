@@ -6,7 +6,7 @@ import * as Functions from "../../../functions";
 
 export default function HolderCount({...props}) {
 
-    const [loading, setLoading] = useState(false);
+    const [loaded, setLoaded] = useState(true);
     
     const [tokenData, setTokenData] = useState({
         receivers: 0,
@@ -15,20 +15,20 @@ export default function HolderCount({...props}) {
     });
 
     useEffect(async() => {
-        setLoading(true);
-        try {
-            setTokenData({
-                receivers: props.token.holders,
-                transfers: props.token.transfers
-            })
-
-            setLoading(false);
-        } catch (err) {
-            setLoading(false);
+        if (!props.data) {
+            setLoaded(false);
+            return;
         }
-    }, [props.token]);
 
-    let icon = <i className="fal fa-spinner fa-pulse"></i>;
+        setTokenData({
+            receivers: props.data.holders,
+            transfers: props.data.transfers
+        });
+
+        setLoaded(true);
+    }, [props.data]);
+
+    let icon = <i className="fad fa-spinner fa-pulse"></i>;
 
     return(
         <Card className="border-0 shadow-sm mb-3">
@@ -39,7 +39,7 @@ export default function HolderCount({...props}) {
                             Hodlers
                         </p>
                         <span className="h4 font-weight-bold mb-0 text-info">
-                            {loading ? icon : Functions.formatNumber(tokenData.receivers, 0)}
+                            {!loaded ? icon : Functions.formatNumber(tokenData.receivers, 0)}
                         </span>
                     </div>
                     <div className="pe-3">
@@ -51,7 +51,7 @@ export default function HolderCount({...props}) {
             </Card.Body>
 
             <Card.Footer className="border-0 bg-transparent pt-0 text-muted small">
-                {loading ? icon : Functions.formatNumber(tokenData.transfers)} Transfers
+                {!loaded ? icon : Functions.formatNumber(tokenData.transfers)} Transfers
             </Card.Footer>
         </Card>
     )
