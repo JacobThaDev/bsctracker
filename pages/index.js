@@ -66,7 +66,7 @@ export default function Home({...props}) {
         <>
             <PageHead/>
             <PageNav/>
-            <PageHeader tokens={props.tokens}/>
+            <PageHeader tokens={props.token_list}/>
 
             <section id="stats" style={{ marginTop: -40 }}>
                 <Container>

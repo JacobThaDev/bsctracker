@@ -14,7 +14,7 @@ export default function Search({...props}) {
 
         console.log("tokens", props.tokens);
 
-        let form     = document.getElementById("searchForm");
+        /*let form     = document.getElementById("searchForm");
         let field    = document.getElementById("walletAddr");
         let alert    = document.getElementById("walletAlert");
         let keys     = Object.keys(tokenList);
@@ -44,7 +44,7 @@ export default function Search({...props}) {
             }
             
             window.location = "/"+tokenid+"/"+wallet;
-        });
+        });*/
     }, [props.tokens]);
     
     return(

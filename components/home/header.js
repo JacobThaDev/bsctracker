@@ -5,10 +5,22 @@ import 'tippy.js/dist/tippy.css'; // optional
 
 export default function PageHeader({...props}) {
 
+    const [options, setOptions] = useState(null);
+
     useEffect(() => {
         if (!props.tokens) {
             return;
         }
+
+        let opts = [];
+        props.tokens.forEach((token) => {
+            opts.push(
+                <option value={token.symbol.toLowerCase()}>
+                    {token.symbol}
+                </option>
+            );
+        });
+        setOptions(opts);
 
         let form     = document.getElementById("searchForm");
         let field    = document.getElementById("walletAddr");
@@ -95,9 +107,7 @@ export default function PageHeader({...props}) {
                                                         aria-label="Default select example" 
                                                         size="sm" 
                                                         className="border-0 token-select shadow-none">
-                                                    <option value="sfm">SFM</option>
-                                                    <option value="enh">ENH</option>
-                                                    <option value="glow">GLOW</option>
+                                                    {options}
                                                 </Form.Select>
                                             </div>
                                         </div>
