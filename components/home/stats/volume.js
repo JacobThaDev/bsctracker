@@ -17,12 +17,17 @@ export default function Marketcap({...props}) {
 
         let price       = props.data.price;
         let circulating = props.data.circulating;
+        let mcap        = props.data.market_cap;
 
-        let divideBy = Functions.getDivideBy(circulating);
+        let divideBy = Functions.getDivideBy(mcap);
+        let suffix   = Functions.getSuffix(mcap);
 
+        console.log(mcap);
+        
         setData({
             price: price,
-            market_cap: props.data.market_cap / divideBy
+            market_cap: props.data.market_cap / divideBy,
+            suffix: suffix
         });
 
         setLoaded(true);
@@ -50,7 +55,7 @@ export default function Marketcap({...props}) {
                 </div>
             </Card.Body>
             <Card.Footer className="border-0 bg-transparent pt-0 text-muted small">
-                {!loaded ? icon : "$"+Functions.formatNumber(data.market_cap, 2)} Market Cap
+                {!loaded ? icon : "$"+Functions.formatNumber(data.market_cap, 2) + data.suffix} Market Cap
             </Card.Footer>
         </Card>
     )

@@ -40,6 +40,7 @@ export default function Home({...props}) {
         let circulating = supply - burned;
         let market_cap  = circulating * price;
 
+
         setData({
             price: price,
             burned: burned,
