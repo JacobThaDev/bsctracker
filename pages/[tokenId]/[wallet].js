@@ -13,6 +13,7 @@ import axios from "axios";
 import Layout from "../../components/layout";
 import ValueCard from "../../components/tracker/value";
 import Transactions from "../../components/tracker/txns";
+import EgcEarnings from "../../components/tracker/earnings/evergrow";
 
 export default function Tracker({...props}) {
 
@@ -91,6 +92,8 @@ export default function Tracker({...props}) {
             earned = <SafemoonEarnings data={data}/>
         } else if (symbol == "glow") {
             earned = <GlowEarnings data={data} />
+        } else if (symbol == "egc") {
+            earned = <EgcEarnings data={data} />
         }
     } else {
         return <ErrorPage statusCode={404}/>

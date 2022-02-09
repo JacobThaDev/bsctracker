@@ -21,8 +21,6 @@ export default function Marketcap({...props}) {
 
         let divideBy = Functions.getDivideBy(mcap);
         let suffix   = Functions.getSuffix(mcap);
-
-        console.log(mcap);
         
         setData({
             price: price,
