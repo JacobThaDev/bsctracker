@@ -2,7 +2,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import Footer from "../components/global/footer";
 
 import PageNav from "../components/global/navigation";
-import PageHeader from "../components/home/header";
+import PageHeader from "../components/home/header/";
 import HolderCount from "../components/home/stats/holders";
 import Burned from "../components/home/stats/burned";
 import Volume from "../components/home/stats/volume";
