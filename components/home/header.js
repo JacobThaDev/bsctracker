@@ -65,8 +65,8 @@ export default function PageHeader({...props}) {
     }, [props.tokens]);
 
     return(
-        <section className="bg-dark pt-5" id="test">
-            <Container className="position-relative pt-5 pb-6">
+        <section className="bg-dark home-header" id="test">
+            <Container className="position-relative">
                 <Row className="align-items-center">
                     <Col xs={12} className="pe-lg-5">
 
