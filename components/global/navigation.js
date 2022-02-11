@@ -56,6 +56,11 @@ export default function Navigation() {
                                 </a>
                             </div>
                             <div className="flex-fill">
+                                <a href="/chart" className="custom-link px-3">
+                                    Charts
+                                </a>
+                            </div>
+                            <div className="flex-fill">
                                 <a href="/team" className="custom-link px-3">
                                     Our Team
                                 </a>
