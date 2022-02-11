@@ -1,0 +1,27 @@
+.card {
+    background-color: var(--card-background);
+    border-radius: 0.6rem;
+    overflow: hidden;
+}
+
+.icon {
+    width: 3rem;
+    height: 3rem;
+}
+
+.icon-shape {
+    padding: 12px;
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.card .icon-shape {
+    transition: all .1s ease-in-out;
+}
+
+.card:hover .icon-shape {
+    transform: scale(120%);
+}

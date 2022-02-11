@@ -2,6 +2,7 @@ import { Form, FormControl } from "react-bootstrap";
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css'; // optional
 import { useEffect, useState } from "react";
+import Cookies from "js-cookie";
 
 export default function WalletForm({...props}) {
 
@@ -9,8 +10,11 @@ export default function WalletForm({...props}) {
 
     if (props.tokens) {
         props.tokens.forEach((token, index) => {
+            let symbol   = token.symbol.toLowerCase();
+            let isActive = props.active && props.active == symbol ? "selected" : "";
+            
             options.push(
-                <option value={token.symbol.toLowerCase()} key={index}>
+                <option defaultValue={isActive} key={index}>
                     {token.symbol}
                 </option>
             );
@@ -64,6 +68,8 @@ export default function WalletForm({...props}) {
         });
     }, [props.tokens]);
 
+    const theme = Cookies.get("theme");
+
     return(
         <Form id="searchForm">
             <div className="d-flex">
@@ -76,6 +82,7 @@ export default function WalletForm({...props}) {
                         </div>
                         <FormControl 
                             name="wallet" 
+                            defaultValue={props.default ? props.default : ""}
                             id="walletAddr" 
                             placeholder="Type a wallet address"
                             className="ps-4"/>
@@ -91,8 +98,10 @@ export default function WalletForm({...props}) {
                         </div>
                     </div>
                 </div>
+                
                 <div className="text-nowrap ps-2">
-                    <button type="submit" className="btn btn-primary shadow-0">
+                    <button type="submit" 
+                            className={"btn btn-link shadow-0 text-light"}>
                         Go <i className="fat fa-arrow-right fa-fw"></i>
                     </button>
                 </div>

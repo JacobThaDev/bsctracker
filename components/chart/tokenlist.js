@@ -8,7 +8,7 @@ export default function TokenList({...props}) {
         list.push(
             <a href={"/chart/"+token.symbol.toLowerCase()} 
                 key={token.symbol}
-                className="btn btn-white text-uppercase mx-1">
+                className="btn btn-primary text-uppercase mx-1">
                 {token.symbol}
             </a>
         )

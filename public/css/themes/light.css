@@ -1,0 +1,40 @@
+:root {
+    /* Body */
+    --body-background: #f1f1f1;
+    --body-color: #5a5a5a;
+
+    --default-gradient: linear-gradient(-90deg,#5e72e4,#825ee4 70%);
+    
+    /* nav and header */
+    --nav-background: transparent;
+    --nav-mobile-background: #FFF;
+    --nav-mobile-color: #555;
+    --nav-mobile-hover: #000;
+
+    --header-background: #101010;
+
+    /* cards */
+    --card-background: #FFF;
+    --card-color: #2c2c2e;
+
+    /* Accordion */
+    --accrodion-background: transparent;
+    --accordion-color: #FFF;
+    --accordion-active-background: rgba(255,255,255,0.04);
+    --accordion-border: rgba(0, 0, 0, 0.05);
+
+    /* utility colors */
+    --primary: #825ee4;
+    --primary-hover: #825ee4;
+    --info: #6bc6e1;
+    --info-hover: #6bc6e1;
+    --success: #7ece82;
+    --success-hover: #7ece82;
+    --warning: #f0ad4e;
+    --warning-hover: #f0ad4e;
+    --danger: #f8716c;
+    --danger-hover: #f8716c;
+    
+    --hero-background: linear-gradient(310deg,#5e72e4,#825ee4);
+    --footer-background: #191919;
+}

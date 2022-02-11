@@ -1,122 +1,17 @@
-.home-header {
-    padding-top: 130px;
-    padding-bottom: 110px;
+.discord-hero {
+    background-image: var(--hero-background);
 }
 
-.pb-6 {
-    padding-bottom: 6.5rem;
+.tokenIcon {
+    transition: all .31s ease-in-out;
+    filter: 
+        grayscale(100%) 
+        brightness(1000%);
 }
 
-.bolder {
-    font-weight: 600 !important;
-}
-
-.icon {
-    width: 3rem;
-    height: 3rem;
-}
-
-.icon-shape {
-    padding: 12px;
-    text-align: center;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-}
-
-.card .icon-shape {
-    transition: all .1s ease-in-out;
-}
-
-.card:hover .icon-shape {
-    transform: scale(120%);
-}
-
-
-.custom-group {
-    position: relative;
-    width: 100%;
-}
-.custom-group .form-control {
-    width: 100%;
-    padding-right: 100px;
-
-}
-.custom-group .gametype {
-    position: absolute;
-    top:6px;
-    right: 6px;
-    padding-right: 10px;
-}
-
-.custom-group .walletAlert {
-    position: absolute;
-    top:6px;
-    left: 6px;
-    padding-right: 10px;
-}
-
-.custom-group .gametype .token-select {
-    position: absolute;
-    top: -1px;
-    right: 0px;
-    width: 80px;
-    padding-right: 10px;
-}
-
-a.text-danger, .text-danger {
-    color: #CF2E4B !important;
-}
-
-a {
-    color: #6194BC;
-    text-decoration: none;
-}
-
-a:hover, a:focus, a:active {
-    color: #A5D1F3;
-    text-decoration: none;
-}
-
-.bolder {
-    font-weight: 600 !important;
-}
-
-hr {
-    border-color: #212937 !important;
-}
-
-.bg-dark {
-    background: #2D394F !important;
-}
-
-.text-primary {
-    color: #6194BC !important;
-}
-
-.btn {
-    transition: all .1s ease-in-out;
-    outline: none !important;
-}
-
-.btn-primary {
-    background-color: #6194BC !important;
-    border-color: #6194BC !important;
-}
-
-.btn:hover {
-    transform: translateY(-1px) !important;
-    filter: brightness(110%);
-}
-
-.bg-primary:hover {
-    
-    background-color: #6194BC !important;
-}
-
-.footer hr {
-    border-color: rgba(0,0,0,0.2) !important;
+.tokenIcon:hover {
+    transform: 
+        scale(120%) ;
 }
 
 .team-member .team-icon {
@@ -129,114 +24,11 @@ hr {
     text-align: center;
 }
 
-hr {
-    border-color: rgba(0,0,0,0.15) !important;
-}
-
-.small-text {
-    font-size: .7rem;
-}
-
-.text-success {
-    color: #7ece82 !important;
-}
-.bg-success {
-    background-color: #7ece82 !important;
-}
-.bg-warning { 
-    background-color: #f0ad4e !important;
-}
-.text-warning {
-    color: #f0ad4e !important;
-}
-.text-danger {
-    color: #f8716c !important;
-}
-.border-danger {
-    border: solid 1px #f8716c;
-}
-.bg-danger {
-    background-color: #f8716c !important
-}
-.text-info {
-    color: #6bc6e1 !important;
-}
-.bg-info {
-    background-color: #6bc6e1 !important;
-}
-
-
-.text-justify {
-    text-align: justify;
-}
-
-.form-control.border-danger {
-    border-width: 3px;
-}
-
-tr {
-    vertical-align: middle;
-}
-
-.list-group-scroll {
-    max-height: 300px;
-    overflow-y: scroll;
-}
-
-/* width */
-.list-group-scroll::-webkit-scrollbar {
-    width: 10px;
-}
-  
-  /* Track */
-.list-group-scroll::-webkit-scrollbar-track {
-    background: #EEE; 
-}
-   
-  /* Handle */
-.list-group-scroll::-webkit-scrollbar-thumb {
-    background: #AAA; 
-    border-radius: 20px;
-}
-  
-  /* Handle on hover */
-.list-group-scroll::-webkit-scrollbar-thumb:hover {
-    background: #555; 
-}
-  
-
-.accordion-button:focus {
-    box-shadow: none !important;
-}
-
 .kofi-btn {
     background-image: linear-gradient(310deg,#1171ef,#11cdef);
     animation: pulse-kofi 1.5s infinite;
     -webkit-animation: pulse-kofi 1.5s infinite;
     border: 0;
-}
-
-.pulse-primary {
-    animation: pulse-primary 1.5s infinite;
-    -webkit-animation: pulse-primary 1.5s infinite;
-}
-
-@keyframes pulse-primary {
-    0% {
-        box-shadow: 0 0 0 0px #6194BC ;
-    }
-    100% {
-        box-shadow: 0 0 0 12px #6194BC00;
-    }
-}
-
-@keyframes pulse-kofi {
-    0% {
-        box-shadow: 0 0 0 0px #1171ef;
-    }
-    100% {
-        box-shadow: 0 0 0 12px #11cdef00;
-    }
 }
 
 .cookies-notice {
@@ -248,8 +40,4 @@ tr {
     z-index: 1031;
     backdrop-filter: blur(5px);
     background-color: rgba(0,0,0,0.4)
-}
-
-.btn-link {
-    text-decoration: none;
 }

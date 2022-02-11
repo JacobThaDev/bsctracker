@@ -14,6 +14,9 @@ import Layout from "../../components/layout";
 import ValueCard from "../../components/tracker/value";
 import Transactions from "../../components/tracker/txns";
 import EgcEarnings from "../../components/tracker/earnings/evergrow";
+import WalletForm from "../../components/home/header/wallet_form";
+import Cookies from "js-cookie";
+import SearchForm from "../../components/tracker/search";
 
 export default function Tracker({...props}) {
 
@@ -99,18 +102,19 @@ export default function Tracker({...props}) {
         return <ErrorPage statusCode={404}/>
     }
 
-    let icon = <i className="fad fa-spinner fa-pulse"></i>;
+    let icon  = <i className="fad fa-spinner fa-pulse"></i>;
+    let theme = Cookies.get("theme");
 
     return(
         <Layout title={Functions.shortenAddress(props.address)}>
-            
-            <div className="bg-dark pt-5">
-                <Container className="py-5">
+            <div className="small-header">
+                <Container>
                     <h2 className="text-white fw-bold mb-0">
                        {Functions.shortenAddress(props.address)}
                     </h2>
                     <p className="text-white-50">
-                        Network: Bsc // Token: {props.token.symbol}
+                        Network: Bsc 
+                        // Token: {props.token.symbol}
                     </p>
                 </Container>
             </div>
@@ -118,17 +122,18 @@ export default function Tracker({...props}) {
             <Container style={{marginTop: -25}} className="w-100">
                 <Card className="border-0 shadow-sm">
                     <Card.Body>
-                        <div className="d-flex justify-content-between w-100 align-items-center">
-                            <div className="flex-fill">
-                                <TrackerTokens 
-                                    tokens={props.tokens} 
-                                    address={props.address}/>
+                        <div className="d-flex justify-content-between w-100 align-items-lg-center flex-column flex-lg-row">
+                            <div className="mb-3 mb-lg-0">
+                                <SearchForm
+                                    active={props.token.symbol.toLowerCase()}
+                                    tokens={props.tokens}
+                                    default={props.address}/>
                             </div>
                             <div className="fw-bold">
-                                Price:&nbsp;
+                                Price: &nbsp;
                                 {!data ? icon : 
-                                    "$"+Functions.formatNumber(data.price, props.token.decimals)
-                                    }
+                                    "$"+Functions.formatNumber(data.price, 12)
+                                }
                             </div>
                         </div>
                     </Card.Body>
@@ -137,17 +142,20 @@ export default function Tracker({...props}) {
 
             <Container className="py-5" style={{ marginTop: -25}}>
                 <Row className="flex-column-reverse flex-lg-row">
+                    
                     <Col xs={12} lg={4}>
+                        <Card className="border-0 shadow-sm">
                         { props.token ? 
-                            <iframe className="shadow-sm rounded overflow-hidden"
+                            <iframe className="shadow-sm overflow-hidden"
                                 height={700} 
                                 width="100%" 
-                                src={"https://dexscreener.com/bsc/"+props.token.contract+"?embed=1&theme=light&info=1"}/>
+                                src={"https://dexscreener.com/bsc/"+props.token.contract+"?embed=1&theme="+theme+"&info=1"}/>
                         : "" }
+                        </Card>
                     </Col>
                     <Col>
                         <Row>
-                           <Col>
+                            <Col>
                                 <BalanceCard data={data}/>
                             </Col>
                             <Col>

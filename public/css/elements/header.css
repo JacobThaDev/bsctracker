@@ -1,0 +1,13 @@
+.home-header {
+    padding-top: 130px;
+    padding-bottom: 110px;
+    background-color: var(--header-background);
+    background-image: var(--default-gradient);
+}
+
+.small-header {
+    padding-top: 100px;
+    padding-bottom: 50px;
+    background-color: var(--header-background);
+    background-image: var(--default-gradient);
+}

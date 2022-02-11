@@ -9,7 +9,7 @@ export default function TrackerTokens({...props}) {
 
         list.push(
         <a href={"/"+token+"/"+props.address} 
-            className="btn btn-light text-uppercase mx-1"
+            className="btn btn-primary border-0 text-uppercase mx-1"
             id="tokenBtn"
             data-token={token}
             key={i}>

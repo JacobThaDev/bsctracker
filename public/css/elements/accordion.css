@@ -1,0 +1,34 @@
+.accordion-item {
+    background-color: transparent;
+    border: 1px solid var(--accordion-border);
+}
+
+.accordion-button {
+    color: var(--body-color);
+    background-color: transparent;
+}
+
+.accordion-button::after {
+    content: '\f078';
+    font-family: FontAwesome;
+    background-image: none !important;
+    color: var(--accordion-color);
+}
+
+.accordion-button:not(.collapsed)::after {
+    content: '\f077';
+    font-family: FontAwesome;
+    background-image: none !important;
+    color: var(--accordion-color);
+    transform: none !important;
+}
+
+.accordion-button:not(.collapsed) {
+    color: var(--accordion-color);
+    background-color: var(--accordion-active-background);
+    box-shadow: inset 0 -1px 0 rgb(0 0 0 / 13%);
+}
+
+.accordion-button:focus {
+    box-shadow: none !important;
+}

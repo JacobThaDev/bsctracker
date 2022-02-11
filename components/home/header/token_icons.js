@@ -1,7 +1,23 @@
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 
-export default function TokenIcons() {
+export default function TokenIcons({...props}) {
+
+    let icons = [];
+
+    if (props.tokens) {
+        props.tokens.forEach((token, index) => {
+            icons.push(
+            <div className="me-2" key={index}>
+                <Tippy content={token.title} placement="bottom">
+                    <img alt={token.title}
+                        className="tokenIcon"
+                        src={"/img/tokens/"+token.symbol.toLowerCase()+".png"}
+                        style={{ height: 40 }} />
+                </Tippy>
+            </div>)
+        });
+    }
 
     return(
         <div className="mt-5 mt-lg-5 mt-xl-7">
@@ -9,34 +25,7 @@ export default function TokenIcons() {
                 Compatible with:
             </h6>
             <div className="d-flex">
-                <div className="me-2">
-                    <Tippy content="SafeMoon v2" placement="bottom">
-                    <img alt="SafeMoon v2"
-                        src="https://safemoon.net/img/logo.svg" 
-                        style={{ height: 40 }} />
-                    </Tippy>
-                </div>
-                <div className="me-2">
-                    <Tippy content="Enhance" placement="bottom">
-                        <img alt="Enhance" 
-                            src="/img/enhance.png" 
-                            style={{ height: 40 }} />
-                    </Tippy>
-                </div>
-                <div className="me-2">
-                    <Tippy content="Glow v2" placement="bottom">
-                        <img alt="Glow v2" 
-                            src="/img/glowv2.png" 
-                            style={{ height: 40 }} />
-                    </Tippy>
-                </div>
-                <div className="me-2">
-                    <Tippy content="EverGrow Coin" placement="bottom">
-                        <img alt="EverGrow Coin" 
-                            src="/img/evergrow.png" 
-                            style={{ height: 40 }} />
-                    </Tippy>
-                </div>
+               {icons}
             </div>
         </div>
     )

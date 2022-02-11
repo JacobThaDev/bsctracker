@@ -1,0 +1,23 @@
+.btn {
+    transition: all .1s ease-in-out;
+    outline: none !important;
+    border-radius: .6rem;
+}
+
+.btn-primary {
+    background-color: #6194BC !important;
+    border-color: #6194BC !important;
+}
+
+.btn:hover {
+    /*transform: translateY(-1px) !important;*/
+    filter: brightness(110%);
+}
+
+.btn-link {
+    text-decoration: none;
+}
+
+.search-btn {
+    color: var(--search-btn-color);
+}

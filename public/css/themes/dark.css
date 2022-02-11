@@ -1,0 +1,41 @@
+:root {
+    /* Body */
+    --body-background: #141414;
+    --body-color: #E1E1E1;
+
+    --default-gradient: linear-gradient(-90deg,#5e72e4,#825ee4 70%);
+
+    /* nav and header */
+    --nav-background: var(--default-gradient);
+    --nav-mobile-background: #191919;
+    --nav-mobile-color: #FFF;
+    --nav-mobile-hover: #AAA;
+    --header-background: #101010;
+
+    /* cards */
+    --card-background: #191919;
+    --card-color: #2c2c2e;
+
+    /* Accordion */
+    --accrodion-background: transparent;
+    --accordion-color: #FFF;
+    --accordion-active-background: rgba(255,255,255,0.04);
+    --accordion-border: rgba(255, 255, 255, 0.05);
+
+    /* utility colors */
+    --primary: #825ee4;
+    --primary-hover: #825ee4;
+    --info: #6bc6e1;
+    --info-hover: #6bc6e1;
+    --success: #7ece82;
+    --success-hover: #7ece82;
+    --warning: #f0ad4e;
+    --warning-hover: #f0ad4e;
+    --danger: #f8716c;
+    --danger-hover: #f8716c;
+    
+    --hero-background: var(--default-gradient);
+    --footer-background: #191919;
+
+    --search-btn-color: white;
+}

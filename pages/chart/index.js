@@ -1,11 +1,6 @@
-import { useState } from "react";
-import { Card, Container } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 
-import PageHead from "../../components/global/head";
-import PageNav from "../../components/global/navigation";
-import ChartHeader from "../../components/chart/header";
 import TokenList from "../../components/chart/tokenlist";
-import Footer from "../../components/global/footer";
 import Layout from "../../components/layout";
 import axios from "axios";
 
@@ -16,7 +11,7 @@ export default function Chart({...props}) {
 
     return(
         <Layout title="SafeMoon">
-            <div className="bg-dark pt-5">
+            <div className="pt-5 small-header">
                 <Container className="py-5">
                     <h2 className="text-white fw-bold mb-0">
                         SafeMoon Chart

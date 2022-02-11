@@ -1,0 +1,41 @@
+.form-control {
+    border-radius: .6rem;
+    box-shadow: none !important;
+    height: 38px;
+}
+
+.form-control.border-danger {
+    border-width: 3px;
+}
+
+.custom-group {
+    position: relative;
+    width: 100%;
+}
+
+.custom-group .form-control {
+    width: 100%;
+    padding-right: 100px;
+
+}
+.custom-group .gametype {
+    position: absolute;
+    top:6px;
+    right: 6px;
+    padding-right: 10px;
+}
+
+.custom-group .walletAlert {
+    position: absolute;
+    top:6px;
+    left: 6px;
+    padding-right: 10px;
+}
+
+.custom-group .gametype .token-select {
+    position: absolute;
+    top: -1px;
+    right: 0px;
+    width: 80px;
+    padding-right: 10px;
+}

@@ -6,14 +6,14 @@ export default function Footer() {
     return(
         <>
             <CookieNotice/>
-            <footer className="footer bg-dark pt-5">
+            <footer className="footer pt-5">
                 <div className="container">
                     <Row className="row-grid align-items-center mb-5">
                         <Col className="col-lg-6">
                             <h3 className="text-primary font-weight-light mb-2">
                                 Thank you for supporting us!
                             </h3>
-                            <h4 className="mb-0 text-white-50">
+                            <h4 className="mb-0">
                                 Let's get in touch on any of these platforms.
                             </h4>
                         </Col>
@@ -50,7 +50,7 @@ export default function Footer() {
             
                     <div className="row align-items-center justify-content-md-between pb-4 pt-2">
                         <div className="col-md-6">
-                            <div className="copyright text-white-50">
+                            <div className="copyright">
                                 Copyright &copy; 2021 <a href="/">BscTracker</a>. 
                                 Created by <a href="https://twitter.com/OG_KingFox">OGKingFox</a>&nbsp;
                                 with <i className="fas fa-heart text-danger"></i>

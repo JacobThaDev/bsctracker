@@ -1,0 +1,7 @@
+.footer {
+    background-color: var(--footer-background) !important;
+}
+
+.footer hr {
+    border-color: rgba(0,0,0,0.2) !important;
+}

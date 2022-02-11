@@ -1,70 +1,36 @@
+
+@import url(elements/keyframes.css);
+@import url(elements/cards.css);
+@import url(elements/header.css);
+@import url(elements/navbar.css);
+@import url(elements/accordion.css);
+@import url(elements/utilities.css);
+@import url(elements/forms.css);
+@import url(elements/buttons.css);
+@import url(elements/lists.css);
+@import url(elements/footer.css);
+
 html,
 body {
-    background: #f1f1f1;
-    color: #5a5a5a;
+    background: var(--body-background);
+    color: var(--body-color);
     padding: 0;
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
         Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
 * {
   box-sizing: border-box;
 }
 
-@media(min-width: 992px) {
-    .sticky-sidebar {
-        position: sticky;
-        top: 50px;
-    }
-    .navbar .dropdown-menu {
-        margin: 0 !important;
-        z-index: 1;
-    }
-
-    .navbar .dropdown-menu:after {
-        content: ' ';
-        position: absolute;
-        width:20px;
-        top: -4px;
-        left: 10px;
-        height: 20px;
-        z-index: -1 !important;
-        background-color:white;
-        transform: rotate(45deg);
-    }
-    .slideIn {
-        -webkit-animation-name: slideIn;
-        animation-name: slideIn;
-    }
+a {
+    color: #6194BC;
+    text-decoration: none;
 }
 
-@media(max-width: 992px) {
-    .hero-header {
-        margin-top: 50px !important;
-    }
-    .navbar {
-        position: absolute;
-        top: 0;
-        width: 100%;
-        z-index: 1000;
-    }
-    .navbar .dropdown-menu {
-        background-color: transparent !important;
-        border: none;
-        box-shadow: none;
-    }
-    .navbar .dropdown-menu .dropdown-item {
-        color: white;
-    }
-    .dropdown-item:focus, .dropdown-item:hover {
-        color: #16181b;
-        text-decoration: none;
-        background-color: rgba(255,255,255,0.03);
-    }
+a:hover, a:focus, a:active {
+    color: #A5D1F3;
+    text-decoration: none;
 }
+

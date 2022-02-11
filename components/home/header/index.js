@@ -8,7 +8,7 @@ import WalletForm from "./wallet_form";
 export default function PageHeader({...props}) {
 
     return(
-        <section className="bg-dark home-header" id="test">
+        <section className="home-header" id="test">
             <Container className="position-relative">
                 <Row className="align-items-center">
                     <Col xs={12} className="pe-lg-5">
@@ -19,7 +19,7 @@ export default function PageHeader({...props}) {
 
                         <h1 className="display-4 text-white fw-bold mb-4">
                             A better way 
-                            <strong className="d-block text-primary fw-bold h1">
+                            <strong className="d-block text-white h1">
                                 to track your DeFi Wallet.
                             </strong>
                         </h1>
@@ -32,7 +32,7 @@ export default function PageHeader({...props}) {
                             <WalletForm tokens={props.tokens}/>
                         </div>
 
-                        <TokenIcons/>
+                        <TokenIcons tokens={props.tokens}/>
                     </Col>
                 </Row>
             </Container>
