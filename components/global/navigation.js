@@ -91,7 +91,6 @@ export default function Navigation() {
                 <div className="d-flex d-lg-none justify-content-between align-items-center mobile-menu">
                     <a href="/" className="navbrand">
                         <i className="fal fa-chart-bar me-3" />
-                        BscTracker
                     </a>
                     <div>
                         <a href="https://ko-fi.com/ogkingfox" target="_blank" className="btn btn-link menu-btn">
