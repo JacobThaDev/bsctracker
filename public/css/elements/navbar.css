@@ -1,6 +1,10 @@
 .top-nav {
-    position: sticky;
-    top: 0;
+    display: inline-block;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    margin-bottom: 0 !important;
+    background-color: var(--primary)
 }
 
 .main-nav {
@@ -16,15 +20,20 @@
 }
 
 .custom-nav {
-    background: var(--default-gradient);
-    top: -1px;
+    background: var(--nav-background);
+    top: 0px;
     width: 100%;
-    padding: 0;
     z-index: 1000 !important;
     backdrop-filter: blur(6px);
-    transition: background-color .3s ease-in-out;
-    padding-bottom: 20px;
-    padding-top: 20px;
+    transition: all .3s ease-in-out;
+}
+
+.custom-navbar, .mobile-menu {
+    height:70px;
+}
+
+.nav-scroll {
+    background-color: var(--nav-scroll-background) !important;
 }
 
 a.navbrand {
@@ -34,28 +43,53 @@ a.navbrand {
 }
 
 a.navbrand:hover {
-    color:#DDD;
+    color:var(--nav-link-hover);
 }
 
 .custom-nav .custom-navbar a.custom-link:not(.navbrand) {
     position: relative;
-    color: #CCC;
+    color: var(--nav-link-color);
     font-weight: 600;
     display: inline-block;
     transition: all .1s ease-in-out;
     text-decoration: none !important;
 }
 
-.custom-nav .custom-navbar a.active:not(.navbrand) {
-    color: #FFF;
+.custom-nav .custom-navbar:not(.open) a.active:not(.navbrand) {
+    color:  var(--nav-link-hover);
+}
+.custom-nav .custom-navbar:not(.open) a.custom-link:hover:not(.navbrand) {
+    color: var(--nav-link-hover);
 }
 
-.custom-nav .custom-navbar a.custom-link:hover:not(.navbrand) {
-    color: #FFF;
+a.menu-btn {
+    color: var(--nav-link-color);
+}
+a.menu-btn:hover {
+    color: var(--nav-link-hover);
+}
+
+.nav-scroll a.menu-btn {
+    color: var(--nav-scroll-color);
+}
+.nav-scroll a.menu-btn:hover,  .nav-scroll a.menu-btn:focus, .nav-scroll a.menu-btn:active {
+    color: var(--nav-scroll-hover);
 }
 
 a.navbrand {
     font-size:20px;
+}
+
+.nav-scroll a.navbrand {
+    color: var(--nav-scroll-link);
+}
+
+.custom-nav.nav-scroll .custom-navbar a:not(.navbrand) {
+    color: var(--nav-scroll-link);
+}
+
+.custom-nav.nav-scroll .custom-navbar a.custom-link:hover:not(.navbrand) {
+    color: var(--nav-scroll-hover);
 }
 
 @media(max-width: 991.98px) {
@@ -82,30 +116,40 @@ a.navbrand {
    
     .custom-nav .custom-navbar a:not(.navbrand) {
         width:100%;
-        height: 50px !important;
-        line-height: 50px !important;
-        color: var(--nav-mobile-color) !important;
+        color: var(--nav-mobile-color);
     }
 
     .custom-nav .custom-navbar a:not(.navbrand):hover {
-        color: var(--nav-mobile-hover) !important;
+        color: var(--nav-mobile-hover);
     }
 
     a.navbrand {
         position: relative;
-        color: #FFF !important;
+        color: #FFF;
         font-weight: 600;
         display: inline-block;
         transition: all .1s ease-in-out;
-        text-decoration: none !important;
+        text-decoration: none;
     }
 
     .custom-navbar.open {
-        box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%) !important;
-
+        box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
     }
+
     .custom-navbar.open a.navbrand {
         font-size: 24px;
-        color: var(--primary) !important;
+        color: var(--primary);
+    }
+
+    .nav-scroll a.navbrand {
+        color: var(--nav-scroll-link);
+    }
+
+    .custom-nav.nav-scroll .custom-navbar a:not(.navbrand) {
+        color: var(--nav-scroll-link);
+    }
+
+    .custom-nav.nav-scroll .custom-navbar a.custom-link:hover:not(.navbrand) {
+        color: var(--nav-scroll-hover);
     }
 }
