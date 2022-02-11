@@ -4,6 +4,7 @@
     --body-color: #5a5a5a;
 
     --default-gradient: linear-gradient(-90deg,#5e72e4,#825ee4 70%);
+    --default-gradient-dark: linear-gradient(-90deg,#5464be,#6c50bb 70%);
     
     /* nav and header */
     --nav-background: transparent;
@@ -35,6 +36,6 @@
     --danger: #f8716c;
     --danger-hover: #f8716c;
     
-    --hero-background: linear-gradient(310deg,#5e72e4,#825ee4);
-    --footer-background: #191919;
+    --hero-background: linear-gradient(-90deg,#5e72e4,#825ee4);
+    --footer-background: #fff;
 }

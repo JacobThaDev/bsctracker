@@ -1,14 +1,23 @@
-.main-nav {
-    position: absolute;
+.top-nav {
+    position: sticky;
     top: 0;
-    left: 0;
+}
+
+.main-nav {
     width: 100%;
     background: var(--nav-background) !important;
 }
 
-.custom-nav {
+.nav-container {
     position: fixed;
     top: 0px;
+    left: 0;
+    width: 100%;
+}
+
+.custom-nav {
+    background: var(--default-gradient);
+    top: -1px;
     width: 100%;
     padding: 0;
     z-index: 1000 !important;
@@ -64,6 +73,8 @@ a.navbrand {
     }
   
     .custom-navbar.open {
+        height: 100vh;
+        top:0;
         left: 0;
         height: 100vh;
         z-index: 1001 !important;

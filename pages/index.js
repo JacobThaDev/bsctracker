@@ -14,6 +14,7 @@ import PageHead from "../components/global/head";
 import axios from "axios";
 
 import * as Functions from '../functions';
+import Layout from "../components/layout";
 
 export default function Home({...props}) {
 
@@ -64,9 +65,8 @@ export default function Home({...props}) {
     }
 
     return (
-        <>
-            <PageHead/>
-            <PageNav/>
+        <Layout>
+            
             <PageHeader tokens={props.token_list}/>
 
             <section id="stats" style={{ marginTop: -40 }}>
@@ -87,8 +87,7 @@ export default function Home({...props}) {
 
             <Features/>
             <Hero/>
-            <Footer/>
-        </>
+        </Layout>
     );
 }
 

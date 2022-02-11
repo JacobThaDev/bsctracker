@@ -1,5 +1,9 @@
-
-
+.default-gradient {
+    background: var(--default-gradient);
+}
+.default-gradient-dark {
+    background: var(--default-gradient-dark);
+}
 .small-text {
     font-size: .7rem;
 }

@@ -155,13 +155,13 @@ export default function Tracker({...props}) {
                     </Col>
                     <Col>
                         <Row>
-                            <Col>
+                            <Col xs={12} lg={4}>
                                 <BalanceCard data={data}/>
                             </Col>
-                            <Col>
+                            <Col xs={12} lg={4}>
                                 {earned}
                             </Col>
-                            <Col>
+                            <Col xs={12} lg={4}>
                                 <ValueCard data={data}/>
                             </Col>
                         </Row>
