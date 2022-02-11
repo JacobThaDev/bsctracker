@@ -68,8 +68,6 @@ export default function WalletForm({...props}) {
         });
     }, [props.tokens]);
 
-    const theme = Cookies.get("theme");
-
     return(
         <Form id="searchForm">
             <div className="d-flex">

@@ -17,6 +17,7 @@ import EgcEarnings from "../../components/tracker/earnings/evergrow";
 import WalletForm from "../../components/home/header/wallet_form";
 import Cookies from "js-cookie";
 import SearchForm from "../../components/tracker/search";
+import TokenInfo from "../../components/tracker/info";
 
 export default function Tracker({...props}) {
 
@@ -103,7 +104,6 @@ export default function Tracker({...props}) {
     }
 
     let icon  = <i className="fad fa-spinner fa-pulse"></i>;
-    let theme = Cookies.get("theme");
 
     return(
         <Layout title={Functions.shortenAddress(props.address)}>
@@ -145,12 +145,7 @@ export default function Tracker({...props}) {
                     
                     <Col xs={12} lg={4}>
                         <Card className="border-0 shadow-sm">
-                        { props.token ? 
-                            <iframe className="shadow-sm overflow-hidden"
-                                height={700} 
-                                width="100%" 
-                                src={"https://dexscreener.com/bsc/"+props.token.contract+"?embed=1&theme="+theme+"&info=1"}/>
-                        : "" }
+                            <TokenInfo token={props.token} />
                         </Card>
                     </Col>
                     <Col>

@@ -74,8 +74,6 @@ export default function SearchForm({...props}) {
         theme = "light";
     }
 
-    console.log(theme);
-
     return(
         <Form id="searchForm">
             <div className="d-flex">
