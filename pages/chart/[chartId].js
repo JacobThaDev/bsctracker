@@ -25,15 +25,15 @@ export default function Chart({ ...props }) {
     return(
         <Layout title={selected.title}>
 
-            <div className="small-header pt-5">
-                <Container className="py-5">
+            <div className="small-header">
+                <Container>
                     <h2 className="text-white fw-bold mb-0">
                         {selected.title} Chart
                     </h2>
                 </Container>
             </div>
 
-            <TokenList tokens={props.tokens}/>
+            <TokenList tokens={props.tokens} active={selected}/>
 
             <Container className="my-4">
                 <iframe 

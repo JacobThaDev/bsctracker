@@ -11,8 +11,8 @@ export default function Chart({...props}) {
 
     return(
         <Layout title="SafeMoon">
-            <div className="pt-5 small-header">
-                <Container className="py-5">
+            <div className="small-header">
+                <Container>
                     <h2 className="text-white fw-bold mb-0">
                         SafeMoon Chart
                     </h2>
