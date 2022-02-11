@@ -63,7 +63,10 @@ export default function Navigation() {
                         </div>
 
                         <div className="d-flex flex-column flex-lg-row align-items-lg-center text-center ms-auto d-none d-lg-flex">
-                            <a href="/team" className="btn btn-outline-light pulse-primary px-3 me-3">
+                            <a href="https://ko-fi.com/ogkingfox"
+                                target="_blank"
+                                rel="nofollow noopener noreferrer"
+                                className="btn btn-outline-light pulse-primary px-3 me-3">
                                 Buy me a Coffee
                             </a>
                             <div className="flex-fill">
