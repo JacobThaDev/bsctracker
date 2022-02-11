@@ -71,7 +71,7 @@ export default function Navigation() {
 
                     <div className="d-flex flex-column flex-lg-row text-center ms-auto d-none d-lg-flex">
                         <div className="flex-fill">
-                            <a href="/" className="custom-link px-3">
+                            <a href="https://ko-fi.com/ogkingfox" target="_blank" className="custom-link px-3">
                                 <i className="fal fa-coffee me-2" />
                                 Buy Me a Coffee
                             </a>
@@ -94,7 +94,7 @@ export default function Navigation() {
                         BscTracker
                     </a>
                     <div>
-                        <a href="" className="btn btn-link menu-btn">
+                        <a href="https://ko-fi.com/ogkingfox" target="_blank" className="btn btn-link menu-btn">
                             <i className="fal fa-coffee me-2"></i>
                             Buy me a Coffee
                         </a>
