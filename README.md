@@ -31,10 +31,10 @@ get a single token
 `/token/<symbol>/price`<br>
 return the price of a token
 
-`txns/<address>`<br>
+`/txns/<address>`<br>
 get a list of transactions of an address from bscscan. includes all tokens.
 
-`txns/<address>/<symbol>`<br>
+`/txns/<address>/<symbol>`<br>
 get a list of transactions of an address from bscscan by token symbol. 
 
 ---
