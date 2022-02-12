@@ -1,4 +1,5 @@
 import Tippy from '@tippyjs/react';
+import { useEffect, useState } from 'react';
 import 'tippy.js/dist/tippy.css';
 
 export default function TokenIcons({...props}) {
@@ -10,7 +11,8 @@ export default function TokenIcons({...props}) {
             icons.push(
             <div className="me-2" key={index}>
                 <Tippy content={token.title} placement="bottom">
-                    <img alt={token.title}
+                    <img alt={token.title} 
+                        data-token={token.symbol}
                         className="tokenIcon"
                         src={"/img/tokens/"+token.symbol.toLowerCase()+".png"}
                         style={{ height: 40 }} />

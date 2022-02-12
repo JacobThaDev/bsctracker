@@ -1,7 +1,5 @@
-import { useEffect, useState } from "react";
-import { Col, Container, Form, FormControl, Row } from "react-bootstrap";
-import Tippy from '@tippyjs/react';
-import 'tippy.js/dist/tippy.css'; // optional
+import { Col, Container, Row } from "react-bootstrap";
+
 import TokenIcons from "./token_icons";
 import WalletForm from "./wallet_form";
 import StarField from "../../starfield";

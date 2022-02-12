@@ -11,15 +11,14 @@
 }
 
 .tokenIcon {
-    transition: all .31s ease-in-out;
     filter: 
         grayscale(100%) 
         brightness(1000%);
 }
 
 .tokenIcon:hover {
-    transform: 
-        scale(120%) ;
+    cursor: pointer;
+    transform: scale(120%);
 }
 
 .team-member .team-icon {

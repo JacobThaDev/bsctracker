@@ -18,15 +18,27 @@ import Layout from "../components/layout";
 
 export default function Home({...props}) {
 
-    const [data, setData]     = useState(null);
+    const [data, setData] = useState(null);
 
     useEffect(async() => {
         if (!props.token) {
             return;
         }
 
-        updateStats(props.token);
+        let icons  = document.querySelectorAll(".tokenIcon");
         let selectBtn = document.getElementById("tokenSelect");
+        
+        icons.forEach((icon, index) => {
+            icon.addEventListener("click", function(event) {
+                event.preventDefault();
+
+                let symbol = icon.dataset.token;
+                selectBtn.value = symbol.toLowerCase();
+                changeToken(selectBtn, props.token_list);
+            });
+        });
+
+        updateStats(props.token);
 
         selectBtn.addEventListener("change", () => {
             changeToken(selectBtn, props.token_list);
@@ -40,7 +52,6 @@ export default function Home({...props}) {
 
         let circulating = supply - burned;
         let market_cap  = circulating * price;
-
 
         setData({
             price: price,

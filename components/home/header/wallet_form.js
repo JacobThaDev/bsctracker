@@ -1,8 +1,7 @@
 import { Form, FormControl } from "react-bootstrap";
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css'; // optional
-import { useEffect, useState } from "react";
-import Cookies from "js-cookie";
+import { useEffect } from "react";
 
 export default function WalletForm({...props}) {
 
@@ -14,7 +13,7 @@ export default function WalletForm({...props}) {
             let isActive = props.active && props.active == symbol ? "selected" : "";
             
             options.push(
-                <option defaultValue={isActive} key={index}>
+                <option value={symbol} defaultValue={isActive} key={index}>
                     {token.symbol}
                 </option>
             );
