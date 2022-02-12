@@ -24,7 +24,6 @@
     top: 0px;
     width: 100%;
     z-index: 1000 !important;
-    backdrop-filter: blur(6px);
     transition: all .3s ease-in-out;
 }
 

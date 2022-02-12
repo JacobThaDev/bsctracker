@@ -4,6 +4,7 @@ import axios from "axios";
 
 import Layout from "../../components/layout";
 import TokenList from "../../components/chart/tokenlist";
+import StarField from "../../components/starfield";
 
 export default function Chart({ ...props }) {
 
@@ -24,7 +25,6 @@ export default function Chart({ ...props }) {
 
     return(
         <Layout title={selected.title}>
-
             <div className="small-header">
                 <Container>
                     <h2 className="text-white fw-bold mb-0">

@@ -4,11 +4,14 @@ import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css'; // optional
 import TokenIcons from "./token_icons";
 import WalletForm from "./wallet_form";
+import StarField from "../../starfield";
 
 export default function PageHeader({...props}) {
 
     return(
-        <section className="home-header" id="test">
+        <section className="home-header position-relative" id="test">
+            <StarField/>
+
             <Container className="position-relative">
                 <Row className="align-items-center">
                     <Col xs={12} className="pe-lg-5">
