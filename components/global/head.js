@@ -66,7 +66,7 @@ export default function PageHead({...props}) {
         <Head>
             <title>{props.title && props.title} | BscTracker</title>
             <meta name="description" content={props.desc && props.desc} />
-            <meta name="keywords" content="bsctracker,glowtoken,enhance,evergrow,safemoon,safemars,safegalaxy,bitcoin,dogecoin,doge,defi,coinbase,coinmarketcap,coinmarket,bscscan,whitebit,coingecko,cryptocurrency,crypto,pancakeswap,dex,etherium,eth,btc"/>
+            <meta name="keywords" content="bsctracker,glowtoken,enhance,evergrow,affinity,safemoon,bsc,defi,crypto,tradingview,ethereum,bitcoin,bscscan,coinmarketcap,pcs,pancakeswap,dex,safemoonswap,coinbase"/>
             <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
             <link rel="icon" href="/favicon.ico" />
             

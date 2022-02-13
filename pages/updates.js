@@ -51,7 +51,9 @@ export default function Updates({...props}) {
     
 
     return(
-        <Layout title="Update Log">
+        <Layout 
+            title="Update Log"
+            desc="Git commit history for BscTracker">
             <SmallHeader title="Update Log" subtext="Commit History from GitHub"/>
         
 

@@ -23,7 +23,9 @@ export default function Chart({ ...props }) {
     }
 
     return(
-        <Layout title={selected.title}>
+        <Layout 
+            title={selected.title+" Chart"}
+            desc={selected.title+" chart, price, trades, and volume information."}>
             <div className="small-header">
                 <Container>
                     <h2 className="text-white fw-bold mb-0">

@@ -6,7 +6,7 @@ export default function Layout({ children, ...props }) {
     
     return (
         <>
-            <PageHead title={props.title}/>
+            <PageHead title={props.title} desc={props.desc}/>
             <PageNav/>
 
             {children}

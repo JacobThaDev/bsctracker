@@ -4,17 +4,19 @@ import PageHead from "../components/global/head";
 import PageNav from "../components/global/navigation";
 import Footer from "../components/global/footer";
 import SmallHeader from "../components/global/small_header";
+import Layout from "../components/layout";
 
 export default function Legal() {
 
     return(
-        <>
-            <PageHead title="SafeMoon"/>
-            <PageNav/>
+        <Layout 
+            title="Legal"
+            desc="These terms of service reflect how BscTracker works, the laws that apply to us, privacy policies, and disclaimers.">
 
-            <SmallHeader title="Terms of Service" subtext="The legal stuff"/>
+            <SmallHeader 
+                title="Terms of Service" 
+                subtext="These terms of service reflect how BscTracker works, the laws that apply to us, privacy policies, and disclaimers."/>
         
-
             <Container style={{paddingTop: 100, paddingBottom: 100}}>
                 <Row className="align-items-center">
                     <Col xs={12} lg={12} className="mb-4 mb-lg-0">
@@ -118,8 +120,6 @@ export default function Legal() {
                     </Col>
                 </Row>
             </Container>
-
-            <Footer/>
-        </>
+        </Layout>
     )
 }

@@ -102,8 +102,6 @@ export default function Home({...props}) {
     );
 }
 
-
-
 Home.getInitialProps = async({ query }) => {
     let api_url = process.env.NEXT_PUBLIC_API_URL;
     let tokens = await axios.get(api_url+"/tokens");

@@ -10,7 +10,10 @@ export default function Chart({...props}) {
     let chart_url = "https://dexscreener.com/bsc/"+address+"?embed=1&theme=dark&info=1";
 
     return(
-        <Layout title="SafeMoon">
+        <Layout 
+            title="SafeMoon Chart"
+            desc="SafeMoon chart, price, trades, and volume information.">
+
             <div className="small-header">
                 <Container>
                     <h2 className="text-white fw-bold mb-0">
