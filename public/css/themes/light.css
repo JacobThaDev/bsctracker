@@ -34,8 +34,8 @@
 
     /* Accordion */
     --accrodion-background: transparent;
-    --accordion-color: #FFF;
-    --accordion-active-background: rgba(255,255,255,0.04);
+    --accordion-color: #6bc6e1;
+    --accordion-active-background: #6bc6e120;
     --accordion-border: rgba(0, 0, 0, 0.05);
 
     /* utility colors */
