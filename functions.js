@@ -156,6 +156,16 @@ export const getTokenPrice = async(token) => {
     return (wbnb_balance / token_balance * bnb_price);
 }
 
+export const getTokenPrice2 = async(contract, liquidity) => {
+    let wbnb = "0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c";
+
+    let wbnb_balance  = await getBalance(wbnb, liquidity);
+    let token_balance = await getBalance(contract, liquidity);
+    let bnb_price     = await getBnbPrice();
+
+    return (wbnb_balance / token_balance * bnb_price);
+}
+
 export const getBalance = async(token, wallet) => {
     let call = await new web3.eth.call({
         to: token, // contract address
