@@ -8,6 +8,7 @@ export default function AffinityEarnings({...props}) {
     const [earned, setEarned] = useState({
         busd: 0,
         ada: 0,
+        ada_price: 0,
         ada_value: 0
     });
 
@@ -25,11 +26,12 @@ export default function AffinityEarnings({...props}) {
         let reflected = {
             busd: 0,
             ada: 0,
+            ada_price: 0,
             ada_value: 0
         };
 
         let ada_price = await Functions.getTokenPrice2(cardano, liquidity);
-        console.log(ada_price);
+        reflected.ada_price = ada_price;
 
         props.data.txnList.forEach((txn) => {
             if (txn.from == "0xb81b272fde39f698c69a67620aa9978724e770cd"
@@ -48,31 +50,13 @@ export default function AffinityEarnings({...props}) {
             }
         });
 
+        
         reflected.ada_value = reflected.ada * ada_price;
 
         setEarned(reflected);
         setLoaded(true);
 
         console.log("found txns", reflected);
-
-        /*let distributor = "0xb81b272fde39f698c69a67620aa9978724e770cd";
-        let busd        = "0x14fee7d23233ac941add278c123989b86ea7e1ff";
-        let cardano     = "0x3ee2200efb3400fabb9aacf31297cbdd1d435d47";
-
-        let busd_total = 0;
-        let ada_total  = 0;
-
-        for (let txn of props.data.txnList) {
-            if (txn.from != "0x14fee7d23233ac941add278c123989b86ea7e1ff") {
-                continue;
-            }
-
-            let value = (txn.value / 10 ** txn.tokenDecimal);
-            total += value;
-        }
-
-        setEarned(total);
-        setLoaded(true);*/
     }, [props.data]);
 
     let icon = <i className="fad fa-spinner fa-pulse"></i>;
@@ -92,7 +76,7 @@ export default function AffinityEarnings({...props}) {
             <Card className="border-0 shadow-sm mb-3">
                 <Card.Body>
                     <p className="small-text text-muted mb-1">
-                        Earnings (Cardano)
+                        Earnings (Cardano - ${earned.ada_price.toFixed(6)})
                     </p>
                     <p className="mb-0 fw-bold">
                         {!loaded ? icon : Functions.formatNumber(earned.ada, 5)} 
