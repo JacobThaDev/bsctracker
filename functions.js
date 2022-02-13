@@ -50,7 +50,7 @@ export const getRelTime = (date) => {
         return string+" ago";
     }
 
-    if (elapsed.minute >= 0) {
+    if (elapsed.minute > 0) {
         return "a few minutes ago";
     }
 
