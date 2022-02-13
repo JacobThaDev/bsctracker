@@ -20,8 +20,8 @@ export default function TokenInfo({...props}) {
 
     return (
         <iframe className="shadow-sm overflow-hidden"
-            height={700} 
+            height={400} 
             width="100%" 
-            src={"https://dexscreener.com/bsc/"+token.contract+"?embed=1&theme="+theme+"&info=1"}/>
+            src={"https://dexscreener.com/bsc/"+token.contract+"?embed=1&trades=0&info=0&theme="+theme+""}/>
     )
 }

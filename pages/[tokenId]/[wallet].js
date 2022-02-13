@@ -2,20 +2,15 @@ import { useEffect, useState } from "react";
 import { Card, Col, Container, Row } from "react-bootstrap";
 import ErrorPage from 'next/error';
 
+import dynamic from "next/dynamic";
+
 import * as Functions from "../../functions";
 import BalanceCard from "../../components/tracker/balance";
-import TrackerTokens from "../../components/tracker/tokenList";
-import EnhanceEarnings from "../../components/tracker/earnings/enh";
-import SafemoonEarnings from "../../components/tracker/earnings/sfm";
-import GlowEarnings from "../../components/tracker/earnings/glow";
 
 import axios from "axios";
 import Layout from "../../components/layout";
 import ValueCard from "../../components/tracker/value";
 import Transactions from "../../components/tracker/txns";
-import EgcEarnings from "../../components/tracker/earnings/evergrow";
-import WalletForm from "../../components/home/header/wallet_form";
-import Cookies from "js-cookie";
 import SearchForm from "../../components/tracker/search";
 import TokenInfo from "../../components/tracker/info";
 
@@ -90,14 +85,11 @@ export default function Tracker({...props}) {
     if (props.token) {
         let symbol = props.token.symbol.toLowerCase();
 
-        if (symbol == "enh") {
-            earned = <EnhanceEarnings data={data}/>
-        } else if (symbol == "sfm") {
-            earned = <SafemoonEarnings data={data}/>
-        } else if (symbol == "glow") {
-            earned = <GlowEarnings data={data} />
-        } else if (symbol == "egc") {
-            earned = <EgcEarnings data={data} />
+        try {
+            const EarningCard = dynamic(() => import("../../components/tracker/earnings/"+symbol+".js"));
+            earned = <EarningCard data={data}/>;
+        } catch(err) {
+            console.log("failed to import earnings card!");
         }
     } else {
         return <ErrorPage statusCode={404}/>
@@ -141,27 +133,19 @@ export default function Tracker({...props}) {
             </Container>
 
             <Container className="py-5" style={{ marginTop: -25}}>
-                <Row className="flex-column-reverse flex-lg-row">
-                    
+                <Row className="flex-column flex-lg-row">
                     <Col xs={12} lg={4}>
-                        <Card className="border-0 shadow-sm">
-                            <TokenInfo token={props.token} />
-                        </Card>
+                        <BalanceCard data={data}/>
+                        {earned}
+                        <ValueCard data={data}/>
                     </Col>
                     <Col>
                         <Row>
-                            <Col xs={12} lg={4}>
-                                <BalanceCard data={data}/>
-                            </Col>
-                            <Col xs={12} lg={4}>
-                                {earned}
-                            </Col>
-                            <Col xs={12} lg={4}>
-                                <ValueCard data={data}/>
-                            </Col>
-                        </Row>
-                        <Row>
                             <Col>
+                                <Card className="border-0 shadow-sm mb-3">
+                                    <TokenInfo token={props.token} />
+                                </Card>
+
                                 <Transactions data={data}/>
                             </Col>
                         </Row>
