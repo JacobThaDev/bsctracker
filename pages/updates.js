@@ -37,7 +37,7 @@ export default function Updates({...props}) {
     
                         <Card.Footer className="border-0 bg-transparent small text-muted">
                             <img src={log.committer.avatar_url} height={24} className="rounded-circle me-2"/> 
-                            <a href={log.author.html_url} target="_blank" className="text-info me-2">{log.commit.committer.name}</a>
+                            <a href={log.author.html_url} target="_blank" className="text-info me-1">{log.commit.committer.name}</a>
                             comitted {relative}
                         </Card.Footer>
                     </Card>
