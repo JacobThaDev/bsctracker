@@ -8,38 +8,47 @@ import Layout from "../components/layout";
 import axios from "axios";
 
 import * as Functions from '../functions';
+import { useEffect, useState } from "react";
 
 export default function Updates({...props}) {
 
-    let updates = [];
+    const [updates, setUpdates] = useState(null);
 
-    if (props.updates) {
-        props.updates.forEach((log, index) => {
-            let date = new Date(log.commit.committer.date);
-            let sha  = log.sha.substring(0, 7);
+    useEffect(() => {
+        if (props.updates) {
+            let array = [];
 
-            updates.push(
-                <Card className="border-0 shadow-sm mb-3" key={index}>
-                    <Card.Body className="border-0 bg-transparent">
-                        <div className="d-flex align-items-center">
-                            <div>{log.commit.message}</div>
-                            <div className="ms-auto">
-                                <a href={log.html_url} target="_blank" className="btn btn-link search-btn">
-                                    {sha}
-                                </a>
+            props.updates.forEach((log, index) => {
+                let sha      = log.sha.substring(0, 7);
+                let relative = Functions.getRelTime(log.commit.committer.date);
+    
+                array.push(
+                    <Card className="border-0 shadow-sm mb-3" key={index}>
+                        <Card.Body className="border-0 bg-transparent">
+                            <div className="d-flex align-items-center">
+                                <div>{log.commit.message}</div>
+                                <div className="ms-auto">
+                                    <a href={log.html_url} target="_blank" className="btn btn-link search-btn">
+                                        {sha}
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                    </Card.Body>
+                        </Card.Body>
+    
+                        <Card.Footer className="border-0 bg-transparent small text-muted">
+                            <img src={log.committer.avatar_url} height={24} className="rounded-circle me-2"/> 
+                            <a href={log.author.html_url} target="_blank" className="text-info me-2">{log.commit.committer.name}</a>
+                            comitted {relative}
+                        </Card.Footer>
+                    </Card>
+                )
+            });
 
-                    <Card.Footer className="border-0 bg-transparent small text-muted">
-                        <img src={log.committer.avatar_url} height={24} className="rounded-circle me-2"/> 
-                        <a href={log.author.html_url} target="_blank" className="text-info me-2">{log.commit.committer.name}</a>
-                        comitted {Functions.getRelTime(date)} ago
-                    </Card.Footer>
-                </Card>
-            )
-        });
-    }
+            setUpdates(array);
+        }
+    }, []);
+
+    
 
     return(
         <Layout title="Update Log">

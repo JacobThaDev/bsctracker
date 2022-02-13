@@ -4,12 +4,127 @@ const web3  = new Web3(new Web3.providers.HttpProvider("https://bsc-dataseed1.bi
 const { formatDuration, intervalToDuration } = require("date-fns");
 
 export const getRelTime = (date) => {
-    return formatDuration(intervalToDuration({
-        start: date,
-        end: new Date()
-    }), {
-        format: ['years', 'months', 'days', 'hours', 'minutes']
-    });
+    let start   = new Date().getTime();
+    let end     = new Date(date).getTime();
+    let diff    = start - end;
+    let elapsed = getElapsed(diff);
+
+    let string;
+
+    console.log(elapsed);
+
+    if (elapsed.year > 0) {
+        string = elapsed.year+" year"+(elapsed.year > 1 ? "s" : "");
+        if (elapsed.month > 0) {
+            string += " "+elapsed.month+" month"+(elapsed.month > 1 ? "s" : "")
+        }
+        return string+" ago";
+    }
+
+    if (elapsed.month > 0) {
+        string = elapsed.month+" month"+(elapsed.month > 1 ? "s" : "");
+        if (elapsed.day > 0) {
+            string += " "+elapsed.day+" days"+(elapsed.day > 1 ? "s" : "")
+        }
+        return string+" ago";
+    }
+
+    if (elapsed.day > 0) {
+        string = elapsed.day+" day"+(elapsed.day > 1 ? "s" : "");
+        if (elapsed.hour > 0) {
+            string += " "+elapsed.hour+" hour"+(elapsed.hour > 1 ? "s" : "")
+        }
+        return string+" ago";
+    }
+
+    if (elapsed.hour > 0) {
+        string = elapsed.hour+" hour"+(elapsed.hour > 1 ? "s" : "");
+        if (elapsed.minute > 0) {
+            string += " "+elapsed.minute+" minute"+(elapsed.minute > 1 ? "s" : "")
+        }
+        return string+" ago";
+    }
+
+    if (elapsed.minute >= 5) {
+        string = elapsed.minute+" minute"+(elapsed.minute > 1 ? "s" : "");
+        return string+" ago";
+    }
+
+    if (elapsed.minute >= 0) {
+        return "a few minutes ago";
+    }
+
+    if (elapsed.second >= 15) {
+        return "a few seconds ago";
+    }
+
+    return "just now";
+
+    /*var months = Math.floor(diff / (3600*24*7*30));
+    var weeks  = Math.floor(diff / (3600*24*7));
+    var days   = Math.floor(diff / (3600*24));
+    var hours  = Math.floor(diff % (3600*24) / 3600);
+    var mins   = Math.floor(diff % 3600 / 60);
+    var secs   = Math.floor(diff % 60);
+    
+
+    if (diff < 15) {
+        return "just now";
+    }
+
+    if (diff < 60) {
+        return "less than a minute ago";
+    }
+
+    if (diff < 3600) {
+        return mins + " minutes ago";
+    }
+
+    if (hours < 24 && days == 0) {
+        return hours + " hour"+(hours > 1 ? "s" : "")+" ago";
+    }
+
+    if (days > 0 && days < 7) {
+        return days + " day"+(days > 1 ? "s" : "")+" ago";
+    }
+
+    if (days > 7 && weeks < 4) {
+        return weeks + " week ago";
+    }
+
+    if (months < 12) {
+        return ms();
+    }*/
+
+}
+
+const getElapsed = (t) => {
+    let year,
+        month,
+        day,
+        hour,
+        minute,
+        second;
+  
+    second = Math.floor(t / 1000);
+    minute = Math.floor(second / 60);
+    second = second % 60;
+    hour = Math.floor(minute / 60);
+    minute = minute % 60;
+    day = Math.floor(hour / 24);
+    hour = hour % 24;
+    month = Math.floor(day / 30);
+    day = day % 30;
+    year = Math.floor(month / 12);
+    month = month % 12;
+  
+    return { 
+        year, 
+        month,
+        day, 
+        hour, 
+        minute, 
+        second };
 }
 
 export const shortenAddress = (address) => {
