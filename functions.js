@@ -1,9 +1,16 @@
 const Web3  = require("web3");
 const web3  = new Web3(new Web3.providers.HttpProvider("https://bsc-dataseed1.binance.org:443"));
-import axios from 'axios';
 
-const safemoon_abi  = require("./abi/safemoon");
-const dividends_abi = require("./abi/enh_dividends");
+const { formatDuration, intervalToDuration } = require("date-fns");
+
+export const getRelTime = (date) => {
+    return formatDuration(intervalToDuration({
+        start: date,
+        end: new Date()
+    }), {
+        format: ['years', 'months', 'days', 'hours', 'minutes']
+    });
+}
 
 export const shortenAddress = (address) => {
     let start = address.substring(0, 2);

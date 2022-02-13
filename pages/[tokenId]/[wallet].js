@@ -17,7 +17,7 @@ import TokenInfo from "../../components/tracker/info";
 export default function Tracker({...props}) {
 
     const [timer, setTimer] = useState(null);
-    const [data, setData] = useState(null);
+    const [data, setData]   = useState(null);
 
     useEffect(async() => {
         if (!timer) {
@@ -79,23 +79,10 @@ export default function Tracker({...props}) {
             });
         }
     }
-
-    let earned;
-
-    if (props.token) {
-        let symbol = props.token.symbol.toLowerCase();
-
-        try {
-            const EarningCard = dynamic(() => import("../../components/tracker/earnings/"+symbol+".js"));
-            earned = <EarningCard data={data}/>;
-        } catch(err) {
-            console.log("failed to import earnings card!");
-        }
-    } else {
-        return <ErrorPage statusCode={404}/>
-    }
-
-    let icon  = <i className="fad fa-spinner fa-pulse"></i>;
+    
+    let symbol   = props.token.symbol.toLowerCase();
+    let Earnings = dynamic(() => import("../../components/tracker/earnings/" + symbol + ".js"), { ssr: false });
+    let icon     = <i className="fad fa-spinner fa-pulse"></i>;
 
     return(
         <Layout title={Functions.shortenAddress(props.address)}>
@@ -115,7 +102,7 @@ export default function Tracker({...props}) {
                 <Card className="border-0 shadow-sm">
                     <Card.Body>
                         <div className="d-flex justify-content-between w-100 align-items-lg-center flex-column flex-lg-row">
-                            <div className="mb-3 mb-lg-0">
+                            <div className=" flex-fill mb-3 mb-lg-0" style={{maxWidth: 500}}>
                                 <SearchForm
                                     active={props.token.symbol.toLowerCase()}
                                     tokens={props.tokens}
@@ -136,7 +123,7 @@ export default function Tracker({...props}) {
                 <Row className="flex-column flex-lg-row">
                     <Col xs={12} lg={4}>
                         <BalanceCard data={data}/>
-                        {earned}
+                        <Earnings data={data}/>
                         <ValueCard data={data}/>
                     </Col>
                     <Col>

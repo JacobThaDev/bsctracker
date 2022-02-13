@@ -67,6 +67,11 @@ export default function Navigation() {
                                 Our Team
                             </a>
                         </div>
+                        <div className="flex-fill">
+                            <a href="/updates" className="custom-link px-3">
+                                Update Log
+                            </a>
+                        </div>
                     </div>
 
                     <div className="d-flex flex-column flex-lg-row text-center ms-auto d-none d-lg-flex">
