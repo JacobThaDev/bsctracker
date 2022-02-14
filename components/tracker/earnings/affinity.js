@@ -55,8 +55,6 @@ export default function AffinityEarnings({...props}) {
 
         setEarned(reflected);
         setLoaded(true);
-
-        console.log("found txns", reflected);
     }, [props.data]);
 
     let icon = <i className="fad fa-spinner fa-pulse"></i>;
@@ -69,18 +67,18 @@ export default function AffinityEarnings({...props}) {
                         Earnings (BUSD)
                     </p>
                     <p className="mb-0 fw-bold">
-                        {!loaded ? icon : Functions.formatNumber(earned.busd, 5)} 
+                        {loaded ? Functions.formatNumber(earned.busd, 5) : icon} 
                     </p>
                 </Card.Body>
             </Card>
+
             <Card className="border-0 shadow-sm mb-3">
                 <Card.Body>
                     <p className="small-text text-muted mb-1">
                         Earnings (Cardano - ${earned.ada_price.toFixed(6)})
                     </p>
                     <p className="mb-0 fw-bold">
-                        {!loaded ? icon : Functions.formatNumber(earned.ada, 5)} 
-
+                        {loaded ? Functions.formatNumber(earned.ada, 5) : icon }
                     </p>
                 </Card.Body>
                 <Card.Footer className="text-muted small border-0 bg-transparent pt-0">

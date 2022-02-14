@@ -10,6 +10,11 @@
         
     --default-gradient-dark: linear-gradient(-90deg,#5464be,#6c50bb 70%);
 
+    /* Scrollbar */
+    --scrollbar-thumb: #252525;
+    --scrollbar-thumb-hover:#313131;
+    --scrollbar-track: #111;
+
     /* nav and header */
     --nav-background: transparent;
 

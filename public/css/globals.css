@@ -9,6 +9,7 @@
 @import url(elements/buttons.css);
 @import url(elements/lists.css);
 @import url(elements/footer.css);
+@import url(elements/scrollbar.css);
 
 html,
 body {

@@ -6,6 +6,14 @@
     left: 0;
 }
 
+.nft-image {
+    width: 100%;
+    height: 300px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
 .discord-hero {
     background-image: var(--hero-background);
 }

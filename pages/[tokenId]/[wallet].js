@@ -1,23 +1,21 @@
 import { useEffect, useState } from "react";
-import { Card, Col, Container, Row } from "react-bootstrap";
-import ErrorPage from 'next/error';
-
 import dynamic from "next/dynamic";
+import { Card, Col, Container, Row, Tab, Tabs } from "react-bootstrap";
 
-import * as Functions from "../../functions";
 import BalanceCard from "../../components/tracker/balance";
-
 import axios from "axios";
 import Layout from "../../components/layout";
 import ValueCard from "../../components/tracker/value";
 import Transactions from "../../components/tracker/txns";
 import SearchForm from "../../components/tracker/search";
 import TokenInfo from "../../components/tracker/info";
+import * as Functions from "../../functions";
 
 export default function Tracker({...props}) {
 
     const [timer, setTimer] = useState(null);
     const [data, setData]   = useState(null);
+    const [Earnings, setEarnings] = useState(null);
 
     useEffect(async() => {
         if (!timer) {
@@ -25,6 +23,9 @@ export default function Tracker({...props}) {
             let timer = setInterval(() => updateValue(props), 15000);
             setTimer(timer);
         }
+        let symbol   = props.token.symbol.toLowerCase();
+        let Earnings = dynamic(() => import("../../components/tracker/earnings/" + symbol + ".js"), { ssr: false });
+        setEarnings(Earnings);
     }, []);
 
     const updateValue = async(data) => {
@@ -80,9 +81,8 @@ export default function Tracker({...props}) {
         }
     }
     
-    let symbol   = props.token.symbol.toLowerCase();
-    let Earnings = dynamic(() => import("../../components/tracker/earnings/" + symbol + ".js"), { ssr: false });
-    let icon     = <i className="fad fa-spinner fa-pulse"></i>;
+    
+    let icon = <i className="fad fa-spinner fa-pulse"></i>;
 
     return(
         <Layout title={Functions.shortenAddress(props.address)}>
@@ -122,9 +122,21 @@ export default function Tracker({...props}) {
             <Container className="py-5" style={{ marginTop: -25}}>
                 <Row className="flex-column flex-lg-row">
                     <Col xs={12} lg={4}>
+                        <Card className="mb-3 border-0 shadow-sm">
+                            <Card.Body>
+                                <a href={"/nfts/"+props.address} 
+                                    target="_blank" className="btn btn-link search-btn ps-0 py-0">
+                                    View NFT Collection 
+                                    <i className="fal fa-arrow-right ms-2"></i>
+                                </a>
+                            </Card.Body>
+                        </Card>
+
                         <BalanceCard data={data}/>
-                        <Earnings data={data}/>
+                        {Earnings ? <Earnings data={data}/> : ""}
                         <ValueCard data={data}/>
+                        
+                        
                     </Col>
                     <Col>
                         <Row>
@@ -133,7 +145,14 @@ export default function Tracker({...props}) {
                                     <TokenInfo token={props.token} />
                                 </Card>
 
-                                <Transactions data={data}/>
+                                <Card className="border-0 shadow-sm mb-3">
+                                    <Card.Header className="bg-transparent py-3">
+                                        Transaction History
+                                    </Card.Header>
+                                    <Transactions data={data}/>
+                                </Card>
+
+                                
                             </Col>
                         </Row>
                     </Col>

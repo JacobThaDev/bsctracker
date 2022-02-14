@@ -89,3 +89,7 @@ hr {
     animation: pulse-white 1.5s infinite;
     -webkit-animation: pulse-white 1.5s infinite;
 }
+
+.rounded {
+    border-radius: .6rem !important;
+}

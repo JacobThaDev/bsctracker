@@ -56,11 +56,11 @@ export default function TxnList({...props}) {
 
                     <p className="mb-0 fw-bold">From</p>
                     <p>
-                    <a href={"https://bscscan.com/address/"+txn.from}
-                        target="_blank"
-                        rel="nofollow noopener noreferrer">
-                        {txn.from}
-                    </a>
+                        <a href={"https://bscscan.com/address/"+txn.from}
+                            target="_blank"
+                            rel="nofollow noopener noreferrer">
+                            {txn.from}
+                        </a>
                     </p>
 
                     <p className="mb-0 fw-bold">Confirmations</p>
@@ -80,15 +80,9 @@ export default function TxnList({...props}) {
         setLoaded(true);
     }, [props.data]);
 
-    return(
-        <Card className="border-0 shadow-sm mb-3">
-            <Card.Header className="bg-transparent">
-                Transaction History
-            </Card.Header>
-            {!loaded ? <Card.Body>Loading...</Card.Body> : 
-                <Accordion defaultActiveKey="0" className="accordion-flush">
-                    {txns}
-                </Accordion>
-            }
-        </Card>)
+    return (!loaded ? <Card.Body>Loading...</Card.Body> : 
+        <Accordion defaultActiveKey="0" className="accordion-flush accordion-scroll">
+            {txns}
+        </Accordion>
+    )
 }
