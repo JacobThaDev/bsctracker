@@ -3,6 +3,7 @@ import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css'; // optional
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
+import FontIcon from "../global/fonticon";
 
 export default function SearchForm({...props}) {
 
@@ -51,6 +52,10 @@ export default function SearchForm({...props}) {
 
             let found = false;
 
+            if (tokenid.toLowerCase() == "default") {
+                tokenid = props.active.toLowerCase();
+            }
+
             for (let token of props.tokens) {
                 if (token.symbol.toLowerCase() == tokenid.toLowerCase()) {
                     found = true;
@@ -64,7 +69,7 @@ export default function SearchForm({...props}) {
             }
             
             window.location = "/"+tokenid+"/"+wallet;
-            field.disabled = false;
+            field.disabled  = false;
         });
     }, [props.tokens]);
 
@@ -80,9 +85,10 @@ export default function SearchForm({...props}) {
                 <div className="w-100">
                     <div className="custom-group">
                         <div className="walletAlert d-none" id="walletAlert">
-                            <Tippy content="Invalid address format" placement="bottom">
-                                <i className="far fa-exclamation-triangle text-danger"/>
-                            </Tippy>
+                            <FontIcon 
+                                icon="exclamation-triangle" 
+                                type="far" 
+                                className="text-danger"/>
                         </div>
                         <FormControl 
                             name="wallet" 
@@ -99,15 +105,18 @@ export default function SearchForm({...props}) {
                                 {options}
                             </Form.Select>
                         </div>
+                        <div className="form-button">
+                            <button type="submit" 
+                                className={"btn shadow-0 text-light btn-primary btn-sm px-3"}>
+                                <FontIcon type="fal" icon="search"/>
+                            </button>
+                        </div>
                     </div>
+
+                    
                 </div>
+
                 
-                <div className="text-nowrap ps-2">
-                    <button type="submit" 
-                            className={"btn btn-link shadow-0 search-btn"}>
-                        Go <i className="fat fa-arrow-right fa-fw"></i>
-                    </button>
-                </div>
             </div>
         </Form>
     )

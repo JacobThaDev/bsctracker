@@ -15,9 +15,9 @@ export default async function handler(request, response) {
         }
     });
 
-    if (txndata.data.status == 0) {
-        return response.status(200).json({
-            error: txndata.data.message
+    if (txndata.data.error) {
+        return response.status(500).json({
+            error: txndata.data.error
         });
     }
     

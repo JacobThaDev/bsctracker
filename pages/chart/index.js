@@ -3,11 +3,22 @@ import { Container } from "react-bootstrap";
 import TokenList from "../../components/chart/tokenlist";
 import Layout from "../../components/layout";
 import axios from "axios";
+import { useEffect, useState } from "react";
 
 export default function Chart({...props}) {
 
-    let address   = "0x42981d0bfbaf196529376ee702f2a9eb9092fcb5";
-    let chart_url = "https://dexscreener.com/bsc/"+address+"?embed=1&theme=dark&info=1";
+    const [tokens, setTokens] = useState(null);
+    const [active, setActive] = useState(null);
+
+    useEffect(async() => {
+        let tokens = await axios.get("/api/tokens").then((res) => res.data);
+        setTokens(tokens);
+        setActive(tokens[0]);
+    }, []);
+
+    if (!tokens || !active) {
+        return null;
+    }
 
     return(
         <Layout 
@@ -22,23 +33,14 @@ export default function Chart({...props}) {
                 </Container>
             </div>
 
-            <TokenList tokens={props.tokens}/>
+            <TokenList tokens={tokens}/>
 
             <Container className="my-4">
-                <iframe 
+            <iframe 
                     height={800} 
                     width="100%" 
-                    src={chart_url} />
+                    src={"https://dexscreener.com/bsc/"+active.contract+"?embed=1&theme=dark&info=1"}/>
             </Container>
         </Layout>
     )
-}
-
-Chart.getInitialProps = async({ req }) => {
-    let api_url = process.env.NEXT_PUBLIC_API_URL;
-    let tokens = await axios.get(api_url+"/tokens");
-
-    return {
-        tokens: tokens.data
-    }
 }

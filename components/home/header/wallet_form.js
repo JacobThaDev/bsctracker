@@ -2,6 +2,7 @@ import { Form, FormControl } from "react-bootstrap";
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css'; // optional
 import { useEffect } from "react";
+import FontIcon from "../../global/fonticon";
 
 export default function WalletForm({...props}) {
 
@@ -73,9 +74,7 @@ export default function WalletForm({...props}) {
                 <div className="w-100">
                     <div className="custom-group">
                         <div className="walletAlert d-none" id="walletAlert">
-                            <Tippy content="Invalid address format" placement="bottom">
-                                <i className="far fa-exclamation-triangle text-danger"/>
-                            </Tippy>
+                            <i className="far fa-exclamation-triangle text-danger"/>
                         </div>
                         <FormControl 
                             name="wallet" 
@@ -89,18 +88,18 @@ export default function WalletForm({...props}) {
                                     name="tokenId"
                                     aria-label="Default select example" 
                                     size="sm" 
-                                    className="border-0 token-select shadow-none">
+                                    className="border-0 token-select shadow-none bg-transparent">
                                 {options}
                             </Form.Select>
                         </div>
+                        <div className="form-button">
+                            <button type="submit" 
+                                className={"btn shadow-0 text-light btn-primary btn-sm px-3"}>
+                                <i className="fal fa-search"></i>
+                                <FontIcon icon="search" type="fal" />
+                            </button>
+                        </div>
                     </div>
-                </div>
-                
-                <div className="text-nowrap ps-2">
-                    <button type="submit" 
-                            className={"btn btn-link shadow-0 text-light"}>
-                        Go <i className="fat fa-arrow-right fa-fw"></i>
-                    </button>
                 </div>
             </div>
         </Form>

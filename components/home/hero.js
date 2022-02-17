@@ -1,9 +1,10 @@
 import { Container, Row, Col } from "react-bootstrap";
+import FontIcon from "../global/fonticon";
 
 export default function Hero() {
 
     return(
-        <section className="discord-hero">
+        <section className="discord-hero position-relative">
             <Container>
                 <Row className="align-items-lg-center justify-content-lg-between py-5 py-lg-0">
                     <Col xs={12} lg={12}>
@@ -11,7 +12,7 @@ export default function Hero() {
                             <div className=" d-none d-lg-flex">
                                 <img src="/img/wumpus.png" 
                                     width={300} 
-                                    style={{ marginTop: -120}}/>
+                                    style={{ marginTop: -90}}/>
                             </div>
                             <div className="ps-0 ps-lg-3 w-100 text-white">
                                 <h3 className="mb-0">Looking for a community?</h3>
@@ -19,12 +20,15 @@ export default function Hero() {
                             </div>
                             <div className="text-start text-lg-end text-nowrap">
                                 <a href="https://discord.gg/5BejZeDxWx"
-                                    target="_blank"
-                                    rel="nofollow noopener noreferrer"
-                                    className="btn btn-outline-light btn-lg w-100 rounded-pill px-4 pulse-primary">
-                                        <i className="fab fa-discord me-3"></i>
+                                        target="_blank"
+                                        rel="nofollow noopener noreferrer"
+                                        className="btn btn-outline-light btn-lg w-100 rounded-pill px-4 pulse-primary">
+                                    
+                                    <div style={{marginTop: 2}}>
+                                        <FontIcon icon="discord" type="fab" className="me-3" size="lg" />
                                         Join Discord
-                                    </a>
+                                    </div>
+                                </a>
                             </div>
                         </div>
                     </Col>

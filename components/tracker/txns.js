@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Accordion, Card } from "react-bootstrap";
 import * as Functions from "../../functions";
+import FontIcon from "../global/fonticon";
 
 export default function TxnList({...props}) {
     
@@ -13,7 +14,7 @@ export default function TxnList({...props}) {
         }
 
         let txnlist  = props.data.txnList;
-        let token    = props.data.token;
+        let token    = props.data.active;
         let filtered = [];
 
         txnlist.forEach((txn, index) => {
@@ -21,7 +22,7 @@ export default function TxnList({...props}) {
                 return;
             }
 
-            txn.value = (txn.value / 10 ** txn.tokenDecimal);
+            let value = (txn.value / 10 ** txn.tokenDecimal);
 
             if (txn.from.toLowerCase() == props.data.address.toLowerCase()) {
                 txn.type = "sell";
@@ -37,11 +38,11 @@ export default function TxnList({...props}) {
                     <div className="d-flex align-items-center">
                         <div>
                             {txn.type == "buy" 
-                                ? <i className="fas fa-arrow-down text-success fa-fw me-2"></i> 
-                                : <i className="fas fa-arrow-up text-danger fa-fw me-2"></i>}
+                                ? <FontIcon icon="arrow-down" type="fas" className="text-success me-2"/> 
+                                : <FontIcon icon="arrow-up" type="fas" className="text-danger me-2"/>}
                             
                             <span className="fw-bold me-2">
-                                {Functions.formatNumber(txn.value, 5)}
+                                {Functions.formatNumber(value, 5)}
                             </span>
                         </div>
                         <div className="small text-muted">

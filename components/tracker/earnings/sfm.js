@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
+import FontIcon from "../../global/fonticon";
 import * as Functions from "/functions";
 
 const Web3  = require("web3");
@@ -16,7 +17,7 @@ export default function SafemoonEarnings({...props}) {
         }
 
         let address = props.data.address;
-        let token   = props.data.token;
+        let token   = props.data.active;
         let txnlist = props.data.txnList;
 
         let bought    = 0;
@@ -28,21 +29,22 @@ export default function SafemoonEarnings({...props}) {
                 continue;
             }
 
-            let value = (txn.value / 10 ** txn.tokenDecimal);
-            let type  = txn.from.toLowerCase() == address.toLowerCase() ? "sell" : "buy";
+            let value  = txn.value / 10 ** 9;
+            let isSell = txn.from.toLowerCase() === address.toLowerCase();
 
-            if (type == "buy")
-                bought += value;
-            if (type == "sell")
+            if (isSell) {
                 sold += value;
+            } else {
+                bought += value;
+            }
         }
 
         reflected = Math.abs(props.data.balance - (bought - sold));
         setEarned(reflected);
         setLoaded(true);
-    }, [props.data]);
+    }, []);
 
-    let icon = <i className="fad fa-spinner fa-pulse"></i>;
+    let icon = <FontIcon icon="spinner" type="fad" pulse={true}/>;
 
     return (
         <Card className="border-0 shadow-sm mb-3">
@@ -51,7 +53,7 @@ export default function SafemoonEarnings({...props}) {
                     Earnings (SFM)
                 </p>
                 <p className="mb-0 fw-bold">
-                    {!loaded ? icon : Functions.formatNumber(earned, 5)} 
+                    {!loaded ? icon : earned} 
                 </p>
             </Card.Body>
         </Card>

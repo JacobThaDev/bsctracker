@@ -9,7 +9,10 @@
 @import url(elements/buttons.css);
 @import url(elements/lists.css);
 @import url(elements/footer.css);
-@import url(elements/scrollbar.css);
+
+@font-face { font-family: "Nunito"; src: url('../fonts/Nunito.ttf'); }
+@font-face { font-family: "Montserrat"; src: url('../fonts/Montserrat.ttf'); }
+@font-face { font-family: "Raleway"; src: url('../fonts/Raleway.ttf'); }
 
 html,
 body {
@@ -17,8 +20,9 @@ body {
     color: var(--body-color);
     padding: 0;
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-        Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    overflow-x: hidden;
+    font-family: "Nunito", sans-serif;
+    -webkit-font-smoothing: antialiased;
 }
 
 * {
@@ -26,12 +30,12 @@ body {
 }
 
 a {
-    color: #6194BC;
+    color: #2A74B2;
     text-decoration: none;
 }
 
 a:hover, a:focus, a:active {
-    color: #A5D1F3;
+    color: #3394e2;
     text-decoration: none;
 }
 

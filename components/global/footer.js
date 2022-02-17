@@ -1,5 +1,6 @@
 import { Col, Row } from "react-bootstrap"
 import CookieNotice from "./cookies"
+import FontIcon from "./fonticon"
 
 export default function Footer() {
 
@@ -23,25 +24,25 @@ export default function Footer() {
                                     className="px-3"
                                     target="_blank"
                                     rel="nofollow noopener noreferrer">
-                                <i className="fab fa-discord fa-fw fa-2x"></i>
+                                <FontIcon icon="discord" type="fab" size="2x"/>
                             </a>
                             <a href="https://github.com/OGKingFox/sfmv2-tracker" 
                                     className="px-3"
                                     target="_blank"
                                     rel="nofollow noopener noreferrer">
-                                <i className="fab fa-github fa-fw fa-2x"></i>
+                                <FontIcon icon="github" type="fab" size="2x"/>
                             </a>
-                            <a href="https://twitter.com/OG_KingFox"
+                            <a href="https://twitter.com/bsctracking"
                                     className="px-3"
                                     target="_blank"
                                     rel="nofollow noopener noreferrer">
-                                <i className="fab fa-twitter fa-fw fa-2x"></i>
+                                <FontIcon icon="twitter" type="fab" size="2x"/>
                             </a>
                             <a href="https://www.linkedin.com/in/jacob-smith-9a0462122/" 
                                     className="px-3"
                                     target="_blank"
                                     rel="nofollow noopener noreferrer">
-                                <i className="fab fa-linkedin fa-fw fa-2x"></i>
+                                <FontIcon icon="linkedin" type="fab" size="2x"/>
                             </a>
                         </Col>
                     </Row>
@@ -52,8 +53,8 @@ export default function Footer() {
                         <div className="col-md-6">
                             <div className="copyright">
                                 Copyright &copy; 2021 <a href="/">BscTracker</a>. 
-                                Created by <a href="https://twitter.com/OG_KingFox">OGKingFox</a>&nbsp;
-                                with <i className="fas fa-heart text-danger"></i>
+                                Created by <a href="https://twitter.com/OG_KingFox">OGKingFox</a> with 
+                                <FontIcon type="fas" icon="heart" className="text-danger ms-1 fa-beat"/>
                             </div>
                         </div>
                         <div className="col-md-6">

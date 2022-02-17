@@ -4,53 +4,78 @@ import axios from "axios";
 
 import Layout from "../../components/layout";
 import TokenList from "../../components/chart/tokenlist";
+import { useEffect, useState } from "react";
+import ErrorPage from "../../components/error";
+import Loader from "../../components/loader";
 
 export default function Chart({ ...props }) {
 
-    const router     = useRouter();
-    const {chartId}  = router.query;
-    
-    let selected;
+    const [tokens, setTokens] = useState(null);
+    const [active, setActive] = useState(null);
+    const [error, setError]   = useState(null);
 
-    for (let token of props.tokens) {
-        if (token.symbol.toLowerCase() == chartId.toLowerCase()) {
-            selected = token;
+    useEffect(async() => {
+        let chartId = props.chartId;
+        let tokens  = await axios.get("/api/tokens").then((res) => res.data);
+        setTokens(tokens);
+
+        let active;
+
+        for (let token of tokens) {
+            
+            if (token.symbol.toLowerCase() == chartId) {
+                active = token;
+                break;
+            }
         }
+
+        if (!active) {
+            setError("Invalid token symbol.");
+        } else {
+            setActive(active);
+        }
+    }, []);
+
+    if (!active) {
+        return <Loader/>;
     }
-    
-    if (!chartId || !selected) {
-        return null;
+
+    if (error) {
+        return <ErrorPage />
     }
 
     return(
         <Layout 
-            title={selected.title+" Chart"}
-            desc={selected.title+" chart, price, trades, and volume information."}>
+            title={active.title+" Chart"}
+            desc={active.title+" chart, price, trades, and volume information."}>
+
             <div className="small-header">
                 <Container>
                     <h2 className="text-white fw-bold mb-0">
-                        {selected.title} Chart
+                        {active.title} Chart
                     </h2>
                 </Container>
             </div>
 
-            <TokenList tokens={props.tokens} active={selected}/>
+            <TokenList tokens={tokens} active={active}/>
 
             <Container className="my-4">
+                {!active ? "" : 
                 <iframe 
                     height={800} 
                     width="100%" 
-                    src={"https://dexscreener.com/bsc/"+selected.contract+"?embed=1&theme=dark&info=1"}/>
+                    src={"https://dexscreener.com/bsc/"+active.contract+"?embed=1&theme=dark&info=1"}/>
+                }
             </Container>
         </Layout>
     )
 }
 
-Chart.getInitialProps = async({ req }) => {
-    let api_url = process.env.NEXT_PUBLIC_API_URL;
-    let tokens = await axios.get(api_url+"/tokens");
+Chart.getInitialProps = async({ query }) => {
+    const { chartId } = query;
 
     return {
-        tokens: tokens.data
+        chartId: chartId
     }
+    
 }

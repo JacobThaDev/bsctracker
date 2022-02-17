@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
 import * as Functions from "../../../functions";
+import FontIcon from "../../global/fonticon";
 
 export default function AffinityEarnings({...props}) {
 
@@ -57,7 +58,7 @@ export default function AffinityEarnings({...props}) {
         setLoaded(true);
     }, [props.data]);
 
-    let icon = <i className="fad fa-spinner fa-pulse"></i>;
+    let icon = <FontIcon icon="spinner" type="fad" pulse={true}/>;
     
     return (
         <>

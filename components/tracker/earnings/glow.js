@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
+import FontIcon from "../../global/fonticon";
 import * as Functions from "/functions";
 
 export default function GlowEarnings({...props}) {
@@ -29,7 +30,7 @@ export default function GlowEarnings({...props}) {
         setLoaded(true);
     }, [props.data]);
 
-    let icon = <i className="fad fa-spinner fa-pulse"></i>;
+    let icon = <FontIcon icon="spinner" type="fad" pulse={true}/>;
 
     return (
         <Card className="border-0 shadow-sm mb-3">

@@ -6,8 +6,18 @@
 }
 
 .btn-primary {
-    background-color: #6194BC !important;
-    border-color: #6194BC !important;
+    background-color: #2A74B2 !important;
+    border-color: #2A74B2 !important;
+}
+
+.btn-outline-primary {
+    color: #2A74B2 !important;
+    border-color: #2A74B2 !important;
+}
+
+.btn-outline-primary:hover, .btn-outline-primary:focus, .btn-outline-primary:active {
+    background-color: #2A74B2 !important;
+    color: white !important;
 }
 
 .btn:hover {

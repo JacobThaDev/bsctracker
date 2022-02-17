@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
 
 import * as Functions from "../../../functions";
+import FontIcon from "../../global/fonticon";
 
 export default function Burned({...props}) {
 
@@ -30,20 +31,9 @@ export default function Burned({...props}) {
         });
 
         setLoaded(true);
-
-        /*setLoading(true);
-
-        let initial  = props.token.supply;
-        let divideBy = Functions.getDivideBy(initial);
-        let burned   = await Functions.getBurned(props.token);
-
-        setCirculating((initial - burned) / divideBy);
-        setBurned(burned / divideBy);
-        setSuffix(Functions.getSuffix(burned));
-        setLoading(false);*/
     }, [props.data]);
 
-    let icon = <i className="fad fa-spinner fa-pulse"></i>;
+    let icon = <FontIcon icon="spinner" type="fad" pulse={true}/>;
 
     return(
         <Card className="border-0 shadow-sm  mb-3">
@@ -62,7 +52,8 @@ export default function Burned({...props}) {
                     </div>
                     <div className="pe-3">
                         <div className="icon icon-shape bg-danger text-white rounded-circle shadow">
-                            <i className="fad fa-fire fa-lg fa-fw"></i>
+                            
+                            <FontIcon icon="fire" type="fad" size="lg" />
                         </div>
                     </div>
                 </div>

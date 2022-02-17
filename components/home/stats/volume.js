@@ -3,35 +3,10 @@ import { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
 
 import * as Functions from "../../../functions";
+import FontIcon from "../../global/fonticon";
 
 export default function Marketcap({...props}) {
-
-    const [data, setData]     = useState(null);
-    const [loaded, setLoaded] = useState(false);
-
-    useEffect(async() => {
-        if (!props.data) {
-            setLoaded(false);
-            return;
-        }
-
-        let price       = props.data.price;
-        let circulating = props.data.circulating;
-        let mcap        = props.data.market_cap;
-
-        let divideBy = Functions.getDivideBy(mcap);
-        let suffix   = Functions.getSuffix(mcap);
-        
-        setData({
-            price: price,
-            market_cap: props.data.market_cap / divideBy,
-            suffix: suffix
-        });
-
-        setLoaded(true);
-    }, [props.data]);
-
-    let icon = <i className="fad fa-spinner fa-pulse"></i>;
+    let icon = <FontIcon icon="spinner" type="fad" pulse={true}/>;
 
     return(
         <Card className="border-0 shadow-sm mb-3">
@@ -42,18 +17,18 @@ export default function Marketcap({...props}) {
                             Price
                         </p>
                         <span className="h4 font-weight-bold mb-0 text-success">
-                            {!loaded ? icon : "$"+Functions.formatNumber(data.price, 9) }
+                            {!props.token ? icon : "$"+Functions.formatNumber(props.token.price, 9) }
                         </span>
                     </div>
                     <div className="pe-3">
                         <div className="icon icon-shape bg-success text-white rounded-circle shadow">
-                            <i className="fad fa-analytics fa-lg fa-fw"></i>
+                            <FontIcon icon="analytics" type="fad" size="lg" />
                         </div>
                     </div>
                 </div>
             </Card.Body>
             <Card.Footer className="border-0 bg-transparent pt-0 text-muted small">
-                {!loaded ? icon : "$"+Functions.formatNumber(data.market_cap, 2) + data.suffix} Market Cap
+                {!props.token ? icon : "$"+Functions.shortenNumber(props.token.marketcap, 2)} Market Cap
             </Card.Footer>
         </Card>
     )

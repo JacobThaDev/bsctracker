@@ -1,8 +1,11 @@
 import Cookies from "js-cookie";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
+import FontIcon from "./fonticon";
 
 export default function Navigation() {
+
+    const [themeIcon, setThemeIcon] = useState(null);
 
     useEffect(() => {
         try {
@@ -24,30 +27,47 @@ export default function Navigation() {
             document.addEventListener('scroll', function(e) {
                 let pos = window.scrollY;
 
+                if (pos > 0) {
+                    if (!navbar.classList.contains("position-fixed")) {
+                        navbar.classList.add("position-fixed");
+                    }
+                }
+
                 if (pos > 50) {
-                    navbar.classList.add("shadow")
                     navbar.classList.add("nav-scroll")
                 } else {
-                    navbar.classList.remove("shadow")
                     navbar.classList.remove("nav-scroll")
                 }
             });
+
+            let theme = Cookies.get("theme");
+            console.log(theme);
+            if (theme) {
+                setThemeIcon(<FontIcon icon={theme == "dark" ? "sun-alt" : "moon"} type="fas" />);
+            } else {
+                setThemeIcon(<FontIcon icon="fa-moon" type="fas"/>);
+            }
         } catch (err) {
             console.log(err);
         }
     }, []);
 
+    let themeIco = themeIcon;
+
+
+
     return(
-        <div className="custom-nav text-center sticky-top" id="customnav">
+        <div className="custom-nav text-center position-fixed" id="customnav">
             <Container>
                 <div className="d-flex align-items-center custom-navbar flex-column flex-lg-row" id="navmenu">
                     
                     <a href="/" className="d-lg-none mb-0" rel="nofollow noopener" id="closebtn">
-                        <i className="fal fa-times"></i> Close
+                        <FontIcon icon="times" type="fal" />
+                        Close
                     </a>
 
                     <a href="/" className="navbrand mb-5 mb-lg-0 me-0 me-lg-3" rel="nofollow">
-                        <i className="fal fa-chart-bar me-3" />
+                        <FontIcon icon="chart-bar" type="fal" size="lg" className="me-3" />
                         BscTracker
                     </a>
 
@@ -77,17 +97,16 @@ export default function Navigation() {
                     <div className="d-flex flex-column flex-lg-row text-center ms-auto d-none d-lg-flex">
                         <div className="flex-fill">
                             <a href="https://ko-fi.com/ogkingfox" target="_blank" className="custom-link px-3">
-                                <i className="fal fa-coffee me-2" />
+                                <FontIcon icon="coffee" type="fal" className="me-2" />
                                 Buy Me a Coffee
                             </a>
                         </div>
                     </div>
 
                     <div className="d-flex flex-column flex-lg-row align-items-lg-center text-center ms-auto ms-lg-0 d-none d-lg-flex">
-                        
                         <div className="flex-fill">
-                            <a href="/" className="custom-link " id="themeToggle">
-                                <i className="fas fa-moon fa-fw"></i>
+                            <a href="/" className="custom-link" id="themeToggle">
+                                {themeIco}
                             </a>
                         </div>
                     </div>
@@ -99,15 +118,15 @@ export default function Navigation() {
                     </a>
                     <div>
                         <a href="https://ko-fi.com/ogkingfox" target="_blank" className="btn btn-link menu-btn">
-                            <i className="fal fa-coffee me-2"></i>
+                            <FontIcon icon="coffee" type="fal" />
                             Buy me a Coffee
                         </a>
 
                         <a href="" className="btn btn-link menu-btn" id="themeToggle">
-                            <i className="fas fa-moon fa-fw"></i>
+                            {themeIco}
                         </a>
                         <a href="" className="btn btn-link menu-btn" id="toggleMenu">
-                            <i className="fas fa-bars fa-fw"></i>
+                            <FontIcon icon="bars" type="fas" />
                         </a>
                     </div>
                 </div>

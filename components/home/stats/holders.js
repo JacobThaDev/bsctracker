@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
 
 import * as Functions from "../../../functions";
+import FontIcon from "../../global/fonticon";
 
 export default function HolderCount({...props}) {
 
@@ -28,7 +29,8 @@ export default function HolderCount({...props}) {
         setLoaded(true);
     }, [props.data]);
 
-    let icon = <i className="fad fa-spinner fa-pulse"></i>;
+
+    let icon = <FontIcon icon="spinner" type="fad" pulse={true}/>;
 
     return(
         <Card className="border-0 shadow-sm mb-3">
@@ -44,7 +46,7 @@ export default function HolderCount({...props}) {
                     </div>
                     <div className="pe-3">
                         <div className="icon icon-shape bg-info text-white rounded-circle shadow">
-                            <i className="fad fa-wallet fa-lg fa-fw"></i>
+                            <FontIcon icon="wallet" type="fad" size="lg" />
                         </div>
                     </div>
                 </div>

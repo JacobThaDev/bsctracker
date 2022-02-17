@@ -37,3 +37,26 @@
     max-height: 500px;
     overflow-y: scroll;
 }
+
+/* scrollbar */
+.accordion-scroll::-webkit-scrollbar {
+    width: 12px;
+}
+  
+/* Track */
+.accordion-scroll::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+}
+  
+/* Handle */
+.accordion-scroll::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 10px;
+    border: solid 3px var(--scrollbar-track);
+}
+
+/* Handle */
+.accordion-scroll::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover);
+    border-radius: 10px;
+}

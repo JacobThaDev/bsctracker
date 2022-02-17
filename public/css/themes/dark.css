@@ -43,8 +43,8 @@
     --accordion-border: rgba(255, 255, 255, 0.05);
 
     /* utility colors */
-    --primary: #825ee4;
-    --primary-hover: #825ee4;
+    --primary: #2A74B2;
+    --primary-hover: #2A74B2;
     --info: #6bc6e1;
     --info-hover: #6bc6e1;
     --success: #7ece82;
@@ -54,8 +54,9 @@
     --danger: #f8716c;
     --danger-hover: #f8716c;
     
-    --hero-background: linear-gradient(-90deg,#5e72e4,#825ee4);
+    --hero-background: linear-gradient(-90deg,#2A74B2,#825ee4);
     --footer-background: #191919;
-
     --search-btn-color: white;
+
+    --bg-alt: rgba(255,255,255,0.02)
 }

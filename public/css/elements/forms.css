@@ -1,5 +1,5 @@
 .form-control {
-    border-radius: .6rem;
+    border-radius: 2rem;
     box-shadow: none !important;
     height: 38px;
 }
@@ -15,14 +15,27 @@
 
 .custom-group .form-control {
     width: 100%;
-    padding-right: 100px;
+    padding-right: 160px;
+    border: 0;
 
 }
 .custom-group .gametype {
     position: absolute;
     top:6px;
-    right: 6px;
+    right: 50px;
     padding-right: 10px;
+}
+.custom-group .form-button {
+    position: absolute;
+    top:2px;
+    height: 32px;
+    right: -8px;
+    padding-right: 10px;
+}
+
+.custom-group .form-button .btn {
+    height: 34px;
+    border-radius: 2rem;
 }
 
 .custom-group .walletAlert {

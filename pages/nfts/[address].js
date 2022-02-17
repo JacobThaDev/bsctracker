@@ -3,6 +3,7 @@ import { Alert, Card, Col, Container, Row } from "react-bootstrap";
 import * as Functions from "../../functions";
 import Layout from "../../components/layout";
 import axios from 'axios';
+import Loader from "../../components/loader";
 
 export default function Nfts({...props}) {
 
@@ -10,7 +11,7 @@ export default function Nfts({...props}) {
     const [loaded, setLoaded] = useState(false);
     
     useEffect(async() => {
-        let res = await axios.get("/api/nfts/"+props.address);
+        let res        = await axios.get("/api/nfts/"+props.address);
         let collection = res.data;
         let cards  = [];
         let groups = [];
@@ -75,17 +76,9 @@ export default function Nfts({...props}) {
         setNfts(cards);
         setLoaded(true);
     }, []);
-
-    const loader = (
-        <div className="text-center py-5">
-            <i className="fad fa-spinner fa-pulse fa-3x mb-3"></i>
-            <h1>Loading...please wait</h1>
-            <p>Please wait while we load this collection</p>
-        </div>
-    );
     
-    if (loaded) {
-
+    if (!loaded) {
+        return (<Loader/>)
     }
 
     return(
@@ -102,19 +95,16 @@ export default function Nfts({...props}) {
             </div>
 
             <section className="mb-5">
-                
-                    {loaded ? 
-                        <div>
-                            <Alert variant="info" className="rounded-0 shadow-sm mb-5">
-                                <Container>
-                                    <strong>Please note</strong> that not all images may load due to formats, missing info, etc.
-                                </Container>
-                            </Alert>
-                            <Container>
-                                {nfts} 
-                            </Container>
-                        </div>
-                    : loader}
+                <div>
+                    <Alert variant="info" className="rounded-0 shadow-sm mb-5">
+                        <Container>
+                            <strong>Please note</strong> that not all images may load due to formats, missing info, etc.
+                        </Container>
+                    </Alert>
+                    <Container>
+                        {nfts} 
+                    </Container>
+                </div>
             </section>
         </Layout>
     )
