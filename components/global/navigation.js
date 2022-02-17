@@ -96,7 +96,7 @@ export default function Navigation() {
 
                     <div className="d-flex flex-column flex-lg-row text-center ms-auto d-none d-lg-flex">
                         <div className="flex-fill">
-                            <a href="https://ko-fi.com/ogkingfox" target="_blank" className="custom-link px-3">
+                            <a href="/donate" target="_blank" className="custom-link px-3">
                                 <FontIcon icon="coffee" type="fal" className="me-2" />
                                 Buy Me a Coffee
                             </a>
@@ -117,7 +117,7 @@ export default function Navigation() {
                         <i className="fal fa-chart-bar me-3" />
                     </a>
                     <div>
-                        <a href="https://ko-fi.com/ogkingfox" target="_blank" className="btn btn-link menu-btn">
+                        <a href="/donate" target="_blank" className="btn btn-link menu-btn">
                             <FontIcon icon="coffee" type="fal" />
                             Buy me a Coffee
                         </a>

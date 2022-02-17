@@ -76,6 +76,9 @@ export default function Donate({...props}) {
                         target="_blank"
                         className="btn btn-primary rounded-pill px-3 mb-3">
                         Donate via Ko-Fi (Paypal/Card)
+
+                        <FontIcon type="fal" icon="external-link" 
+                            className="ms-3"/>
                     </a>
 
                     <p>- or -</p>
