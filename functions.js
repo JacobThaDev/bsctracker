@@ -135,6 +135,16 @@ export const getBalance = async(token, wallet) => {
     return parseInt(call) / 10 ** decimals;
 }
 
+export const getBalanceAtBlock = async(token, wallet, block) => {
+    let call = await new web3.eth.call({
+        to: token, // contract address
+        block: block,
+        data: "0x70a08231000000000000000000000000"+wallet.replace("0x", "")
+    });
+    let decimals = await getDecimals(token);
+    return parseInt(call) / 10 ** decimals;
+}
+
 export const getDecimals = async(address) => {
     let mini_abi = require("./abi/mini_abi");
     let contract = new web3.eth.Contract(mini_abi, address);

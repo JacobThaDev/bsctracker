@@ -83,7 +83,7 @@ export default function Features() {
                                 you real-time prices
                             </p>
 
-                            <a href="/charts" className="btn btn-outline-primary rounded-pill btn-lg">
+                            <a href="/chart" className="btn btn-outline-primary rounded-pill btn-lg">
                                 View Charts
                             </a>
                         </Col>

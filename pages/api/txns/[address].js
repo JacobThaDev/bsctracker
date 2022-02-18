@@ -1,4 +1,5 @@
 import axios from 'axios';
+import * as Functions from '../../../functions';
 
 export default async function handler(request, response) {
     let address = request.query.address;
