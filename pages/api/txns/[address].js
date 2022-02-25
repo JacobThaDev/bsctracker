@@ -5,6 +5,7 @@ export default async function handler(request, response) {
     let address = request.query.address;
 
     let txndata = await axios.get("https://api.bscscan.com/api", {
+        timeout: 30000,
         params: {
             module: 'account',
             action: 'tokentx',

@@ -41,7 +41,7 @@ export default function Navigation() {
             });
 
             let theme = Cookies.get("theme");
-            console.log(theme);
+            
             if (theme) {
                 setThemeIcon(<FontIcon icon={theme == "dark" ? "sun-alt" : "moon"} type="fas" />);
             } else {

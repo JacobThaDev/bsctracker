@@ -13,8 +13,6 @@ export default function ValueCard({...props}) {
             return;
         }
         
-        console.log(props.data);
-        
         setLoading(false);
     }, [props.data])
 

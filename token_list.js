@@ -41,5 +41,14 @@ module.exports = [
         liquidity: "0xee22415f8b3ddb0e3c45b493620d9e3d7ff7809f",
         burn_wallet: "0x000000000000000000000000000000000000dead",
         distributor: "0xb81b272fde39f698c69a67620aa9978724e770cd"
+    },
+    {
+        title: "Nobility",
+        decimals: 9,
+        symbol: "NBL",
+        contract: "0xA67a13c9283Da5AABB199Da54a9Cb4cD8B9b16bA",
+        liquidity: "0xA6a645569a01aA0611BE2B6BF25c7Be7b2d9a283",
+        burn_wallet: "0x000000000000000000000000000000000000dead",
+        distributor: "0xb6d136b9ae09bbdde47721b7127b622228ca9aa9"
     }
 ]

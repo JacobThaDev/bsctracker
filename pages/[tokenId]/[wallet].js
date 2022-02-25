@@ -78,7 +78,7 @@ export default function Tracker({...props}) {
         let price   = await Functions.getTokenPrice(active);
         let balance = await Functions.getBalance(active.contract, props.address);
         let value   = parseFloat((balance * price).toFixed(2));
-        let txns    = await axios.get("/api/txns/"+props.address, { timeout: 10000 });
+        let txns    = await axios.get("/api/txns/"+props.address);
 
         return {
             tokens: tokens,
@@ -95,8 +95,6 @@ export default function Tracker({...props}) {
     if (!loaded || !data.active) {
         return (<Loader/>);
     }
-    
-    console.log(data);
 
     if (error) {
         return (<Error message={error}/>);
