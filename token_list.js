@@ -50,5 +50,13 @@ module.exports = [
         liquidity: "0xA6a645569a01aA0611BE2B6BF25c7Be7b2d9a283",
         burn_wallet: "0x000000000000000000000000000000000000dead",
         distributor: "0xb6d136b9ae09bbdde47721b7127b622228ca9aa9"
+    },
+    {
+        title: "Puli",
+        decimals: 9,
+        symbol: "PULI",
+        contract: "0xAEf0a177c8c329CBC8508292Bb7E06c00786BBfC",
+        liquidity: "0x3FF5cbE338153063D8251d2B6a22A437EC09Eef3",
+        burn_wallet: "0x0000000000000000000000000000000000000001"
     }
 ]

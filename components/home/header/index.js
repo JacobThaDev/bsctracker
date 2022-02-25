@@ -62,6 +62,8 @@ export default function PageHeader() {
     }
 
     let loader = <FontIcon type="fad" icon="spinner" pulse={true} />
+    
+    console.log(token);
 
     return(
         <section className="home-header position-relative" id="test">
@@ -105,25 +107,25 @@ export default function PageHeader() {
                                 {!loaded ? loader : "$"+Functions.formatNumber(token.price, 9)}
                             </p>
                         </Col>
-                        <Col xs={4}  lg={2}>
+                        <Col xs={4} lg={2}>
                             <p className="small-text mb-0">Market Cap</p>
                             <p className="h5 mb-0">
                                 {!loaded ? loader : "$"+Functions.shortenNumber(token.marketcap, 2)}
                             </p>
                         </Col>
-                        <Col xs={4}  lg={2}>
+                        <Col xs={4} lg={2}>
                             <p className="small-text mb-0">Holders</p>
                             <p className="h5 mb-0">
                                 {!loaded ? loader : Functions.formatNumber(token.holders)}
                             </p>
                         </Col>
-                        <Col xs={6}  lg={2}>
+                        <Col xs={6} lg={2}>
                             <p className="small-text mb-0">Burned</p>
                             <p className="h5 mb-0">
                                 {!loaded ? loader : Functions.shortenNumber(token.burned, 2)}
                             </p>
                         </Col>
-                        <Col xs={6}  lg={2}>
+                        <Col xs={6} lg={2}>
                             <p className="small-text mb-0">Circulating</p>
                             <p className="h5 mb-0">
                                 {!loaded ? loader : Functions.shortenNumber(token.circulating, 2)}
