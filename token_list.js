@@ -58,5 +58,13 @@ module.exports = [
         contract: "0xAEf0a177c8c329CBC8508292Bb7E06c00786BBfC",
         liquidity: "0x3FF5cbE338153063D8251d2B6a22A437EC09Eef3",
         burn_wallet: "0x0000000000000000000000000000000000000001"
+    },
+    {
+        title: "CryftCoin",
+        decimals: 9,
+        symbol: "CRYFT",
+        contract: "0xd2267477a35dc048b41af9c96b0405e0717ca1bf",
+        liquidity: "0xF7B05f15761BD55d3ac5B9189DD8342ae90E5bEf",
+        burn_wallet: "0x0000000000000000000000000000000000000001"
     }
 ]

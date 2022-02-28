@@ -78,6 +78,9 @@
     border-radius: 1rem 0 0 0;
 } 
 
-.bg-alt {
-    background-color: var(--bg-alt)
+.bg-gradient {
+    background: 
+        -webkit-radial-gradient(0% 100%, ellipse cover, rgba(35, 24, 82, 0.22) 10%, rgba(138, 114, 76, 0) 40%), 
+        -webkit-linear-gradient(top, rgba(57, 173, 219, 0.25) 0%, rgba(42, 60, 87, 0.4) 100%), 
+        -webkit-linear-gradient(-45deg, #670d10 0%, #092756 100%);
 }

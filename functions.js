@@ -184,7 +184,7 @@ export const getDivideBy = (number) => {
     if (number <= 100_000) {
         return 1;
     } else if (number <= 1_000_000) {
-        return 100_000;
+        return 1_000;
     } else if (number <= 1_000_000_000) {
         return 1_000_000;
     } else if (number <= 1_000_000_000_000) {
@@ -195,8 +195,10 @@ export const getDivideBy = (number) => {
 }
 
 export const getSuffix = (number) => {
-    if (number <= 1_000_000) {
+    if (number <= 100_000) {
         return "";
+    } else if (number <= 1_000_000) {
+        return "K";
     } else if (number <= 1_000_000_000) {
         return "M";
     } else if (number <= 1_000_000_000_000) {
