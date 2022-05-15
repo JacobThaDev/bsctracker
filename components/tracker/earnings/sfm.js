@@ -19,7 +19,7 @@ export default function SafemoonEarnings({...props}) {
         let address = props.data.address;
         let token   = props.data.active;
         let txnlist = props.data.txnList;
-
+        
         let bought    = 0;
         let sold      = 0;
         let reflected = 0;

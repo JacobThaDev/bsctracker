@@ -66,5 +66,13 @@ module.exports = [
         contract: "0xd2267477a35dc048b41af9c96b0405e0717ca1bf",
         liquidity: "0xF7B05f15761BD55d3ac5B9189DD8342ae90E5bEf",
         burn_wallet: "0x0000000000000000000000000000000000000001"
+    },
+    {
+        title: "Luna",
+        decimals: 9,
+        symbol: "LUNA",
+        contract: "0x156ab3346823B651294766e23e6Cf87254d68962",
+        liquidity: "0xEB8d08030017BD1362a5414112CaCb094FA20cE1",
+        burn_wallet: "0x0000000000000000000000000000000000000001"
     }
 ]
