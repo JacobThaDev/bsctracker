@@ -9,7 +9,6 @@ export default function KofiButton() {
 
     const closeHandler = () => {
         setVisible(false);
-        console.log("closed");
     };
 
     return(

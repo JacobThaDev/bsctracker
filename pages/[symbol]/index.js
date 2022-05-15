@@ -54,7 +54,6 @@ export default function TokenStats({ activeSymbol, err }) {
             };
         });
 
-        console.log("called");
         setStats(stats);
         setIsLoading(false);
     }

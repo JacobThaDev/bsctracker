@@ -14,7 +14,6 @@ export default function SvgIcon({ className, icon, size, stroke = 1 }) {
                 strokeWidth={stroke} />
         )
     } catch (err) {
-        console.log(err);
         return null;
     }
 
