@@ -1,6 +1,6 @@
 import {useState} from "react";
 import { Button, Container, Grid, Link, Text, Modal } from "@nextui-org/react";
-import SvgIcon from "../icons/svgicon";
+import SvgIcon from "../icons/SvgIcon";
 
 export default function KofiButton() {
 

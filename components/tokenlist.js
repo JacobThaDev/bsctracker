@@ -1,7 +1,7 @@
 import { Button, Card, Grid, Text } from "@nextui-org/react";
 import StatsLoader from "./home/stats/loader";
 import TokenButton from "./home/token_button";
-import SvgIcon from "./icons/svgicon";
+import SvgIcon from "./icons/SvgIcon";
 
 const tokens  = require("../tokens");
 

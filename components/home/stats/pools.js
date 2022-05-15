@@ -1,8 +1,6 @@
-import { Button, Card, Image, Modal, Table, Text, Grid, Divider, Loading } from "@nextui-org/react";
+import { Button, Card, Image, Modal, Table, Text, Grid, Divider } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import Functions from "../../../helpers/Functions";
-import SvgIcon from "../../icons/svgicon";
 import LoadingCard from "../../loading";
 
 const tokens = require("../../../tokens");

@@ -1,5 +1,5 @@
 import { Card, Loading, Text } from "@nextui-org/react";
-import SvgIcon from "../../icons/svgicon";
+import SvgIcon from "../../icons/SvgIcon";
 import LoadingCard from "../../loading";
 
 export default function PriceCard({ data }) {

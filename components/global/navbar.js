@@ -1,6 +1,6 @@
 import { useTheme as useNextTheme } from 'next-themes'
 import { Button, Container, Grid, useTheme, Text, Modal } from "@nextui-org/react";
-import SvgIcon from '../icons/svgicon';
+import SvgIcon from '../icons/SvgIcon';
 import Link from "next/link";
 import KofiButton from './kofibutton';
 
