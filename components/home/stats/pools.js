@@ -27,7 +27,7 @@ export default function PoolsCard({ symbol, stats, activeIndex, isLoading }) {
     useEffect(() => {
         if (stats && stats.stats) {
             if (selected > stats.pairs.length - 1) {
-                setSelected(0)
+                //setSelected(0)
             }
         }
     }, [activeIndex])
@@ -101,7 +101,7 @@ export default function PoolsCard({ symbol, stats, activeIndex, isLoading }) {
                                         <Button auto
                                             rounded
                                             size="sm"
-                                            disabled={selected == index}
+                                            disabled={activeIndex == item.pairAddress || activeIndex == index}
                                             onClick={() => changeSelected(index)}>
                                             Select
                                         </Button>
