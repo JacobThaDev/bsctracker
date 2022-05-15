@@ -51,7 +51,6 @@ export default function SearchBar({ defaultValue, activeToken }) {
             <Card.Body css={{ overflowY: 'visible', pt: 20 }}>
                 <form method="get" onSubmit={submitForm} className="address-form">
                     <Input
-                        css={{ minWidth: 400, w: "100%" }}
                         name="address"
                         clearable
                         bordered

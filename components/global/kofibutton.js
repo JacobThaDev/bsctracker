@@ -13,14 +13,14 @@ export default function KofiButton() {
 
     return(
         <>
-            <Button auto light color="primary" onClick={handler}>
+            <Button auto light color="primary" onClick={handler} css={{ px: 0 }}>
                 <Text css={{ pt: 8, pr: 5 }} color="white">
                     <SvgIcon 
                         icon="coffee" 
                         size={20} 
                         stroke={1}/>
                 </Text>
-                <Text color="white">
+                <Text color="white" className="hidden-mobile">
                     Buy me a coffee
                 </Text>
             </Button>

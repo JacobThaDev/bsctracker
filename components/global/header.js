@@ -10,7 +10,7 @@ export default function PageHeader({ title, desc }) {
                         <Text h3 css={{ mb: '0', letterSpacing: .5 }} color="white">
                             {title ? title : "BscTracker"}
                         </Text>
-                        <Text css={{ mb: '0' }} color="white">
+                        <Text css={{ mb: '0' }} color="white" size={14}>
                             {desc ? desc : "A better way to track your DeFi Wallet."}
                         </Text>
                     </Grid>

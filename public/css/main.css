@@ -84,7 +84,7 @@
 }
 
 .address-form {
-    width: 350px !important;
+    width: 100% !important;
 }
 
 .custom-dropdown {
@@ -125,4 +125,10 @@
 a.token {
     display: block;
     text-align:center;
+}
+
+@media(max-width: 991.98px) {
+    .hidden-mobile {
+        display: none;
+    }
 }

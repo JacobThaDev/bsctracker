@@ -69,7 +69,9 @@ export default function TokenTracker({ symbol, address }) {
 
     return (
         <Layout title="Tracker">
-            <PageHeader title={"Wallet Tracker"} desc={symbol.toUpperCase()+" | "+address}/>
+            <PageHeader 
+            title={"Wallet Tracker"} 
+            desc={symbol.toUpperCase()+" | "+Functions.shortenAddress(address)}/>
             <Container gap={2} css={{ mt:-35 }}>
                 
                 <Grid.Container gap={1}>

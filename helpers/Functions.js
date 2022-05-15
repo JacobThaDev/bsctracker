@@ -6,10 +6,13 @@ class Functions {
      * @param {String} hash 
      * @returns short version of a txn hash
      */
-      static shortenHash(hash) {
+    static shortenHash(hash) {
         return hash.substring(0, 10);
     }
 
+    static shortenAddress(address) {
+        return address.substring(0, 2)+"..."+address.substring(address.length - 4, address.length)
+    }
     /**
      * 
      * @param {Integer} number 

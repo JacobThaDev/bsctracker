@@ -41,7 +41,7 @@ export default function Navbar() {
                                 <KofiButton/>
                             </Grid>
                             <Grid>
-                                <Button auto light onClick={changeTheme}>
+                                <Button auto light onClick={changeTheme} css={{ px: 5 }}>
                                     <Text color="white" css={{ pt: 10 }}>
                                         { type == "dark" 
                                             ? <SvgIcon icon="sun" size={18} stroke={2} />
