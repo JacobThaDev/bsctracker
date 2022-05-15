@@ -13,24 +13,14 @@ export default function PoolsCard({ symbol, stats, activeIndex, isLoading }) {
     
     const [visible, setVisible] = useState(false);
     const handler = () => setVisible(true);
-    const [selected, setSelected] = useState(activeIndex);
 
     const closeHandler = () => {
         setVisible(false);
     }
 
     const changeSelected = (index) => {
-        setSelected(index);
         closeHandler();
     }
-
-    useEffect(() => {
-        if (stats && stats.stats) {
-            if (selected > stats.pairs.length - 1) {
-                //setSelected(0)
-            }
-        }
-    }, [activeIndex])
     
     return (<>
         <Card>
@@ -101,8 +91,7 @@ export default function PoolsCard({ symbol, stats, activeIndex, isLoading }) {
                                         <Button auto
                                             rounded
                                             size="sm"
-                                            disabled={activeIndex == item.pairAddress || activeIndex == index}
-                                            onClick={() => changeSelected(index)}>
+                                            disabled={activeIndex == item.pairAddress || activeIndex == index}>
                                             Select
                                         </Button>
                                     </Link>
