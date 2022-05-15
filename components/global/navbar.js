@@ -20,11 +20,9 @@ export default function Navbar() {
                     <Grid>
                         <Grid.Container gap={1}>
                             <Grid>
-                                <Link href="/">
-                                    <a className="nav-link">
-                                        Home
-                                    </a>
-                                </Link>
+                                <a className="nav-link" href="/">
+                                    Home
+                                </a>
                             </Grid>
                             <Grid>
                                 <Link href="/track">
