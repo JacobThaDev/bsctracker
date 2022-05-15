@@ -65,7 +65,6 @@ export default function TokenTracker({ symbol, address }) {
         setBalance(stats.balance);
         setPrice(stats.price);
         setLiquidity(wbnb_value + token_value);
-        console.log(stats);
     }
 
     return (
