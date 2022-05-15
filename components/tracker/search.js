@@ -1,123 +1,102 @@
-import { Form, FormControl } from "react-bootstrap";
-import Tippy from '@tippyjs/react';
-import 'tippy.js/dist/tippy.css'; // optional
-import { useEffect, useState } from "react";
-import Cookies from "js-cookie";
-import FontIcon from "../global/fonticon";
+import { useEffect, useState, useMemo } from "react";
+import { Button, Card, Grid, Image, Input, useInput } from '@nextui-org/react'
 
-export default function SearchForm({...props}) {
+const tokens  = require("../../tokens");
+const symbols = Object.keys(tokens);
 
-    const options = [];
+export default function SearchBar({ defaultValue, activeToken }) {
 
-    if (props.tokens) {
-        props.tokens.forEach((token, index) => {
-            let symbol   = token.symbol.toLowerCase();
-            let isActive = props.active && props.active.toLowerCase() == symbol.toLowerCase();
-            
-            options.push(
-                <option value={isActive ? "DEFAULT" : symbol.toLowerCase()} key={index}>
-                    {token.symbol}
-                </option>
-            );
-        });
-    }
+    const [active, setActive] = useState(activeToken ? activeToken : "sfm");
 
-    useEffect(() => {
-        if (!props.tokens) {
+    useEffect(async() => {
+
+    }, []);
+
+    const { value, reset, bindings } = useInput("");
+
+    const validateAddress = (value) => {
+        return value.match(/^(0x)([A-Fa-f0-9]{40})$/);
+    };
+
+    const submitForm = (e) => {
+        e.preventDefault();
+        let formData = new FormData(e.target);
+        let address  = formData.get("address");
+
+        if (!validateAddress(address)) {
             return;
         }
 
-        let form     = document.getElementById("searchForm");
-        let field    = document.getElementById("walletAddr");
-        let alert    = document.getElementById("walletAlert");
-
-        form.addEventListener("submit", (event) => {
-            event.preventDefault();
-
-            let data = new FormData(form);
-
-            let tokenid = data.get("tokenId");
-            let wallet  = data.get("wallet");
-            let parts   = wallet.split("x");
-
-            if (parts.length != 2 
-                || parts[0] != "0" 
-                || parts[1].length != "40") {
-                    alert.classList.remove("d-none");
-                return;
-            }
-
-            alert.classList.add("d-none");
-            field.disabled = true;
-
-            let found = false;
-
-            if (tokenid.toLowerCase() == "default") {
-                tokenid = props.active.toLowerCase();
-            }
-
-            for (let token of props.tokens) {
-                if (token.symbol.toLowerCase() == tokenid.toLowerCase()) {
-                    found = true;
-                    break;
-                }
-            }
-
-            if (!found) {
-                field.disabled = false;
-                return;
-            }
-            
-            window.location = "/"+tokenid+"/"+wallet;
-            field.disabled  = false;
-        });
-    }, [props.tokens]);
-
-    let theme = Cookies.get("theme");
-    
-    if (typeof theme == "undefined") {
-        theme = "light";
+        window.location = `/track/${active}/${address}`
     }
 
-    return(
-        <Form id="searchForm">
-            <div className="d-flex">
-                <div className="w-100">
-                    <div className="custom-group">
-                        <div className="walletAlert d-none" id="walletAlert">
-                            <FontIcon 
-                                icon="exclamation-triangle" 
-                                type="far" 
-                                className="text-danger"/>
-                        </div>
-                        <FormControl 
-                            name="wallet" 
-                            defaultValue={props.default ? props.default : ""}
-                            id="walletAddr" 
-                            placeholder="Type a wallet address"
-                            className="ps-4"/>
-                        <div className="gametype">
-                            <Form.Select defaultValue={'DEFAULT'}
-                                    id="tokenSelect"
-                                    name="tokenId"
-                                    size="sm" 
-                                    className="border-0 token-select shadow-none">
-                                {options}
-                            </Form.Select>
-                        </div>
-                        <div className="form-button">
-                            <button type="submit" 
-                                className={"btn shadow-0 text-light btn-primary btn-sm px-3"}>
-                                <FontIcon type="fal" icon="search"/>
-                            </button>
-                        </div>
-                    </div>
+    const helper = useMemo(() => {
+        if (!value) {
+            return {
+                text: "",
+                color: "",
+            };
+        }
 
-                    
-                </div>
+        const isValid = validateAddress(value);
 
-                
-            </div>
-        </Form>
+        return {
+            text: isValid ? "" : "Enter a valid wallet address",
+            color: isValid ? "success" : "error",
+        };
+    }, [value]);
+
+    return (
+        <Card css={{ overflow: 'visible' }}>
+            <Card.Body css={{ overflowY: 'visible', pt: 20 }}>
+                <form method="get" onSubmit={submitForm} className="address-form">
+                    <Input
+                        css={{ minWidth: 400, w: "100%" }}
+                        name="address"
+                        clearable
+                        bordered
+                        size="lg"
+                        initialValue={defaultValue}
+                        shadow={false}
+                        aria-label="wallet address"
+                        onClearClick={reset}
+                        status={helper.color}
+                        color={helper.color}
+                        animated={false}
+                        type="text"
+                        contentLeftStyling={false}
+                        contentRightStyling={false}
+                        contentRight={
+                            <Button auto light type="submit" color={helper.color}>
+                                <strong>Continue</strong>
+                            </Button>
+                        }
+                        contentLeft={
+                        <div className="custom-dropdown">
+                            <Image src={`/img/tokens/${active}.png`} width={20} height={20}/>
+                            <div className="dropdown-menu">
+                            {symbols.map((symbol, index) => {
+                                let token = tokens[symbol];
+
+                                return(
+                                    <a href="#" className="dropdown-item" key={index} onClick={() => setActive(symbol)}>
+                                        <Grid.Container alignItems="center">
+                                            <Grid css={{ mt: 5, mx: 10 }}>
+                                                <Image src={`/img/tokens/${symbol}.png`}
+                                                    width={20} 
+                                                    height={20} 
+                                                    containerCss={{ d: "inline-block" }} /> 
+                                            </Grid>
+                                            <Grid>{token.title}</Grid>
+                                        </Grid.Container>
+                                    </a>
+                                )
+                            })}
+                            </div>
+                        </div>
+                        }/>
+                </form>
+            </Card.Body>
+        </Card>
     )
 }

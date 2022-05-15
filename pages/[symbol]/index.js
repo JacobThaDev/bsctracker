@@ -1,89 +1,83 @@
 import { useEffect, useState } from "react";
-import { Container, Grid } from '@nextui-org/react'
-import PageHeader from '../components/global/header';
-import PriceCard from "../components/home/stats/price";
-import MarketCard from "../components/home/stats/market";
-import BurnCard from "../components/home/stats/burn";
-import LiquidityCard from "../components/home/stats/liquidity";
-import VolumeCard from "../components/home/stats/volume";
-import Token from "../helpers/Token";
-import Binance from "../helpers/Binance";
+import { Container, Grid } from "@nextui-org/react";
+
+import DexChart from "../../components/home/dex_chart";
+import BurnCard from "../../components/home/stats/burn";
+import LiquidityCard from "../../components/home/stats/liquidity";
+import MarketCard from "../../components/home/stats/market";
+import PoolsCard from "../../components/home/stats/pools";
+import PriceCard from "../../components/home/stats/price";
+import StrengthCard from "../../components/home/stats/strength";
+import VolumeCard from "../../components/home/stats/volume";
 import axios from "axios";
-import PoolsCard from "../components/home/stats/pools";
-import StrengthCard from "../components/home/stats/strength";
-import DexChart from "../components/home/dex_chart";
-import TokenList from "../components/tokenlist";
-import Layout from "../components/global/layout";
+import Token from "../../helpers/Token";
+import Binance from "../../helpers/Binance";
+import TokenList from "../../components/tokenlist";
+import Layout from "../../components/global/layout";
+import ErrorPage from 'next/error'
+import PageHeader from "../../components/global/header";
 
-const tokens = require("../tokens");
+const tokens = require("../../tokens");
 
-export default function Home() {
+export default function TokenStats({ activeSymbol, err }) {
 
-    // the default token to show
-    const symbol = "sfm";
-    
-    const [pairId, setPairId] = useState(0);
-    const [stats, setStats]   = useState(null);
+    if (err) {
+        return <ErrorPage statusCode={err.statusCode} />
+    }
+
+    const [stats, setStats] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(async() => {
         await update();
-    }, [pairId]);
+    }, [activeSymbol]);
 
     const update = async() => {
         setIsLoading(true);
         let bnb      = Binance.getBnbPrice();
         let base_url = "https://api.dexscreener.io/latest/dex/tokens/";
-        let request  = axios.get(base_url + tokens[symbol].contract).then(res => res.data);
-        let burned   = Token.getBurned(tokens[symbol]);
-        let supply   = Token.getSupply(tokens[symbol]);
-        let holders  = Token.getHolders(tokens[symbol]);
+        let request  = axios.get(base_url + tokens[activeSymbol].contract).then(res => res.data);
+        let burned   = Token.getBurned(tokens[activeSymbol]);
+        let supply   = Token.getSupply(tokens[activeSymbol]);
+        let holders  = Token.getHolders(tokens[activeSymbol]);
 
         let stats = await Promise.all([
             bnb, request, burned, supply, holders
         ]).then((values) => {
             return {
                 bnb_value: values[0],
-                stats:  values[1].pairs[pairId],
+                stats:  values[1].pairs[0],
                 burned: values[2],
                 supply: values[3],
                 holders: values[4].data.data.ethereum.transfers[0].receiver_count,
                 pairs: values[1].pairs
             };
         });
-        
+
+        console.log("called");
         setStats(stats);
         setIsLoading(false);
     }
 
-    const changePairId = (selection) => {
-        if (selection == pairId) {
-            return;
-        }
-        setPairId(selection);
-    }
+    return(
+        <Layout title={`${activeSymbol.toUpperCase()}`} >
+            <PageHeader title={tokens[activeSymbol].title} desc={tokens[activeSymbol].contract}/>
 
-    return (
-        <Layout title="Home">
-            <PageHeader title={tokens[symbol].title} desc={tokens[symbol].contract}/>
             <Container gap={2} css={{ mt:-35 }}>
-                
                 <Grid.Container gap={1}>
                     <Grid xs={12}>
                         <TokenList 
-                            active={symbol} 
-                            data={stats}
+                            reloadHandler={update}
+                            active={activeSymbol} 
                             isLoading={isLoading}
-                            reloadHandler={update} />
+                            data={stats}/>
                     </Grid>
-
                     <Grid xs={12} sm={4} md={4}>
                         <PoolsCard 
-                            symbol={symbol} 
-                            stats={stats} 
+                            symbol={activeSymbol} 
+                            stats={stats}
                             isLoading={isLoading}
-                            activeIndex={pairId}
-                            pairHandler={changePairId}/>
+                            activeIndex={0}/>
                     </Grid>
                     <Grid xs={12} sm={4} md={4}>
                         <PriceCard data={stats}/>
@@ -108,7 +102,21 @@ export default function Home() {
                     </Grid>
                 </Grid.Container>
             </Container>
-            
         </Layout>
     )
+
+}
+
+
+TokenStats.getInitialProps = ({ query }) => {
+    const symbol = query.symbol;
+    const tokens = require("../../tokens");
+    
+    if (!tokens[symbol]) {
+        return { 
+            err: { statusCode: 404 } }
+    }
+    return {
+        activeSymbol: symbol
+    }
 }

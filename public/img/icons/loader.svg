@@ -1,0 +1,26 @@
+<svg role="img" viewBox="0 0 40 20" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="6" cy="10" r="6">
+        <animate attributeName="opacity" 
+            dur="1s" 
+            values="0;1;0" 
+            repeatCount="indefinite" 
+            begin="0.1">
+        </animate>    
+    </circle>
+    <circle cx="20" cy="10" r="6">
+        <animate attributeName="opacity" 
+            dur="1s" 
+            values="0;1;0" 
+            repeatCount="indefinite" 
+            begin="0.2">
+        </animate>    
+    </circle>
+    <circle cx="34" cy="10" r="6">
+        <animate attributeName="opacity" 
+            dur="1s" 
+            values="0;1;0" 
+            repeatCount="indefinite" 
+            begin="0.3">
+        </animate>
+    </circle>
+</svg>

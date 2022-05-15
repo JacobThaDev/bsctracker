@@ -1,41 +1,14 @@
-
-@import url(elements/keyframes.css);
-@import url(elements/cards.css);
-@import url(elements/header.css);
-@import url(elements/navbar.css);
-@import url(elements/accordion.css);
-@import url(elements/utilities.css);
-@import url(elements/forms.css);
-@import url(elements/buttons.css);
-@import url(elements/lists.css);
-@import url(elements/footer.css);
-
 @font-face { font-family: "Nunito"; src: url('../fonts/Nunito.ttf'); }
 @font-face { font-family: "Montserrat"; src: url('../fonts/Montserrat.ttf'); }
 @font-face { font-family: "Raleway"; src: url('../fonts/Raleway.ttf'); }
 
-html,
 body {
-    background: var(--body-background);
-    color: var(--body-color);
-    padding: 0;
-    margin: 0;
-    overflow-x: hidden;
-    font-family: "Nunito", sans-serif;
-    -webkit-font-smoothing: antialiased;
+    font-family: "Nunito" !important;
 }
 
-* {
-  box-sizing: border-box;
+h3 {
+    letter-spacing: 1px;
 }
-
-a {
-    color: #2A74B2;
-    text-decoration: none;
+p {
+    font-family: "Nunito";
 }
-
-a:hover, a:focus, a:active {
-    color: #3394e2;
-    text-decoration: none;
-}
-

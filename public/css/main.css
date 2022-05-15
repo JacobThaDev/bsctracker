@@ -1,88 +1,128 @@
-.starfield {
+.header {
+    padding-top: 90px;
+    padding-bottom: 50px;
+    background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(35, 24, 82, 0.22) 10%, rgba(138, 114, 76, 0) 40%), -webkit-linear-gradient(top, rgba(57, 173, 219, 0.25) 0%, rgba(42, 60, 87, 0.4) 100%), -webkit-linear-gradient(-45deg, #670d10 0%, #092756 100%);
+}
+
+.tokenbtn {
+    position: relative;
+    overflow: hidden;
+    display: inline !important;
+}
+
+.tokenbtn.active:after {
     position: absolute;
+    content: ' ';
     width: 100%;
-    height: 100%;
-    top: 0;
+    height: 1px;
+    bottom: 0px;
     left: 0;
+    margin-left: -3px;
+    background-color: red;
 }
 
-.token-stats {
+.text-primary {
+    color: #6bc6e1 !important;
+}
+.text-success {
+    color: #62af66 !important;
+}
+.text-danger {
+    color: #f8716c !important;
+}
+.text-info {
+    color: #6bc6e1 !important;
+}
+.text-warning {
+    color: #f0ad4e !important;
+}
+
+.nav-container {
     position: absolute;
-    width: 100%;
-    bottom: 0;
-    background-color: rgba(0,0,0,0.2);
-}
-.nft-image {
-    width: 100%;
-    height: 300px;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
-}
-
-.discord-hero {
-    background-image: var(--hero-background);
-}
-
-.tokenIcon {
-    filter: 
-        grayscale(100%) 
-        brightness(1000%);
-}
-
-.tokenIcon:hover {
-    cursor: pointer;
-    transform: scale(120%);
-}
-
-.team-member .team-icon {
-    display: inline-block;
-    width:24px;
-    height:24px;
-    line-height: 24px;
-    font-size: 75%;
-    color: #fff;
-    text-align: center;
-}
-
-.kofi-btn {
-    background-image: linear-gradient(310deg,#1171ef,#11cdef);
-    animation: pulse-kofi 1.5s infinite;
-    -webkit-animation: pulse-kofi 1.5s infinite;
-    border: 0;
-}
-
-.cookies-notice {
-    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
-    z-index: 1031;
-    backdrop-filter: blur(5px);
-    background-color: rgba(0,0,0,0.4)
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
-.chart-info {
-    height: 250px;
-    max-width: 100%;
-    overflow-x: hidden;
+.nav-link {
+    color: white;
+    padding: 10px 0 10px 0;
+    margin-right: 10px;
 }
 
-.chart-img {
+.nav-link:hover {
+    border-bottom: solid 1px white;
+}
+
+@keyframes opacity-loader {
+    0%   { opacity: 0.4 }
+    100%  { opacity: 1 }
+}
+
+.text-loading {
+    background-color: rgba(0,0,0,0.1);
+    border-radius: 1rem;
+    animation: opacity-loader 1s alternate infinite;
+}
+
+.text-loading.sm {
+    width: 100px;
+    height: 15.5px;
+    margin-bottom: 2px;
+}
+
+.text-loading.md {
+    width: 150px;
+    height: 20px;
+}
+
+.text-loading.lg {
+    width: 200px;
+    height: 20px;
+}
+
+.address-form {
+    width: 350px !important;
+}
+
+.custom-dropdown {
+    
+    color: var(--nextui-colors-light) !important;
+    padding: 10px 10px 10px 20px;
+    border: none !important;
+    background-color: transparent;
+}
+
+.custom-dropdown .dropdown-menu {
     position: absolute;
-    width: 100%;
-    height: 400px;
-    bottom: 0;
-    background-repeat: no-repeat;
-    border-radius: 1rem 0 0 0;
-} 
-.bg-alt {
-    background-color: var(--bg-alt);
+    z-index: 1000;
+    visibility: hidden;
+    left: 0;
+    top: 40px;
+    background-color: var(--nextui-colors-backgroundContrast);
+    min-width: 300px;
+    border-radius: .6rem;
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.375);
+    overflow: hidden
 }
-.bg-gradient {
-    background: 
-        -webkit-radial-gradient(0% 100%, ellipse cover, rgba(35, 24, 82, 0.22) 10%, rgba(138, 114, 76, 0) 40%), 
-        -webkit-linear-gradient(top, rgba(57, 173, 219, 0.25) 0%, rgba(42, 60, 87, 0.4) 100%), 
-        -webkit-linear-gradient(-45deg, #670d10 0%, #092756 100%);
+
+.custom-dropdown:hover .dropdown-menu {
+    visibility: visible;
+}
+
+.custom-dropdown .dropdown-menu .dropdown-item {
+    display: block;
+    color: var(--nextui-colors-text) !important;
+}
+
+.custom-dropdown .dropdown-menu .dropdown-item:hover {
+    color: white !important;
+    background-color: var(--nextui-colors-primary)
+}
+
+a.token {
+    display: block;
+    text-align:center;
 }
