@@ -1,4 +1,4 @@
-import { Button, Card, Grid, Text } from "@nextui-org/react";
+import { Avatar, Button, Card, Grid, Text } from "@nextui-org/react";
 import StatsLoader from "./home/stats/loader";
 import TokenButton from "./home/token_button";
 import SvgIcon from "./icons/SvgIcon";
@@ -12,7 +12,7 @@ export default function TokenList({ active, data, reloadHandler, isLoading }) {
             <Card.Body>
                 <Grid.Container alignItems="center" justify="space-between">
                     <Grid>
-                        <Button.Group size="md">
+                        <Avatar.Group>
                             {Object.keys(tokens).map((s, index) => {
                                 return(
                                     <TokenButton 
@@ -21,12 +21,12 @@ export default function TokenList({ active, data, reloadHandler, isLoading }) {
                                         active={active}  /> 
                                 )
                             })}
-                        </Button.Group>
+                            </Avatar.Group>
                     </Grid>
                     <Grid>
                         <Button 
                             rounded 
-                            color="gradient"
+                            color="success"
                             disabled={isLoading}
                             auto 
                             size={"sm"} 

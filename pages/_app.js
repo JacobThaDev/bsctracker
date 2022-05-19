@@ -26,7 +26,7 @@ const lightTheme = createTheme({
             warningLight: "#563A0C",
             warningShadow: "#f0ad4e",
 
-            gradient: "linear-gradient(310deg,#5e72e4,#825ee4)"
+            //gradient: "linear-gradient(310deg,#5e72e4,#825ee4)"
         },
         shadows: {
             md: "0 .125rem .25rem rgba(0,0,0,.075)"
@@ -59,7 +59,7 @@ const darkTheme = createTheme({
             warningLight: "#563A0C",
             warningShadow: "#f0ad4e",
 
-            gradient: "linear-gradient(310deg,#5e72e4,#825ee4)"
+            //gradient: "linear-gradient(310deg,#5e72e4,#825ee4)"
         },
 
         shadows: {

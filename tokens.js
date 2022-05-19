@@ -61,5 +61,13 @@ module.exports = {
         burn_wallet: "0x0000000000000000000000000000000000000001",
         canBurn: true,
         primaryPool: "0xEB8d08030017BD1362a5414112CaCb094FA20cE1"
+    },
+    ezi: {
+        title: "EZillion",
+        contract: "0xCa0C1c12466A57b26850b05a0BA2Fb39F9763A0c",
+        decimals: 9,
+        burn_wallet: "0x000000000000000000000000000000000000dead",
+        canBurn: true,
+        primaryPool: "0x9cC45a53C0e7Ef1f07640569639ac4Cfe7117F75"
     }
 }

@@ -1,14 +1,17 @@
-import { Button, Grid, Image } from "@nextui-org/react";
+import { Avatar, Button, Grid, Image, User } from "@nextui-org/react";
 import Link from "next/link";
 
-export default function TokenButton({ symbol }) {
+export default function TokenButton({ symbol, active }) {
 
     return(
         <Link href={"/"+symbol}>
-            <Button light css={{ px: 5 }}>
-                <Image src={`/img/tokens/${symbol.toLowerCase()}.png`}
-                    width={28} height={28}/>
-            </Button>
+            <Avatar src={`/img/tokens/${symbol.toLowerCase()}.png`}
+                size="md"
+                bordered 
+                stacked
+                icon
+                color={active == symbol ? "gradient" : ""} 
+                borderWeight={"bold"}/>
         </Link>
     )
 }

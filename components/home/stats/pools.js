@@ -21,19 +21,23 @@ export default function PoolsCard({ symbol, stats, activeIndex, isLoading }) {
     const changeSelected = (index) => {
         closeHandler();
     }
+
+    if (!stats.stats) {
+        return null;
+    }
     
     return (<>
         <Card>
             <Card.Body css={{ pt: 18 }}>
                 <Grid.Container justify="space-between" alignItems="center">
                     <Grid>
-                        <Text size={12}>{stats.stats.dexId}</Text>
+                        <Text size={12}>{stats && stats.stats.dexId}</Text>
                         <Text size={18} b>{stats.stats.baseToken.symbol+" / "+stats.stats.quoteToken.symbol}</Text>
                     </Grid>
                     <Grid>
                         <Button 
                             size="sm" 
-                            color="gradient"
+                            color="primary"
                             rounded 
                             disabled={isLoading}
                             auto 

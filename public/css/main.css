@@ -132,3 +132,7 @@ a.token {
         display: none;
     }
 }
+
+.full-height {
+    height: 100vh;
+}
