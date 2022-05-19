@@ -17,11 +17,11 @@ module.exports = {
     },
     enh: {
         title: "Enhance",
-        contract: "0xA001862BA0866Ee3e3a2613fAb5954861452B9Bf",
+        contract: "0xCb6a0c342e0968b3D4AC0C90b8da4edBA74f0385",
         decimals: 18,
         burn_wallet: "0x000000000000000000000000000000000000dead",
         canBurn: true,
-        primaryPool: "0x6E70B2966919d6f4A8B0801cE1379895b2ae9b83"
+        primaryPool: "0x7a06e45080C2DFC142077a747a35f99c5647493A"
     },
     affinity: {
         title: "Affinity",

@@ -22,7 +22,8 @@ export default function TokenPair({ activeSymbol, pairId }) {
 
     const [stats, setStats]   = useState(null);
     const [isLoading, setIsLoading] = useState(false);
-    
+    const [hasData, setHasData] = useState(true);
+
     useEffect(async() => {
         await update();
     }, [activeSymbol, pairId]);
@@ -46,10 +47,14 @@ export default function TokenPair({ activeSymbol, pairId }) {
         let stats = await Promise.all([
             bnb, request, burned, supply, holders
         ]).then((values) => {
+            if (values[1].pairs.length == 0) {
+                setHasData(false);
+            }
+
             let stats = {};
 
             for (let i = 0; i < values[1].pairs.length; i++) {
-                if (values[1].pairs[i].pairAddress == pairId) {
+                if (values[1].pairs[i].pairAddress.toLowerCase() == pairId.toLowerCase()) {
                     stats = values[1].pairs[i];
                     break;
                 }
@@ -80,41 +85,67 @@ export default function TokenPair({ activeSymbol, pairId }) {
                 <Grid.Container gap={1}>
                     <Grid xs={12}>
                         <TokenList 
-                            active={activeSymbol} 
-                            data={stats} 
                             reloadHandler={update}
-                            isLoading={isLoading}/>
+                            active={activeSymbol} 
+                            isLoading={isLoading}
+                            data={stats}/>
                     </Grid>
 
-                    <Grid xs={12} sm={4} md={4}>
-                        <PoolsCard 
-                            symbol={activeSymbol} 
-                            stats={stats} 
-                            activeIndex={pairId}
-                            pairHandler={changePairId}
-                            isLoading={isLoading}/>
-                    </Grid>
-                    <Grid xs={12} sm={4} md={4}>
-                        <PriceCard data={stats}/>
-                    </Grid>
-                    <Grid xs={12} sm={4} md={4}>
-                        <MarketCard data={stats}/>
-                    </Grid>
-                    <Grid xs={12} sm={4} md={4}>
-                        <BurnCard data={stats}/>
-                    </Grid>
-                    <Grid xs={12} sm={4} md={4}>
-                        <LiquidityCard data={stats}/>
-                    </Grid>
-                    <Grid xs={12} sm={4}>
-                        <VolumeCard data={stats}/>
-                    </Grid>
-                    <Grid xs={12}>
-                        <StrengthCard data={stats}/>
-                    </Grid>
-                    <Grid xs={12}>
-                        <DexChart data={stats}/>
-                    </Grid>
+                     { hasData ? 
+                    <>
+                        <Grid xs={12} sm={4} md={4}>
+                            <PoolsCard 
+                                pairId={pairId}
+                                stats={stats}
+                                isLoading={isLoading}
+                                activeIndex={0}/>
+                        </Grid>
+                        <Grid xs={12} sm={4} md={4}>
+                            <PriceCard data={stats}/>
+                        </Grid>
+                        <Grid xs={12} sm={4} md={4}>
+                            <MarketCard data={stats}/>
+                        </Grid>
+                        <Grid xs={12} sm={4} md={4}>
+                            <BurnCard data={stats}/>
+                        </Grid>
+                        <Grid xs={12} sm={4} md={4}>
+                            <LiquidityCard data={stats}/>
+                        </Grid>
+                        <Grid xs={12} sm={4}>
+                            <VolumeCard data={stats}/>
+                        </Grid>
+                        <Grid xs={12}>
+                            <StrengthCard data={stats}/>
+                        </Grid>
+                        <Grid xs={12}>
+                            <DexChart data={stats}/>
+                        </Grid>
+                    </> : 
+                    <>
+                        <Grid xs={12}>
+                            <Card>
+                                <Card.Body>
+                                    <Grid.Container alignItems="center">
+                                        <Grid css={{ mr: 10 }}>
+                                            <Text color="error" css={{ lh: 1.2 }}>
+                                                <SvgIcon icon="alert-circle" size={48} stroke={1.5} />
+                                            </Text>
+                                        </Grid>
+                                        <Grid>
+                                            <Text color="error" css={{ lh: 1.2 }}>
+                                                There is no data for this token. This could imply that this token has no trading volume.
+                                                We advise you do your own research.<br/>Sorry for the inconvenience!
+                                            </Text>
+                                        </Grid>
+                                    </Grid.Container>
+                                    
+                                    
+                                </Card.Body>
+                            </Card>
+                        </Grid>
+                    </>
+                }
                 </Grid.Container>
             </Container>
         </Layout>

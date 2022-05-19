@@ -5,7 +5,7 @@ import LoadingCard from "../../loading";
 
 const tokens = require("../../../tokens");
 
-export default function PoolsCard({ symbol, stats, activeIndex, isLoading }) {
+export default function PoolsCard({ pairId, stats, isLoading }) {
 
     if (!stats) {
         return <LoadingCard/>;
@@ -95,7 +95,7 @@ export default function PoolsCard({ symbol, stats, activeIndex, isLoading }) {
                                         <Button auto
                                             rounded
                                             size="sm"
-                                            disabled={activeIndex == item.pairAddress || activeIndex == index}>
+                                            disabled={!pairId && index == 0 || pairId == item.pairAddress}>
                                             Select
                                         </Button>
                                     </Link>

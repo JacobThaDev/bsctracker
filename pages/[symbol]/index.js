@@ -64,6 +64,8 @@ export default function TokenStats({ activeSymbol, err }) {
         setIsLoading(false);
     }
 
+    console.log(stats)
+
     return(
         <Layout title={`${activeSymbol.toUpperCase()}`} >
             <PageHeader title={tokens[activeSymbol].title} desc={tokens[activeSymbol].contract}/>
@@ -77,11 +79,10 @@ export default function TokenStats({ activeSymbol, err }) {
                             isLoading={isLoading}
                             data={stats}/>
                     </Grid>
-                    { stats && stats.stats ? 
+                    { hasData ? 
                     <>
                         <Grid xs={12} sm={4} md={4}>
                             <PoolsCard 
-                                symbol={activeSymbol} 
                                 stats={stats}
                                 isLoading={isLoading}
                                 activeIndex={0}/>
