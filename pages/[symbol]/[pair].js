@@ -38,7 +38,7 @@ export default function TokenPair({ activeSymbol, pairId }) {
     const update = async() => {
         setIsLoading(true);
         let bnb      = Binance.getBnbPrice();
-        let base_url = "https://api.dexscreener.io/latest/dex/tokens/";
+        let base_url = "https://api.dexscreener.com/latest/dex/tokens/";
         let request  = axios.get(base_url + tokens[activeSymbol].contract).then(res => res.data);
         let burned   = Token.getBurned(tokens[activeSymbol]);
         let supply   = Token.getSupply(tokens[activeSymbol]);

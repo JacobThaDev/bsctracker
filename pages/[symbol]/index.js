@@ -38,7 +38,7 @@ export default function TokenStats({ activeSymbol, err }) {
         setIsLoading(true);
         
         let bnb      = Binance.getBnbPrice();
-        let base_url = "https://api.dexscreener.io/latest/dex/tokens/";
+        let base_url = "https://api.dexscreener.com/latest/dex/tokens/";
         let request  = axios.get(base_url + tokens[activeSymbol].contract).then(res => res.data);
         let burned   = Token.getBurned(tokens[activeSymbol]);
         let supply   = Token.getSupply(tokens[activeSymbol]);
@@ -63,9 +63,7 @@ export default function TokenStats({ activeSymbol, err }) {
         setStats(stats);
         setIsLoading(false);
     }
-
-    console.log(stats)
-
+    
     return(
         <Layout title={`${activeSymbol.toUpperCase()}`} >
             <PageHeader title={tokens[activeSymbol].title} desc={tokens[activeSymbol].contract}/>

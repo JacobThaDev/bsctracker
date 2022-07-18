@@ -181,11 +181,12 @@ class Functions {
     }
 
     static getDateStr = (timestamp) => {
-        let date  = new Date(timestamp);
+        let date = new Date(timestamp);
     
         let months = [
             'January', 'February', 'March', 'April', 'May', 'June',
-            'Julu', 'August', 'September', 'October', 'November', 'December'
+            'July', 'August', 'September', 'October', 'November', 
+            'December'
         ];
         
         let month  = date.getMonth();
