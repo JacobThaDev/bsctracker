@@ -29,7 +29,7 @@ export default function Footer() {
                                     </Link>
                                 </Grid>
                                 <Grid>
-                                    <Link href="https://twitter.com/OG_KingFox" target="_blank" rel="nofollow noopener noreferrer">
+                                    <Link href="https://discord.com/invite/5BejZeDxWx" target="_blank" rel="nofollow noopener noreferrer">
                                         <Button auto light css={{ px: 10 }} color="primary">
                                             <BrandIcon 
                                                 icon="discord" 
