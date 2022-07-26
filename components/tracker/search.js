@@ -1,11 +1,13 @@
 import { useEffect, useState, useMemo } from "react";
-import { Button, Card, Grid, Image, Input, useInput } from '@nextui-org/react'
+import { Button, Card, Dropdown, Grid, Image, Input, useInput } from '@nextui-org/react'
+import { useRouter } from "next/router";
 
 const tokens  = require("../../tokens");
 const symbols = Object.keys(tokens);
 
 export default function SearchBar({ defaultValue, activeToken }) {
 
+    const router = useRouter();
     const [active, setActive] = useState(activeToken ? activeToken : "sfm");
 
     useEffect(async() => {
@@ -46,6 +48,14 @@ export default function SearchBar({ defaultValue, activeToken }) {
         };
     }, [value]);
 
+    const changeToken = (key) => {
+        setActive(key.currentKey);
+
+        if (defaultValue) {
+            window.location = `/track/${active}/${defaultValue}`;
+        }
+    }
+
     return (
         <Card css={{ overflow: 'visible' }}>
             <Card.Body css={{ overflowY: 'visible', pt: 20 }}>
@@ -71,28 +81,34 @@ export default function SearchBar({ defaultValue, activeToken }) {
                             </Button>
                         }
                         contentLeft={
-                        <div className="custom-dropdown">
-                            <Image src={`/img/tokens/${active}.png`} width={20} height={20}/>
-                            <div className="dropdown-menu">
-                            {symbols.map((symbol, index) => {
-                                let token = tokens[symbol];
+                            <Dropdown>
+                                <Dropdown.Button light>
+                                    <Image src={`/img/tokens/${active}.png`} width={20} height={20}/>
+                                </Dropdown.Button>
+                                <Dropdown.Menu 
+                                    selectionMode="single"
+                                    aria-label="Static Actions" 
+                                    onSelectionChange={(key) => changeToken(key)}>
+                                {symbols.map((symbol, index) => {
+                                    let token = tokens[symbol];
 
-                                return(
-                                    <a href="#" className="dropdown-item" key={index} onClick={() => setActive(symbol)}>
-                                        <Grid.Container alignItems="center">
-                                            <Grid css={{ mt: 5, mx: 10 }}>
-                                                <Image src={`/img/tokens/${symbol}.png`}
-                                                    width={20} 
-                                                    height={20} 
-                                                    containerCss={{ d: "inline-block" }} /> 
-                                            </Grid>
-                                            <Grid>{token.title}</Grid>
-                                        </Grid.Container>
-                                    </a>
-                                )
-                            })}
-                            </div>
-                        </div>
+                                    return (
+                                        <Dropdown.Item key={symbol}>
+                                            <Grid.Container alignItems="center">
+                                                <Grid css={{ mt: 5, mx: 10 }}>
+                                                    <Image src={`/img/tokens/${symbol}.png`}
+                                                        width={20} 
+                                                        height={20} 
+                                                        containerCss={{ d: "inline-block" }} /> 
+                                                </Grid>
+                                                <Grid>{token.title}</Grid>
+                                            </Grid.Container>
+                                        </Dropdown.Item>
+                                    )
+
+                                })}
+                                </Dropdown.Menu>
+                            </Dropdown>
                         }/>
                 </form>
             </Card.Body>

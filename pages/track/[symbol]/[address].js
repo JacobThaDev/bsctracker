@@ -70,8 +70,9 @@ export default function TokenTracker({ symbol, address }) {
     return (
         <Layout title="Tracker">
             <PageHeader 
-            title={"Wallet Tracker"} 
-            desc={symbol.toUpperCase()+" | "+Functions.shortenAddress(address)}/>
+                title={"Wallet Tracker"} 
+                desc={symbol.toUpperCase()+" | "+Functions.shortenAddress(address)}/>
+            
             <Container gap={2} css={{ mt:-35 }}>
                 
                 <Grid.Container gap={1}>
@@ -85,7 +86,7 @@ export default function TokenTracker({ symbol, address }) {
                             <Card.Header css={{ pl: 20 }}>
                                 Balance
                             </Card.Header>
-                            <Card.Body css={{ pt: 0 }}>
+                            <Card.Body css={{ px: 20, pt: 0 }}>
                                 <Text size={20}>{Functions.formatNumber(balance.toFixed(12), 4)}</Text>
                             </Card.Body>
                         </Card>
@@ -96,7 +97,7 @@ export default function TokenTracker({ symbol, address }) {
                             <Card.Header css={{ pl: 20 }}>
                                 Value
                             </Card.Header>
-                            <Card.Body css={{ pt: 0 }}>
+                            <Card.Body css={{ px: 20, pt: 0 }}>
                                 <Text size={20}>
                                     ${Functions.formatNumber((balance * price).toFixed(2), 2)}
                                 </Text>
@@ -109,7 +110,7 @@ export default function TokenTracker({ symbol, address }) {
                             <Card.Header css={{ pl: 20 }}>
                                 Token Price
                             </Card.Header>
-                            <Card.Body css={{ pt: 0 }}>
+                            <Card.Body css={{ px: 20, pt: 0 }}>
                                 <Text size={20}>
                                     ${Functions.formatNumber(price.toFixed(12), 12)}
                                 </Text>
@@ -122,7 +123,7 @@ export default function TokenTracker({ symbol, address }) {
                             <Card.Header css={{ pl: 20 }}>
                                 BNB Price
                             </Card.Header>
-                            <Card.Body css={{ pt: 0 }}>
+                            <Card.Body css={{ px: 20, pt: 0 }}>
                                 <Text size={20}>
                                     ${Functions.formatNumber(bnb.toFixed(2))}
                                 </Text>
@@ -135,7 +136,7 @@ export default function TokenTracker({ symbol, address }) {
                             <Card.Header css={{ pl: 20 }}>
                                 Token Liquidity
                             </Card.Header>
-                            <Card.Body css={{ pt: 0 }}>
+                            <Card.Body css={{ px: 20, pt: 0 }}>
                                 <Text size={20}>
                                     ${Functions.formatNumber(liquidity.toFixed(2))}
                                 </Text>

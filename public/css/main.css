@@ -97,7 +97,7 @@
 
 .custom-dropdown .dropdown-menu {
     position: absolute;
-    z-index: 1050;
+    z-index: 1050 !important;
     visibility: hidden;
     left: 0;
     top: 40px;
@@ -108,6 +108,9 @@
     overflow: hidden
 }
 
+.dropdown-menu {
+    z-index: 1050 !important;
+}
 .custom-dropdown:hover .dropdown-menu {
     visibility: visible;
 }
