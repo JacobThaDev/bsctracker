@@ -47,12 +47,12 @@ module.exports = {
         primaryPool: "0xAEf0a177c8c329CBC8508292Bb7E06c00786BBfC"
     },
     cryft: {
-        title: "Cryft",
-        contract: "0xD2267477A35DC048B41AF9c96b0405E0717CA1Bf",
+        title: "Cryft V2",
+        contract: "0x750db8B9c66d7fcE0a8a0e859c6D46b28Dc4972C",
         decimals: 9,
         burn_wallet: "0x0000000000000000000000000000000000000001",
         canBurn: true,
-        primaryPool: "0xD2267477A35DC048B41AF9c96b0405E0717CA1Bf"
+        primaryPool: "0x404401587474bf654e6F2343656873C1A28dA2C9"
     },
     luna: {
         title: "Luna",
