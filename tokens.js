@@ -65,9 +65,9 @@ module.exports = {
     bbtf: {
         title: "BlockBusters",
         contract: "0xe7057B10E2B59F46D151588d9C8694B4b8328F44",
-        decimals: 9,
+        decimals: 18,
         burn_wallet: "0x000000000000000000000000000000000000dead",
-        canBurn: true,
+        canBurn: false,
         primaryPool: "0x6a5cfce57EBD5622BbD0c4f8199593230CB15CE9"
     }
 }
