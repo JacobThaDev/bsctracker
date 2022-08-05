@@ -15,14 +15,6 @@ module.exports = {
         canBurn: true,
         primaryPool: "0xdA0f97bB99bb6B796FBF5646E1F0EE2d0e7FC5f8"
     },
-    enh: {
-        title: "Enhance",
-        contract: "0xCb6a0c342e0968b3D4AC0C90b8da4edBA74f0385",
-        decimals: 18,
-        burn_wallet: "0x000000000000000000000000000000000000dead",
-        canBurn: true,
-        primaryPool: "0x7a06e45080C2DFC142077a747a35f99c5647493A"
-    },
     affinity: {
         title: "Affinity",
         contract: "0x0cAE6c43fe2f43757a767Df90cf5054280110F3e",
@@ -69,5 +61,13 @@ module.exports = {
         burn_wallet: "0x000000000000000000000000000000000000dead",
         canBurn: true,
         primaryPool: "0x9cC45a53C0e7Ef1f07640569639ac4Cfe7117F75"
+    },
+    ezi: {
+        title: "BlockBusters",
+        contract: "0xe7057B10E2B59F46D151588d9C8694B4b8328F44",
+        decimals: 9,
+        burn_wallet: "0x000000000000000000000000000000000000dead",
+        canBurn: true,
+        primaryPool: "0x6a5cfce57EBD5622BbD0c4f8199593230CB15CE9"
     }
 }
