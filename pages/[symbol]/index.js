@@ -31,7 +31,6 @@ export default function TokenStats({ activeSymbol, err }) {
     const [hasData, setHasData] = useState(true);
 
     useEffect(async() => {
-        setHasData(true);
         await update();
     }, [activeSymbol]);
 
@@ -61,6 +60,9 @@ export default function TokenStats({ activeSymbol, err }) {
             };
         });
 
+        if (stats.pairs && stats.pairs.length > 0) {
+            setHasData(true);
+        }
         setStats(stats);
         setIsLoading(false);
     }
