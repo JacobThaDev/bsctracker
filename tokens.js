@@ -62,6 +62,14 @@ module.exports = {
         canBurn: true,
         primaryPool: "0x9cC45a53C0e7Ef1f07640569639ac4Cfe7117F75"
     },
+    burn: {
+        title: "BitBurn",
+        contract: "0x5A5844CAb96A7b8B257Fc606Aa6119c5cBc6D4c4",
+        decimals: 9,
+        burn_wallet: "0x000000000000000000000000000000000000dead",
+        canBurn: false,
+        primaryPool: "0x5C2F3E0A5432214AB47F4D5D2d778038436F528b"
+    },
     bbtf: {
         title: "BlockBusters",
         contract: "0xe7057B10E2B59F46D151588d9C8694B4b8328F44",
