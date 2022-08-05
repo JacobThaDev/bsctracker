@@ -31,6 +31,7 @@ export default function TokenStats({ activeSymbol, err }) {
     const [hasData, setHasData] = useState(true);
 
     useEffect(async() => {
+        setHasData(true);
         await update();
     }, [activeSymbol]);
 
