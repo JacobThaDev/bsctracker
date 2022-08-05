@@ -60,11 +60,13 @@ export default function TokenStats({ activeSymbol, err }) {
             };
         });
 
+        
+        setStats(stats);
+        setIsLoading(false);
+        
         if (stats.pairs && stats.pairs.length > 0) {
             setHasData(true);
         }
-        setStats(stats);
-        setIsLoading(false);
     }
     
     return(
