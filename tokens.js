@@ -62,7 +62,7 @@ module.exports = {
         canBurn: true,
         primaryPool: "0x9cC45a53C0e7Ef1f07640569639ac4Cfe7117F75"
     },
-    bbft: {
+    bbtf: {
         title: "BlockBusters",
         contract: "0xe7057B10E2B59F46D151588d9C8694B4b8328F44",
         decimals: 9,
