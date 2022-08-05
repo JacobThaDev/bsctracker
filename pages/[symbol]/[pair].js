@@ -25,6 +25,7 @@ export default function TokenPair({ activeSymbol, pairId }) {
     const [hasData, setHasData] = useState(true);
 
     useEffect(async() => {
+        setHasData(true);
         await update();
     }, [activeSymbol, pairId]);
 
@@ -37,8 +38,7 @@ export default function TokenPair({ activeSymbol, pairId }) {
 
     const update = async() => {
         setIsLoading(true);
-        setHasData(true);
-        
+
         let bnb      = Binance.getBnbPrice();
         let base_url = "https://api.dexscreener.com/latest/dex/tokens/";
         let request  = axios.get(base_url + tokens[activeSymbol].contract).then(res => res.data);
