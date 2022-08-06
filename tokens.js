@@ -93,5 +93,13 @@ module.exports = {
         burn_wallet: "0x000000000000000000000000000000000000dead",
         canBurn: false,
         primaryPool: "0x8ef3eFd5C1ce5Fd8929145E64C4f953E33dD3837"
+    },
+    radio: {
+        title: "Radioshack",
+        contract: "0x30807D3b851A31d62415B8bb7Af7dCa59390434a",
+        decimals: 18,
+        burn_wallet: "0x000000000000000000000000000000000000dead",
+        canBurn: true,
+        primaryPool: "0xCD3453dcB9b791096Fd6db139FfE88f41c3Be505"
     }
 }
