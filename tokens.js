@@ -85,5 +85,13 @@ module.exports = {
         burn_wallet: "0x000000000000000000000000000000000000dead",
         canBurn: true,
         primaryPool: "0x65392f798E30f2082D8d37415ec0336BB8832Ac9"
+    },
+    lcp: {
+        title: "Live Crypto Party",
+        contract: "0x7150363247D59F1539C5D2Af5E9b743Be07e2F8B",
+        decimals: 9,
+        burn_wallet: "0x000000000000000000000000000000000000dead",
+        canBurn: false,
+        primaryPool: "0x8ef3eFd5C1ce5Fd8929145E64C4f953E33dD3837"
     }
 }
