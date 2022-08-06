@@ -77,5 +77,13 @@ module.exports = {
         burn_wallet: "0x000000000000000000000000000000000000dead",
         canBurn: false,
         primaryPool: "0x6a5cfce57EBD5622BbD0c4f8199593230CB15CE9"
+    },
+    reflex: {
+        title: "Reflex Finance v2",
+        contract: "0x2f499c6DA2C84063BB7e0CB1C478687210cDB615",
+        decimals: 18,
+        burn_wallet: "0x000000000000000000000000000000000000dead",
+        canBurn: true,
+        primaryPool: "0x65392f798E30f2082D8d37415ec0336BB8832Ac9"
     }
 }
