@@ -1,0 +1,61 @@
+.highlight {
+    color: var(--nextui-colors-primary) !important;
+    font-weight: bold;
+}
+
+.py-1{
+    padding-top:.25rem !important;
+    padding-bottom:.25rem !important;
+}
+
+.py-2 {
+    padding-top:.5rem!important;
+    padding-bottom:.5rem !important;
+}
+
+.py-3 {
+    padding-top:1rem!important;
+    padding-bottom:1rem !important;
+}
+
+.py-4 {
+    padding-top:1.5rem!important;
+    padding-bottom:1.5rem !important;
+}
+
+.py-5 {
+    padding-top: 3rem!important;
+    padding-bottom:3rem !important;
+}
+
+
+.gradient-bg {
+    background-repeat: no-repeat;
+    background-image: 
+        radial-gradient(circle 800px at 700px 200px, 
+            hsl(283 30.0% 11.8%), 
+            #FDFCFD00
+        ), 
+        radial-gradient(circle 600px at calc(100% - 300px) 300px, 
+            hsl(174 84.8% 10.3%), 
+            #FDFCFD00
+        ), 
+        radial-gradient(circle 800px at right center, 
+            hsl(201 74.6% 12.2%), 
+            #FDFCFD00
+        ), radial-gradient(circle 800px at right bottom, 
+            hsl(205 45.0% 8.6%), 
+            #FDFCFD00
+        ), 
+        radial-gradient(circle 800px at calc(50% - 600px) calc(100% - 100px), 
+            hsl(319 41.0% 16.0%), 
+            hsl(318 25.0% 9.6%), 
+            #FDFCFD00
+        );
+}
+
+.sticky {
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 10;
+}

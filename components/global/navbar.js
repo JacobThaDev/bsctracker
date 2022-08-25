@@ -1,57 +1,120 @@
-import { useTheme as useNextTheme } from 'next-themes'
-import { Button, Container, Grid, useTheme, Text, Modal } from "@nextui-org/react";
-import SvgIcon from '../icons/SvgIcon';
-import Link from "next/link";
-import KofiButton from './kofibutton';
+import {Text, Link, Button, Grid, Input, Modal} from "@nextui-org/react";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import Functions from "../../helpers/Functions";
+import SvgIcon from "./SvgIcon";
+import toast from 'react-hot-toast';
 
 export default function Navbar() {
 
-    const { setTheme } = useNextTheme();
-    const { isDark, type } = useTheme();
+    const [visible, setVisible] = useState(false);
 
-    const changeTheme = (e) => {
-        setTheme(type == "light" ? 'dark' : 'light')
+    const handler = (e) => {
+        e.preventDefault();
+        setVisible(true);
+    };
+
+    const closeHandler = () => {
+        setVisible(false);
+    };
+
+    const [ open, setOpen ] = useState(false);
+    const router = useRouter();
+
+    const submit = (e) => {
+        e.preventDefault();
+
+        let data    = new FormData(e.target);
+        let address = data.get("address");
+
+        if (!Functions.validateAddress(address)) {
+            toast.error("Invalid wallet address");
+        } else {
+            router.push("/track/"+address);
+        }
     }
 
-    return(
-        <div className="nav-container">
-            <Container>
-                <Grid.Container gap={0} justify="space-between" alignItems='center'>
-                    <Grid>
-                        <Grid.Container gap={1}>
-                            <Grid>
-                                <a className="nav-link" href="/">
-                                    Home
-                                </a>
-                            </Grid>
-                            <Grid>
-                                <Link href="/track">
-                                    <a className="nav-link">
-                                        Wallet Tracker
-                                    </a>
-                                </Link>
-                            </Grid>
-                        </Grid.Container>
-                    </Grid>
-                    <Grid>
-                        <Grid.Container alignItems="center" gap={1}>
-                            <Grid>
-                                <KofiButton/>
-                            </Grid>
-                            <Grid>
-                                <Button auto light onClick={changeTheme} css={{ px: 5 }}>
-                                    <Text color="white" css={{ pt: 10 }}>
-                                        { type == "dark" 
-                                            ? <SvgIcon icon="sun" size={18} stroke={2} />
-                                            : <SvgIcon icon="moon" size={18} stroke={2}/>
-                                        }
+    return (
+        <>
+            <div className="custom-nav" id="customnav">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-12">
+                            <div className={`d-flex align-items-center custom-navbar flex-column flex-lg-row ${open && "open"}`}>
+                                <Button
+                                    className="d-lg-none"
+                                    auto
+                                    light
+                                    css={{ p: 5 }}
+                                    onClick={() => setOpen(false)}>
+                                    <Text size={14} color="error">
+                                        <SvgIcon icon="x-circle" size={30}/>
                                     </Text>
                                 </Button>
-                            </Grid>
-                        </Grid.Container>
-                    </Grid>
-                </Grid.Container>
-            </Container>
-        </div>
+
+                                <Link href="/" className="navbrand">
+                                    <Text size={20}>
+                                        <span className="highlight">Bsc</span>Tracker
+                                    </Text>
+                                </Link>
+
+                                <div className="form-container">
+                                    <form onSubmit={submit} style={{ width: "100%" }}>
+                                        <Input
+                                            bordered
+                                            aria-label="Enter a wallet address"
+                                            rounded
+                                            name="address"
+                                            css={{ width: "100%" }}
+                                            className="address-input"
+                                            contentRightStyling={false}
+                                            contentRight={
+                                                <Button size="sm" css={{ mr: 4 }}
+                                                    type="submit"
+                                                    auto rounded>
+                                                    <SvgIcon icon="search" size={16} stroke={2}/><span className="d-none d-lg-inline-block">&nbsp;Lookup</span>
+                                                </Button>
+                                            }
+                                            placeholder="Address"/>
+                                    </form>
+                                </div>
+
+                                <div className="d-flex flex-column flex-lg-row navlinks">
+                                    <div className="flex-fill">
+                                        <Link href="/" className="custom-link" onClick={(e) => handler(e)}>
+                                            Buy me a Coffee
+                                        </Link>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="d-flex d-lg-none justify-content-between align-items-center mobile-menu">
+                                <Link href="" className="navbrand">
+                                    <Text size={20}>
+                                        <span>Bsc</span>Tracker
+                                    </Text>
+                                </Link>
+                                <div>
+                                    <Button
+                                        auto
+                                        light
+                                        css={{ p: 5 }}
+                                        onClick={() => setOpen(!open)}>
+                                        <SvgIcon icon="menu" size={30} stroke={2}/>
+                                    </Button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <Modal noPadding aria-labelledby="kofi-modal" open={visible} onClose={closeHandler}>
+                <iframe
+                    id='kofiframe'
+                    style={{ border: 0, overflowY: "hidden" }}
+                    src="https://ko-fi.com/ogkingfox/?hidefeed=true&widget=true&embed=true&preview=true" height='630' title='ogkingfox'></iframe>
+            </Modal>
+        </>
     )
 }

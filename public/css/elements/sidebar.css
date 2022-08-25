@@ -1,0 +1,13 @@
+.sidebar {
+    padding: 1rem;
+    width: 230px;
+    height: 100vh;
+    background-color: var(--nextui-colors-backgroundContrast);
+    box-shadow: var(--nextui-dropShadows-md);
+}
+
+.sidebar-link {
+    width: 100%;
+    padding: .5rem;
+    border-radius: .7rem;
+}

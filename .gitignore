@@ -5,21 +5,12 @@
 
 # next.js
 /.next/
+/.idea/
 /out/
 
 # misc
 .DS_Store
 *.pem
 
-# local env files
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
 # vercel
 .vercel
-
-config.js
-package-lock.json
-yarn.lock

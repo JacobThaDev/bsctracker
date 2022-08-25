@@ -1,0 +1,9 @@
+.light-theme {
+    --nextui-colors-background: #F1f1f1;
+    --nextui-colors-backgroundContrast: #FFF;
+
+    --nextui-colors-text: #5e6e82;
+
+    --nextui-dropShadows-md: drop-shadow(0 .125rem .25rem rgba(0,0,0,.075));
+    --nextui-dropShadows-lg: drop-shadow(0 .125rem .25rem rgba(0,0,0,.075));
+}
