@@ -1,17 +1,15 @@
-import {Card, Text} from "@nextui-org/react";
+import { Card, Text, Grid, Container, Row, Col, Loading, Image, Button } from "@nextui-org/react";
 import {useEffect, useState} from "react";
+import Link from "next/link";
 
 import Footer from "../../../components/global/Footer";
-import Navbar from "../../../components/global/Navbar";
-import GridCol from "../../../components/grid/Column";
-import GridContainer from "../../../components/grid/Container";
-import GridRow from "../../../components/grid/Row";
+import PageNav from "../../../components/global/PageNav";
 import Layout from "../../../components/Layout";
 import Wallet from "../../../helpers/Wallet";
 import Token from "../../../helpers/Token";
-import TokenInfo from "../../../components/tracker/token/info";
 import Rewards from "../../../components/tracker/token/rewards";
 import TxnList from "../../../components/tracker/token/txnlist";
+import Functions from "../../../helpers/Functions";
 
 const tokens = require("../../../tokens");
 
@@ -31,8 +29,8 @@ export default function PortfolioToken({ token, address }) {
             let wallet     = new Wallet(token.contract, address);
             let tokenData  = new Token(token.contract, token.primaryPool);
 
-            let price   = tokenData.getPrice();
-            let balance = wallet.getBalance();
+            let price      = tokenData.getPrice();
+            let balance    = wallet.getBalance();
 
             Promise.all([ price, balance ]).then(async(res) => {
                 setPrice(res[0]);
@@ -57,55 +55,102 @@ export default function PortfolioToken({ token, address }) {
         update();
     }, []);
 
-
     return(
         <Layout>
-            <Navbar/>
+            <PageNav/>
 
-            <div className="content">
-                <GridContainer>
-                    <GridRow>
-                        <GridCol def={12}>
-                            { token && <TokenInfo
-                                token={token}
-                                balance={balance}
-                                price={price}
-                                txnList={txnList}
-                                address={address} /> }
-                        </GridCol>
-                    </GridRow>
+                <Container css={{ mt: 100 }} gap={2} md>
+                    <Grid.Container alignItems="center" css={{ mb: 40 }}>
+                        <Grid css={{ mr: 30 }}>
+                            <Image src={`/img/tokens/${token.symbol.toLowerCase()}.png`}
+                                 css={{ height: 80 }}/>
+                        </Grid>
+                        <Grid>
+                            <div>
+                                <Text size={24} b color="$gray700">
+                                    {Functions.shortenAddress(address)}&nbsp;
+                                    <small style={{ fontSize: "1rem", color: "var(--nextui-colors-primary)" }}>
+                                        {token.symbol}
+                                    </small>
+                                </Text>
+                            </div>
+                            <div>
+                                <Text size={34} b css={{ lh: 1 }}>
+                                    {Functions.formatNumber(balance, 8)} 
+                                </Text>
+                            </div>
+                        </Grid>
+                        <Grid css={{ ml: "auto" }}>
+                            <Link href={`/track/${address}`}>
+                                <a>
+                                    Back to Portfolio
+                                </a>
+                            </Link>
+                        </Grid>
+                    </Grid.Container>
+                </Container>
 
-                    <GridRow>
-                        <GridCol xs={12} lg={4}>
-                            <Rewards token={token} txnList={txnList} balance={balance}/>
-                        </GridCol>
-                        <GridCol xs={12} lg={8}>
-                            { error &&
-                                <Card variant={""} css={{ p: "1rem" }}>
-                                    <Card.Body>
-                                        {error}
-                                    </Card.Body>
-                                </Card>
-                            }
+                <Container css={{ mb: 100, mt: 30 }} gap={0} md>
+                    <Grid.Container gap={4}>
+                        <Grid xs={12} sm={7}>
+                            <div style={{ width: "100%" }}>
+                                <Text>
+                                    Wallet:&nbsp;
+                                    <Link href={`https://bscscan.com/address/${address}`}>
+                                        <a target="_blank">
+                                            {address}
+                                        </a>
+                                    </Link>
+                                </Text>
 
-                            { loading &&
-                                <Card variant={""} css={{ p: "1rem" }}>
-                                    <Card.Body>
-                                        Fetching transactions...
-                                    </Card.Body>
-                                </Card>}
-                            <TxnList token={token}
-                                     txnList={txnList}
-                                     address={address}/>
-                        </GridCol>
-                    </GridRow>
+                                <Text>
+                                    Website:&nbsp;
+                                    <Link href={token.website}>
+                                        <a target="_blank">
+                                            {token.website}
+                                        </a>
+                                    </Link>
+                                </Text>
 
-                    <Text size={12} color={"$gray600"} css={{ mt: 50 }}>
-                        All values here are estimates.<br/>
-                        This page is not intended to help you make financial decisions.
-                    </Text>
-                </GridContainer>
-            </div>
+                                <Grid.Container css={{ mt: 30 }}>
+                                    <Grid xs={6} sm={3}>
+                                        <div>
+                                            <Text color="$gray800">Price</Text>
+                                            <Text size={20} b>
+                                                ${Functions.shortenPrice(price)}
+                                            </Text>
+                                        </div>
+                                    </Grid>
+                                    <Grid xs={6} sm={3}>
+                                        <div>
+                                            <Text color="$gray800">Value</Text>
+                                            <Text size={20} b>
+                                                ${Functions.formatNumber(parseFloat((price * balance).toFixed(2)), 2)}
+                                            </Text>
+                                        </div>
+                                    </Grid>
+                                </Grid.Container>
+
+                                {<Rewards token={token} txnList={txnList}/>}
+                            </div>
+                        </Grid>
+                        <Grid xs={12} sm={5}>
+                            <div style={{ width: "100%" }}>
+
+                                { error && 
+                                    <Text>{error}</Text>
+                                }
+
+                                {<TxnList 
+                                    token={token} 
+                                    address={address} 
+                                    txnList={txnList}/>}
+                            </div>
+                        </Grid>
+                    </Grid.Container>
+                </Container>
+
+                
 
             <Footer/>
         </Layout>

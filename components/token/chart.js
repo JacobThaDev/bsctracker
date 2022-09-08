@@ -1,7 +1,7 @@
 import { Card } from "@nextui-org/react";
 import { useTracker } from "../../context/tracker";
 
-export default function TradingView() {
+export default function TradingChart() {
 
     const { active, pairId } = useTracker()
 
@@ -10,20 +10,22 @@ export default function TradingView() {
     }
 
     return(
-        <Card variant="" css={{ mb: 20 }}>
+        <Card variant="" css={{ mb: 20, mt: 50 }}>
             <Card.Body css={{ p: 0 }}>
                 {active.pairs.length > 0 &&
-                    <iframe
+                    <embed
                         src={`https://dexscreener.com/bsc/${active.pairs[pairId].pairAddress}?embed=1&theme=dark&info=0&trades=1`}
-                        height={650} style={{border: 0}}>
-                    </iframe>
+                        height={700} 
+                        style={{ border: 0 }}>
+                    </embed>
                 }
 
                 {active.pairs.length == 0 &&
-                    <iframe
+                    <embed
                         src={`https://dexscreener.com/bsc/${active.primaryPool}?embed=1&theme=dark&info=0&trades=1`}
-                        height={650} style={{border: 0}}>
-                    </iframe>
+                        height={700} 
+                        style={{border: 0}}>
+                    </embed>
                 }
             </Card.Body>
         </Card>

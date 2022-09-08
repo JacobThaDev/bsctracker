@@ -1,7 +1,7 @@
 import { Button, Card, Image, Table, Text } from "@nextui-org/react";
 import { useTracker } from "../../context/tracker";
 
-export default function PairList() {
+export default function TokenPairs() {
 
     const { active, pairId, setPairId } = useTracker();
 
@@ -54,34 +54,41 @@ export default function PairList() {
     }
 
     return(
-        <Card css={{ p: 0 }} variant="">
-            <Card.Header css={{ px: 20 }}>
+        <Card css={{ p: "1rem", bg:"transparent" }} variant="bordered">
+            <Card.Header>
                 Liquidity Pools
             </Card.Header>
             
-            <Card.Body>
-                <Table
-                    lined
-                    sticked 
-                    shadow={false} 
-                    aria-label="Token pairs"
-                    css={{
-                        height: "auto",
-                        minWidth: "100%",
-                    }}>
-                    <Table.Header>
-                        <Table.Column>&nbsp;</Table.Column>
-                        <Table.Column>Pair</Table.Column>
-                        <Table.Column>Change</Table.Column>
-                        <Table.Column>Txns</Table.Column>
-                        <Table.Column>&nbsp;</Table.Column>
-                    </Table.Header>
-                    <Table.Body>
-                        {active.pairs && getTable()}
-                    </Table.Body>
-                </Table>
-                    
-            </Card.Body>
+            <Table
+                lined
+                sticked 
+                shadow={false} 
+                aria-label="Token pairs"
+                css={{
+                    height: "auto",
+                    minWidth: "100%",
+                }}>
+                <Table.Header>
+                    <Table.Column>&nbsp;</Table.Column>
+                    <Table.Column>Pair</Table.Column>
+                    <Table.Column>Change</Table.Column>
+                    <Table.Column>Txns</Table.Column>
+                    <Table.Column>&nbsp;</Table.Column>
+                </Table.Header>
+                <Table.Body>
+                    {active.pairs && getTable()}
+                </Table.Body>
+            </Table>
+
+            { active.pairs.length == 0 &&
+                <Card.Footer>
+                    <Text color="warning">
+                        Warning: 
+                        Could not load pairs. This token has not had any transactions 
+                        in the last 24 hours.
+                    </Text>
+                </Card.Footer>
+            }
         </Card>
     )
 

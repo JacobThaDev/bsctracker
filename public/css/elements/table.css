@@ -1,0 +1,11 @@
+.nextui-table-column-header {
+    background-color: transparent;
+}
+
+.nextui-table-row:hover {
+    background: transparent !important
+}
+
+table tbody:hover tr:not(:hover)  {
+    opacity: 0.7
+}

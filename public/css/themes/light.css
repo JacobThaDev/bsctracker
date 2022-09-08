@@ -1,9 +1,33 @@
 .light-theme {
-    --nextui-colors-background: #F1f1f1;
+    --nextui-colors-background: #F8F8F8;
     --nextui-colors-backgroundContrast: #FFF;
 
-    --nextui-colors-text: #5e6e82;
+    --nextui-colors-text: #262d35;
+    --nextui-colors-accents0: #EEF1F2;
+
+    --nextui-colors-primary: #33A9FE;
+    --nextui-colors-primaryLight: #FFF;
+    --nextui-colors-primaryLightContrast: #33A9FE;
+    --nextui-colors-primaryShadow: #33A9FE;
+    
+    --nextui-colors-success: #62af66;
+    --nextui-colors-successLight: #62af6651;
+    --nextui-colors-successLightContrast: #62af66;
+    --nextui-colors-successShadow: #62af66;
+
+    --nextui-colors-error: #f8716c;
+    --nextui-colors-errorLight: #753533;
+    --nextui-colors-errorLightContrast: #f8716c;
+    --nextui-colors-errorShadow: #f8716c;
+
+    --nextui-colors-warning: #f0ad4e;
+    --nextui-colors-warningLight: #f0ad4e51;
+    --nextui-colors-warningLightContrast: #f0ad4e;
+    --nextui-colors-warningShadow: #f0ad4e;
 
     --nextui-dropShadows-md: drop-shadow(0 .125rem .25rem rgba(0,0,0,.075));
     --nextui-dropShadows-lg: drop-shadow(0 .125rem .25rem rgba(0,0,0,.075));
+
+    --nextui-letterSpacings-tighter: -0em !important;
+    --nextui-fonts-sans: "Inter";
 }

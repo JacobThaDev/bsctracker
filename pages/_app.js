@@ -11,7 +11,8 @@ import { TrackerProvider } from '../context/tracker';
 import { Toaster } from 'react-hot-toast';
 
 
-const darkTheme  = createTheme({ type: 'dark' });
+const darkTheme   = createTheme({ type: 'dark' });
+const lightTheme  = createTheme({ type: 'light' });
 
 function MyApp({ Component, pageProps }) {
 
@@ -23,7 +24,8 @@ function MyApp({ Component, pageProps }) {
                 defaultTheme="dark"
                 attribute="class"
                 value={{
-                    dark: darkTheme.className
+                    dark: darkTheme.className,
+                    light: lightTheme.className
                 }}>
                 <NextUIProvider>
                     <TrackerProvider>

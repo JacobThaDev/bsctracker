@@ -1,4 +1,4 @@
-import {Card, Table, Text} from "@nextui-org/react";
+import {Badge, Card, Table, Text} from "@nextui-org/react";
 import SvgIcon from "../../global/SvgIcon";
 import Functions from "../../../helpers/Functions";
 import Link from "next/link";
@@ -26,9 +26,9 @@ export default function TxnList({ token, txnList, address }) {
 
     function getColor(from, to) {
         if (from.toLowerCase() === to.toLowerCase()) {
-            return "$warning";
+            return "warning";
         } else if (from.toLowerCase() === address.toLowerCase()) {
-            return "$error";
+            return "error";
         } else if (to.toLowerCase() === address.toLowerCase()) {
             return "success";
         }
@@ -54,7 +54,7 @@ export default function TxnList({ token, txnList, address }) {
     }
 
     return(
-        <Card css={{ p: "1rem", mb: 20 }} variant={""}>
+        <Card css={{ p: "1rem", mb: 20, bg: "transparent" }} variant={"bordered"}>
             <Card.Header>
                 Transactions
             </Card.Header>
@@ -69,13 +69,17 @@ export default function TxnList({ token, txnList, address }) {
                     {(item) => (
                         <Table.Row key={item.key}>
                             <Table.Cell>
-                                <Text color={getColor(item.from, item.to)} css={{ lh: 1 }}>
-                                    {getIcon(item.from, item.to)}
-                                </Text>
+                                <Badge 
+                                    color={getColor(item.from, item.to)} 
+                                    css={{ lh: 1, width: 40 }}>
+                                    {item.to.toLowerCase() === address.toLowerCase() ? "In" : "Out"}
+                                </Badge>
                             </Table.Cell>
                             <Table.Cell>
                                 {Functions.formatNumber(item.value / 10 ** item.tokenDecimal, 3)}&nbsp;
-                                <Text small color={"$gray800"}>{item.tokenSymbol}</Text>
+                                <Text small color={"$gray800"}>
+                                    {item.tokenSymbol}
+                                </Text>
                             </Table.Cell>
                             <Table.Cell>
                                 <Link href={"https://bscscan.com/tx/"+item.hash}>
@@ -85,7 +89,7 @@ export default function TxnList({ token, txnList, address }) {
                                 </Link>
                             </Table.Cell>
                             <Table.Cell>
-                                {new Date(item.timeStamp*1000).toLocaleDateString()}
+                                {new Date(item.timeStamp * 1000).toLocaleDateString()}
                             </Table.Cell>
                         </Table.Row>
                     )}

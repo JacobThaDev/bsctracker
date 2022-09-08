@@ -40,10 +40,6 @@ export function TrackerProvider({ children }) {
         await updateTokenList();
     }
 
-    const getRealTimePrice = async() => {
-
-    }
-
     const updateTokenList = async() => {
         let list      = [];
         let tokenData = tokenList;
@@ -54,11 +50,12 @@ export function TrackerProvider({ children }) {
 
         let pairs = await api.get("tokens/"+list.join(","))
             .then(res => res.data.pairs);
-
+            
         let filtered = [];
 
         for (let i = 0; i < tokenData.length; i++) {
             let token   = tokenData[i];
+            token.key   = i;
             token.pairs = [];
 
             for (let p = 0; p < pairs.length; p++) {
@@ -92,6 +89,7 @@ export function TrackerProvider({ children }) {
         }
 
         setTokens(filtered);
+        console.log("Updated")
 
         if (!active)
             setActive(filtered[0]);
@@ -99,13 +97,13 @@ export function TrackerProvider({ children }) {
 
     const getTimeName = () => {
         if (time === "h24")
-            return "24h";
+            return "24 Hrs";
         if (time === "h6")
-            return "6h";
+            return "6 Hrs";
         if (time === "h1")
-            return "1h";
+            return "1 Hr";
         if (time === "m5")
-            return "5m";
+            return "5 Mins";
         return "";
     }
 

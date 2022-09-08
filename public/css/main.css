@@ -33,7 +33,9 @@
 }
 
 .priceSub {
-    padding: 0px 2px;
+    display: inline-block;
+    padding: 0px 3px;
+    font-size: 0.7em;
 }
 
 .badge {
@@ -52,10 +54,6 @@
     font-weight: 400;
 }
 
-.nextui-table-column-header {
-    background-color: transparent;
-}
-
 .nextui-backdrop-layer-blur {
     backdrop-filter: saturate(180%) blur(4px);
 }
@@ -65,14 +63,28 @@
     margin-right: 10px;
 }
 
-@media(max-width: 991.98px) {
+.hide-xs {
+    background: transparent
+}
+
+.token-table {
+    padding-right: 50px;
+}
+@media(max-width: 960px) {
+    .token-table {
+        padding-right: 0px;
+    }
     .form-container {
         margin-right: 0px;
     }
     .address-input {
         margin-left: 0;
     }
+    .hide-xs {
+        display: none !important;
+    }
 }
+
 .spinnyboi {
     -webkit-animation:spin 2s linear infinite;
     -moz-animation:spin 2s linear infinite;
@@ -92,8 +104,4 @@
         -webkit-transform: rotate(360deg);
         transform:rotate(360deg);
     }
-}
-
-table tbody:hover tr:not(:hover)  {
-    opacity: 0.7
 }

@@ -54,7 +54,7 @@ class Functions {
         }
 
         let substr = split[1].substring(digits, split[1].length);
-        return (<>0.0<sup className="priceSub">{digits - 1}</sup>{substr.substring(0, 7)}</>)
+        return (<>0.0<span className="priceSub">{digits - 1}</span>{substr.substring(0, 7)}</>)
     }
 
     /**
@@ -249,6 +249,16 @@ class Functions {
             document.body.removeChild(textArea);
             return false;
         }
+    }
+
+    static randomString(length = 5) {
+        var result           = '';
+        var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        var charactersLength = characters.length;
+        for ( var i = 0; i < length; i++ ) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+        return result;
     }
 }
 

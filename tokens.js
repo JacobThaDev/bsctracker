@@ -1,4 +1,5 @@
 module.exports = [
+    
     {
         title: "SafeMoon",
         symbol: "SFM",
@@ -8,6 +9,26 @@ module.exports = [
         canBurn: true,
         website: "https://safemoon.com",
         primaryPool: "0x856A1C95bef293de7367b908DF2b63ba30FBdD59"
+    },
+    {
+        title: "Grove",
+        symbol: "GVR",
+        contract: "0xaFb64E73dEf6fAa8B6Ef9a6fb7312d5C4C15ebDB",
+        decimals: 9,
+        burn_wallet: "0x000000000000000000000000000000000000dead",
+        canBurn: true,
+        website: "https://www.grovetoken.com",
+        primaryPool: "0xb14173e6E9790C346aCfe9BC02b54AA81841427A"
+    },
+    {
+        title: "EverGrow",
+        symbol: "EGC",
+        contract: "0xC001BBe2B87079294C63EcE98BdD0a88D761434e",
+        decimals: 9,
+        burn_wallet: "0x000000000000000000000000000000000000dead",
+        canBurn: true,
+        website: "https://evergrowegc.com",
+        primaryPool: "0xD254a3C351DAd83F8B369554B420047A1ED60f1C"
     },
     {
         title: "BlockBusters",
@@ -31,16 +52,6 @@ module.exports = [
         primaryPool: "0x5C2F3E0A5432214AB47F4D5D2d778038436F528b"
     },
     {
-        title: "Grove",
-        symbol: "GVR",
-        contract: "0xaFb64E73dEf6fAa8B6Ef9a6fb7312d5C4C15ebDB",
-        decimals: 9,
-        burn_wallet: "0x000000000000000000000000000000000000dead",
-        canBurn: true,
-        website: "https://www.grovetoken.com",
-        primaryPool: "0xb14173e6E9790C346aCfe9BC02b54AA81841427A"
-    },
-    {
         title: "GlowV2",
         symbol: "GLOWV2",
         contract: "0x05De1dbFCdc876F790371508b97C337640Dcd6a9",
@@ -51,7 +62,7 @@ module.exports = [
         website: "https://www.glowtoken.net",
         primaryPool: "0xdA0f97bB99bb6B796FBF5646E1F0EE2d0e7FC5f8"
     },
-    {
+    /*{
         title: "Luna",
         symbol: "LUNA",
         contract: "0x156ab3346823B651294766e23e6Cf87254d68962",
@@ -60,7 +71,7 @@ module.exports = [
         canBurn: true,
         website: "https://terra.money",
         primaryPool: "0xEB8d08030017BD1362a5414112CaCb094FA20cE1"
-    },
+    },*/
     {
         title: "Affinity",
         symbol: "AFFINITY",
@@ -71,16 +82,7 @@ module.exports = [
         website: "https://affinitybsc.com",
         primaryPool: "0xeE22415f8b3DDb0E3C45b493620D9e3D7FF7809F"
     },
-    {
-        title: "EverGrow",
-        symbol: "EGC",
-        contract: "0xC001BBe2B87079294C63EcE98BdD0a88D761434e",
-        decimals: 9,
-        burn_wallet: "0x000000000000000000000000000000000000dead",
-        canBurn: true,
-        website: "https://evergrowegc.com",
-        primaryPool: "0xD254a3C351DAd83F8B369554B420047A1ED60f1C"
-    },
+    
     {
         title: "Puli-Inu",
         symbol: "PULI",
@@ -102,7 +104,7 @@ module.exports = [
         primaryPool: "0x404401587474bf654e6F2343656873C1A28dA2C9"
     },
     {
-        title: "Reflex Finance v2",
+        title: "Reflex v2",
         symbol: "REFLEX",
         contract: "0x2f499c6DA2C84063BB7e0CB1C478687210cDB615",
         decimals: 18,
@@ -150,5 +152,35 @@ module.exports = [
         canBurn: false,
         website: "https://defiskeptic.com/",
         primaryPool: "0xE0Be422249882F2236Dc17599D279e1F8337556E"
+    },
+    {
+        title: "MommyMilkers",
+        symbol: "MOO",
+        contract: "0x8a8d7D8Fd56ac1E7387dE6524E420DC8f8e3653b",
+        decimals: 18,
+        burn_wallet: "0x000000000000000000000000000000000000dead",
+        canBurn: false,
+        website: "https://www.mommymilkers.lol/",
+        primaryPool: "0x284c468C481768044778829Bf3A46192F0E6be15"
+    },
+    {
+        title: "Aidi Finance",
+        symbol: "AIDI",
+        contract: "0xb358b0e5A8943029e66175830D85198fE6cC93f6",
+        decimals: 9,
+        burn_wallet: "0x000000000000000000000000000000000000dead",
+        canBurn: true,
+        website: "https://aidiverse.com/home",
+        primaryPool: "0x25945a86B0315Ac069841BdBE9aF7A7A99e1233B"
+    },
+    {
+        title: "Income Island",
+        symbol: "INCOME",
+        contract: "0x3a91A88Ef4bB813BB99EF5a745bcb56e3A3b403b",
+        decimals: 9,
+        burn_wallet: "0x000000000000000000000000000000000000dead",
+        canBurn: true,
+        website: "https://incomeisland.org/",
+        primaryPool: "0x972ce2018283eBE0F4C721cbC47538C5b5fDE5F3"
     }
 ];

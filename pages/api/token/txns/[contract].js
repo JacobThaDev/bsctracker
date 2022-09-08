@@ -33,7 +33,7 @@ export default async function handler(request, response) {
         });
 
         data = res.data.data.ethereum.transfers[0];
-        myCache.set(contract, data, 300);
+        myCache.set(contract, data, 600);
         
         return response.status(200).send(data);
     } catch (err) {

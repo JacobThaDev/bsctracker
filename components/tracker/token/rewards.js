@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 import {useEffect, useState} from "react";
-import {Card, Text} from "@nextui-org/react";
+import {Card, Divider, Text} from "@nextui-org/react";
 
 export default function Rewards({ token, txnList }) {
 
@@ -19,17 +19,18 @@ export default function Rewards({ token, txnList }) {
 
             setEarned(DynamicCard);
         }
-    }, [txnList]);
+    }, [txnList, token]);
 
     return(
-        <Card css={{ p: "1rem", mb: 20 }} variant={""}>
-            <Card.Header>Rewards Earned</Card.Header>
+        <Card css={{ p: 0, mb: 20, mt: 30, bg: "transparent" }} variant={""}>
+            <Card.Header css={{ px: 0 }}>
+                <Text size={18}>Rewards Earned</Text>
+            </Card.Header>
+
             { !token.distributor &&
-            <Card.Body>
                 <Text size={12}>
                     This token either doesn't have a rewards distributor, or we haven't added it yet.
-                </Text>
-            </Card.Body>}
+                </Text>}
 
             { token.distributor &&
                 <>

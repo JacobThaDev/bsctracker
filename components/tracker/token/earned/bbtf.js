@@ -1,5 +1,5 @@
-import {Card, Divider, Text} from "@nextui-org/react";
-import {useEffect, useState} from "react";
+import { Card, Divider, Text, Grid } from "@nextui-org/react";
+import { useEffect, useState } from "react";
 import Functions from "../../../../helpers/Functions";
 
 export default function BlockBusterEarnings({ token, txnList }) {
@@ -44,17 +44,14 @@ export default function BlockBusterEarnings({ token, txnList }) {
 
         for (let i = 0; i < tokens.length; i++) {
             rewardList.push(
-                <div key={i}>
-                    <div className={"d-flex justify-content-between align-items-center"}>
-                        <div>
-                            <Text size={12} color={"$gray800"}>{tokens[i].symbol.toUpperCase()}</Text>
-                        </div>
-                        <div>
-                            <Text>{Functions.formatNumber(tokens[i].earned, 3)}</Text>
-                        </div>
+                <Grid xs={6} sm={3} key={i} style={{ marginBottom: 20 }}>
+                    <div>
+                        <Text small color="$gray800">{tokens[i].name.toUpperCase()}</Text>
+                        <Text size={16}>
+                            {Functions.formatNumber(tokens[i].earned, 3)}
+                        </Text>
                     </div>
-                    <Divider css={{ my: 10 }}/>
-                </div>
+                </Grid>
             )
         }
 
@@ -63,8 +60,18 @@ export default function BlockBusterEarnings({ token, txnList }) {
     }, [ txnList ]);
 
     return(
-        <Card.Body>
-            {list}
-        </Card.Body>
+        <>
+            <Card.Body css={{ px: 0 }}>
+                <Grid.Container>
+                    {list}
+                </Grid.Container>
+            </Card.Body>
+            <Card.Footer css={{ px: 0, mt: 20 }}>
+                <Text size={12} color="$gray800">
+                    This token rewards in multiple tokens based on volume of the token
+                    and varies on the amount you hold.
+                </Text>
+            </Card.Footer>
+        </>
     )
 }

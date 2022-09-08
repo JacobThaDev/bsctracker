@@ -31,9 +31,17 @@ export default function GlowEarnings({ token, txnList }) {
     }, [ txnList ]);
 
     return(
-        <Card.Body>
+        <>
+        <Card.Body css={{ p: 0 }}>
             <Text size={12} color={"$gray800"}>BUSD</Text>
-            <Text>{Functions.formatNumber(earned, 9)} </Text>
+            <Text size={16}>{Functions.formatNumber(earned, 9)} </Text>
         </Card.Body>
+        <Card.Footer css={{ px: 0, mt: 20 }}>
+            <Text size={12} color="$gray800">
+                This token rewards in BUSD based on volume of the token
+                and varies on the amount you hold.
+            </Text>
+        </Card.Footer>
+        </>
     )
 }
