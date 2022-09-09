@@ -33,8 +33,13 @@ export default function Leaderboard({ title, sorting, tokens2 }) {
             if (table.length == 5) {
                 break;
             }
-
+            
             let token  = sortedArray[i];
+
+            if (token.pairs.length == 0) {
+                continue;
+            }
+            
             let change = token.pairs[0].priceChange.h24;
 
             if ((sorting === "desc" && change < 0)
