@@ -57,27 +57,27 @@ export default function Advertise() {
 
                                     <Grid.Container>
                                         <Tooltip content="Website" placement="bottom">
-                                            <Link href="#" auto css={{ mr: 10 }}>
+                                            <Link href="#" css={{ mr: 10 }}>
                                                 <SvgIcon icon="globe" size={26} stroke={1.5} />
                                             </Link>
                                         </Tooltip>
                                         <Tooltip content="Charts" placement="bottom">
-                                            <Link href="#" auto css={{ mr: 10 }}>
+                                            <Link href="#" css={{ mr: 10 }}>
                                                 <SvgIcon icon="bar-chart-2" size={26} stroke={2} />
                                             </Link>
                                         </Tooltip>
                                         <Tooltip content="Twitter" placement="bottom">
-                                            <Link href="#" auto css={{ mr: 10 }}>
+                                            <Link href="#" css={{ mr: 10 }}>
                                                 <BrandIcon icon="twitter" size={26} />
                                             </Link>
                                         </Tooltip>
                                         <Tooltip content="Discord" placement="bottom">
-                                            <Link href="#" auto css={{ mr: 10 }}>
+                                            <Link href="#" css={{ mr: 10 }}>
                                                 <BrandIcon icon="discord" size={26} />
                                             </Link>
                                         </Tooltip>
                                         <Tooltip content="Telegram" placement="bottom">
-                                            <Link href="#" auto css={{ mr: 10 }}>
+                                            <Link href="#" css={{ mr: 10 }}>
                                                 <BrandIcon icon="telegram" size={26} />
                                             </Link>
                                         </Tooltip>
