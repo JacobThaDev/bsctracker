@@ -75,12 +75,12 @@ module.exports = [
     {
         title: "Affinity",
         symbol: "AFFINITY",
-        contract: "0x0cAE6c43fe2f43757a767Df90cf5054280110F3e",
+        contract: "0xFACE67C5CE2bb48c29779b0Dede5360cC9ef5fd5",
         decimals: 9,
         burn_wallet: "0x000000000000000000000000000000000000dead",
         canBurn: true,
         website: "https://affinitybsc.com",
-        primaryPool: "0xeE22415f8b3DDb0E3C45b493620D9e3D7FF7809F"
+        primaryPool: "0xFcf32695BAd0FD181f468F1792aFbF1bA09D4188"
     },
     
     {
