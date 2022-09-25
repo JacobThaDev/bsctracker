@@ -25,7 +25,7 @@ export default function BlockBusterEarnings({ token, txnList }) {
             let inArray = false;
 
             for (let i = 0; i < tokens.length; i++) {
-                if (tokens[i].symbol.toLowerCase() === txnList[i].tokenSymbol.toLowerCase()) {
+                if (tokens[i].address.toLowerCase() === txnList[i].contractAddress.toLowerCase()) {
                     inArray = true;
                     tokens[i].earned += txnList[i].value / 10 ** txnList[i].tokenDecimal;
                 }
