@@ -62,16 +62,16 @@ module.exports = [
         website: "https://www.glowtoken.net",
         primaryPool: "0xdA0f97bB99bb6B796FBF5646E1F0EE2d0e7FC5f8"
     },
-    /*{
-        title: "Luna",
-        symbol: "LUNA",
-        contract: "0x156ab3346823B651294766e23e6Cf87254d68962",
+    {
+        title: "The X Studios",
+        symbol: "TXS",
+        contract: "0xC042705C93525ae247c8998715E7942eF6135747",
         decimals: 9,
         burn_wallet: "0x0000000000000000000000000000000000000001",
-        canBurn: true,
-        website: "https://terra.money",
-        primaryPool: "0xEB8d08030017BD1362a5414112CaCb094FA20cE1"
-    },*/
+        canBurn: false,
+        website: "https://www.thexstudio.net/",
+        primaryPool: "0x3f2ae62D015F4ab91B39E305B0AeE2067D1BA23C"
+    },
     {
         title: "Affinity",
         symbol: "AFFINITY",
