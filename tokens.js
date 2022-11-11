@@ -63,16 +63,6 @@ module.exports = [
         primaryPool: "0xdA0f97bB99bb6B796FBF5646E1F0EE2d0e7FC5f8"
     },
     {
-        title: "The X Studios",
-        symbol: "TXS",
-        contract: "0xC042705C93525ae247c8998715E7942eF6135747",
-        decimals: 9,
-        burn_wallet: "0x0000000000000000000000000000000000000001",
-        canBurn: false,
-        website: "https://www.thexstudio.net/",
-        primaryPool: "0x3f2ae62D015F4ab91B39E305B0AeE2067D1BA23C"
-    },
-    {
         title: "Affinity",
         symbol: "AFFINITY",
         contract: "0xFACE67C5CE2bb48c29779b0Dede5360cC9ef5fd5",
@@ -134,36 +124,6 @@ module.exports = [
         primaryPool: "0x8ef3eFd5C1ce5Fd8929145E64C4f953E33dD3837"
     },
     {
-        title: "RocketFi",
-        symbol: "ROCKETFI",
-        contract: "0x6e61579c22F9a6dA63a33e819f29B6697d2a126E",
-        decimals: 9,
-        burn_wallet: "0x000000000000000000000000000000000000dead",
-        canBurn: false,
-        website: "https://www.rocketfi.money/",
-        primaryPool: "0xCa8CB86Eb92A6b83Be9A8D8872E4eA52BC968A33"
-    },
-    {
-        title: "Skeptic",
-        symbol: "SKP",
-        contract: "0x1234AE511876FCAaCe685fcDC292d9589A88dC2b",
-        decimals: 9,
-        burn_wallet: "0x000000000000000000000000000000000000dead",
-        canBurn: false,
-        website: "https://defiskeptic.com/",
-        primaryPool: "0xE0Be422249882F2236Dc17599D279e1F8337556E"
-    },
-    {
-        title: "MommyMilkers",
-        symbol: "MOO",
-        contract: "0x8a8d7D8Fd56ac1E7387dE6524E420DC8f8e3653b",
-        decimals: 18,
-        burn_wallet: "0x000000000000000000000000000000000000dead",
-        canBurn: false,
-        website: "https://www.mommymilkers.lol/",
-        primaryPool: "0x284c468C481768044778829Bf3A46192F0E6be15"
-    },
-    {
         title: "Aidi Finance",
         symbol: "AIDI",
         contract: "0xb358b0e5A8943029e66175830D85198fE6cC93f6",
@@ -172,15 +132,5 @@ module.exports = [
         canBurn: true,
         website: "https://aidiverse.com/home",
         primaryPool: "0x25945a86B0315Ac069841BdBE9aF7A7A99e1233B"
-    },
-    {
-        title: "Income Island",
-        symbol: "INCOME",
-        contract: "0x3a91A88Ef4bB813BB99EF5a745bcb56e3A3b403b",
-        decimals: 9,
-        burn_wallet: "0x000000000000000000000000000000000000dead",
-        canBurn: true,
-        website: "https://incomeisland.org/",
-        primaryPool: "0x972ce2018283eBE0F4C721cbC47538C5b5fDE5F3"
     }
 ];
