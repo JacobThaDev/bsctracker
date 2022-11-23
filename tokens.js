@@ -52,15 +52,15 @@ module.exports = [
         primaryPool: "0x5C2F3E0A5432214AB47F4D5D2d778038436F528b"
     },
     {
-        title: "GlowV2",
-        symbol: "GLOWV2",
-        contract: "0x05De1dbFCdc876F790371508b97C337640Dcd6a9",
+        title: "GlowV3",
+        symbol: "GLOWV3",
+        contract: "0x606379220AB266bBE4b0FeF8469e6E602f295a84",
         distributor: "0x212f16eba125d60e40c45c28c831d9f8aa1917c0",
         decimals: 9,
         burn_wallet: "0x000000000000000000000000000000000000dead",
         canBurn: true,
         website: "https://www.glowtoken.net",
-        primaryPool: "0xdA0f97bB99bb6B796FBF5646E1F0EE2d0e7FC5f8"
+        primaryPool: "0x378369E4Ff88FF7AE0a4f7d71e93b88233bC77cF"
     },
     {
         title: "Affinity",
