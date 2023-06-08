@@ -13,7 +13,7 @@ module.exports = [
     {
         title: "Grove",
         symbol: "GVR",
-        contract: "0xaFb64E73dEf6fAa8B6Ef9a6fb7312d5C4C15ebDB",
+        contract: "0xF33893DE6eB6aE9A67442E066aE9aBd228f5290c",
         decimals: 9,
         burn_wallet: "0x000000000000000000000000000000000000dead",
         canBurn: true,
@@ -41,7 +41,7 @@ module.exports = [
         website: "https://bbtftoken.com/",
         primaryPool: "0x6a5cfce57EBD5622BbD0c4f8199593230CB15CE9"
     },
-    {
+    /*{
         title: "Bitburn",
         symbol: "BURN",
         contract: "0x5A5844CAb96A7b8B257Fc606Aa6119c5cBc6D4c4",
@@ -50,7 +50,7 @@ module.exports = [
         canBurn: false,
         website: "https://bitburn.io",
         primaryPool: "0x5C2F3E0A5432214AB47F4D5D2d778038436F528b"
-    },
+    },*/
     {
         title: "GlowV3",
         symbol: "GLOWV3",
@@ -83,7 +83,7 @@ module.exports = [
         website: "https://pulitoken.net",
         primaryPool: "0x3FF5cbE338153063D8251d2B6a22A437EC09Eef3"
     },
-    {
+    /*{
         title: "Cryft V2",
         symbol: "CRYFT",
         contract: "0x750db8B9c66d7fcE0a8a0e859c6D46b28Dc4972C",
@@ -102,7 +102,7 @@ module.exports = [
         canBurn: true,
         website: "https://reflexfinance.com/",
         primaryPool: "0x65392f798E30f2082D8d37415ec0336BB8832Ac9"
-    },
+    },*/
     {
         title: "Radioshack",
         symbol: "RADIO",
@@ -113,7 +113,7 @@ module.exports = [
         website: "https://www.radioshack.org/",
         primaryPool: "0xCD3453dcB9b791096Fd6db139FfE88f41c3Be505"
     },
-    {
+    /*{
         title: "Live Crypto Party",
         symbol: "LCP",
         contract: "0x7150363247D59F1539C5D2Af5E9b743Be07e2F8B",
@@ -132,5 +132,5 @@ module.exports = [
         canBurn: true,
         website: "https://aidiverse.com/home",
         primaryPool: "0x25945a86B0315Ac069841BdBE9aF7A7A99e1233B"
-    }
+    }*/
 ];

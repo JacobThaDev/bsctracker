@@ -28,7 +28,7 @@ export default function About() {
         <Layout>
             <PageNav/>
 
-            <Container css={{ my: 100 }} gap={2} md>
+            <Container css={{ my: 100, h: 400 }} gap={2} md>
                     <Text size={40} css={{ mb: 30, fontWeight: 900 }}>
                        About BscTracker
                     </Text>
