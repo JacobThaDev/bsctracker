@@ -18,7 +18,7 @@ module.exports = [
         burn_wallet: "0x000000000000000000000000000000000000dead",
         canBurn: true,
         website: "https://www.grovetoken.com",
-        primaryPool: "0xb14173e6E9790C346aCfe9BC02b54AA81841427A"
+        primaryPool: "0x96fef7f7d5a2302bdd116d47e010689adc1cbce6"
     },
     {
         title: "EverGrow",
