@@ -53,7 +53,7 @@ module.exports = [
     },*/
     {
         title: "GlowV3",
-        symbol: "GLOWV3",
+        symbol: "GLOW",
         contract: "0x606379220AB266bBE4b0FeF8469e6E602f295a84",
         distributor: "0x212f16eba125d60e40c45c28c831d9f8aa1917c0",
         decimals: 9,
