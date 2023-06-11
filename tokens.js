@@ -75,7 +75,7 @@ module.exports = [
         website: "https://affinitybsc.com",
         primaryPool: "0xFcf32695BAd0FD181f468F1792aFbF1bA09D4188"
     },
-    
+    /*
     {
         title: "Puli-Inu",
         symbol: "PULI",
@@ -86,7 +86,7 @@ module.exports = [
         website: "https://pulitoken.net",
         primaryPool: "0x3FF5cbE338153063D8251d2B6a22A437EC09Eef3"
     },
-    /*{
+    {
         title: "Cryft V2",
         symbol: "CRYFT",
         contract: "0x750db8B9c66d7fcE0a8a0e859c6D46b28Dc4972C",
