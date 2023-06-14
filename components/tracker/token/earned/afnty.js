@@ -2,7 +2,7 @@ import { Card, Divider, Text, Grid } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import Functions from "../../../../helpers/Functions";
 
-export default function BlockBusterEarnings({ token, txnList }) {
+export default function AffinityEarnings({ token, txnList }) {
 
     const [ earned, setEarned ] = useState(0);
     const [ list, setList ] = useState(null);
@@ -43,6 +43,7 @@ export default function BlockBusterEarnings({ token, txnList }) {
         }
 
         for (let i = 0; i < tokens.length; i++) {
+                console.log("token name is ", tokens[i].name.toUpperCase());
             rewardList.push(
                 <Grid xs={6} sm={3} key={i} style={{ marginBottom: 20 }}>
                     <div>

@@ -4,6 +4,7 @@ module.exports = [
         title: "SafeMoon",
         symbol: "SFM",
         contract: "0x42981d0bfbaf196529376ee702f2a9eb9092fcb5",
+        distributor: "0x678ee23173dce625A90ED651E91CA5138149F590",
         decimals: 9,
         burn_wallet: "0x0000000000000000000000000000000000000001",
         canBurn: true,
@@ -24,6 +25,7 @@ module.exports = [
         title: "EverGrow",
         symbol: "EGC",
         contract: "0xC001BBe2B87079294C63EcE98BdD0a88D761434e",
+        distributor: "0xfbab1d829e36efbd13642229eae2964004f38c41",
         decimals: 9,
         burn_wallet: "0x000000000000000000000000000000000000dead",
         canBurn: true,
@@ -53,7 +55,7 @@ module.exports = [
     },*/
     {
         title: "GlowV3",
-        symbol: "GLOWV3",
+        symbol: "GLOW",
         contract: "0x606379220AB266bBE4b0FeF8469e6E602f295a84",
         distributor: "0x212f16eba125d60e40c45c28c831d9f8aa1917c0",
         decimals: 9,
@@ -64,15 +66,16 @@ module.exports = [
     },
     {
         title: "Affinity",
-        symbol: "AFFINITY",
+        symbol: "AFNTY",
         contract: "0xFACE67C5CE2bb48c29779b0Dede5360cC9ef5fd5",
+        distributor: "0x662023c11133e12c9d4DD0E80DA1FAce47eC2Bbb",
         decimals: 9,
         burn_wallet: "0x000000000000000000000000000000000000dead",
         canBurn: true,
         website: "https://affinitybsc.com",
         primaryPool: "0xFcf32695BAd0FD181f468F1792aFbF1bA09D4188"
     },
-    
+    /*
     {
         title: "Puli-Inu",
         symbol: "PULI",
@@ -83,7 +86,7 @@ module.exports = [
         website: "https://pulitoken.net",
         primaryPool: "0x3FF5cbE338153063D8251d2B6a22A437EC09Eef3"
     },
-    /*{
+    {
         title: "Cryft V2",
         symbol: "CRYFT",
         contract: "0x750db8B9c66d7fcE0a8a0e859c6D46b28Dc4972C",
